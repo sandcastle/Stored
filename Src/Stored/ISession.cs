@@ -11,5 +11,7 @@ namespace Stored
         void Delete<T>(T value);
         IEnumerable<T> Query<T>(IQuery query);
         void Commit();
+
+        ISessionAdvanced Advanced { get; }
     }
 }

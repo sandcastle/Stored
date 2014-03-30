@@ -1,4 +1,4 @@
-﻿namespace Stored.Tests
+﻿namespace Stored.Tests.Postgres
 {
     public class PostgresConfig
     {

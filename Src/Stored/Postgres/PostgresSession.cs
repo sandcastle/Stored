@@ -12,7 +12,7 @@ namespace Stored.Postgres
     {
         readonly IPostgresStore _store;
         readonly Func<NpgsqlConnection> _connectionFactory;
-        readonly ISessionAdvanced _advanced;
+        readonly PostgresSessionAdvanced _advanced;
         readonly JsonSerializerSettings _jsonSettings;
 
         public PostgresSession(IPostgresStore store)
@@ -30,7 +30,7 @@ namespace Stored.Postgres
             _advanced = new PostgresSessionAdvanced(_store, _connectionFactory);
         }
 
-        public ISessionAdvanced Advanced
+        public override ISessionAdvanced Advanced
         {
             get { return _advanced; }
         }
@@ -168,7 +168,7 @@ namespace Stored.Postgres
             }
         }
 
-        class PostgresSessionAdvanced : ISessionAdvanced
+        public class PostgresSessionAdvanced : ISessionAdvanced
         {
             readonly IPostgresStore _store;
             readonly Func<NpgsqlConnection> _connectionFactory;

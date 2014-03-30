@@ -3,7 +3,7 @@ using System.Data;
 using Npgsql;
 using Stored.Postgres;
 
-namespace Stored.Tests
+namespace Stored.Tests.Postgres
 {
     public class PostgresTest : IDisposable
     {

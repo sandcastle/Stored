@@ -4,9 +4,9 @@ using System.Linq;
 using Stored.Tests.Models;
 using Xunit;
 
-namespace Stored.Tests
+namespace Stored.Tests.Memory
 {
-    public class PostgresStoreTests : PostgresTest
+    public class MemorySessionTests : MemoryTest
     {
         [Fact]
         public void CanCreate()
@@ -39,6 +39,9 @@ namespace Stored.Tests
 
             // Act
             Session.Advanced.BulkCreate(items);
+
+            // Assert
+            Assert.Equal(2, Store[typeof(Car)].Count);
         }
 
         [Fact]
@@ -55,7 +58,7 @@ namespace Stored.Tests
 
             // Act
             var again = Session.Get<Car>(car.Id);
-            
+
             // Asssert
             Assert.NotNull(again);
             Assert.Equal(car.Id, again.Id);
@@ -112,7 +115,7 @@ namespace Stored.Tests
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
-            var query = new Query {Take = 100};
+            var query = new Query { Take = 100 };
             query.Filters.WithEqual("Make", "Toyota");
 
             // Act

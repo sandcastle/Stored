@@ -6,7 +6,7 @@ using Stored.Tests.Models;
 using Xunit;
 using Xunit.Extensions;
 
-namespace Stored.Tests
+namespace Stored.Tests.Postgres
 {
     public class PostgresStotePerfTests : PostgresTest
     {

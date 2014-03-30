@@ -57,6 +57,8 @@
     <Compile Include="ISessionAdvanced.cs" />
     <Compile Include="IStore.cs" />
     <Compile Include="ITableMetadata.cs" />
+    <Compile Include="Memory\MemorySession.cs" />
+    <Compile Include="Memory\MemoryStore.cs" />
     <Compile Include="Postgres\IPostgresSession.cs" />
     <Compile Include="Postgres\IPostgresStore.cs" />
     <Compile Include="Postgres\PostgresSession.cs" />
@@ -73,6 +75,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

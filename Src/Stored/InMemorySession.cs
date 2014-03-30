@@ -19,6 +19,8 @@ namespace Stored
         /// </summary>
         public Guid Id { get; private set; }
 
+        public abstract ISessionAdvanced Advanced { get; }
+
         public abstract void Commit();
 
         protected abstract T GetInternal<T>(Guid id);
