@@ -106,6 +106,9 @@ namespace Stored.Postgres
                     ExecuteDeleteSet(connection, item.Key, item.Value.Select(x => x.Key));
                 }
             }
+
+            Entities.Clear();
+            DeletedEntities.Clear();
         }
 
         void ExecuteCreateSet(NpgsqlConnection connection, Type type, IEnumerable<KeyValuePair<Guid, object>> items)
