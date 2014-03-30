@@ -37,8 +37,8 @@ using (var session = store.CreateSession())
 {
     var items = new List<Car>
     {
-        ew Car { Make = "Astin Martin", Model = "DB9 Volante" },
-        ew Car { Make = "Toyota", Model = "Rav4" }
+        new Car { Make = "Astin Martin", Model = "DB9 Volante" },
+        new Car { Make = "Toyota", Model = "Rav4" }
     };
 
     // does not buffer in unit of work
