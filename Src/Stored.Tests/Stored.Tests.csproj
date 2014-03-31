@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Memory\MemorySessionTests.cs" />
-    <Compile Include="MemoryTest.cs" />
+    <Compile Include="Memory\MemoryTest.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Postgres\PostgresConfig.cs" />
