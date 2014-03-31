@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Stored</id>
+    <version>1.0.0</version>
+    <authors>Glenn Morton</authors>
+    <owners>Glenn Morton</owners>
+    <projectUrl>https://github.com/sandcastle/stored</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A light weight data access library for storing entities with support for unit of work.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>data database postgres cache linq</tags>
+  </metadata>
+</package>

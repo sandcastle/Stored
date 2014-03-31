@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Stored.Postgres.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stored\Stored.csproj">

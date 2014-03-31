@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Stored.Postgres</id>
+    <version>1.0.0</version>
+    <authors>Glenn Morton</authors>
+    <owners>Glenn Morton</owners>
+    <projectUrl>https://github.com/sandcastle/stored</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Postgres SQL provider for the Stored data access library.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>data database postgres cache linq</tags>
+    <dependencies>
+      <dependency id="Stored" version="1.0" />
+    </dependencies>
+  </metadata>
+</package>
