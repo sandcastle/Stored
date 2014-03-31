@@ -1,19 +1,9 @@
 Stored
 ======
 
-A lightweight data store for saving entities as JSON in Postgres with support for unit of work.
+A light weight data store for storing entities with for unit of work. 
 
-### Saving an entity
-
-```csharp
-var store = new PostgresStore(connectionString);
-
-using (var session = store.CreateSession())
-{
-    session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
-    session.Commit();
-}
-```
+There are currently 2 supported providers in-memory (really fast) and Postgres.
 
 ### Getting an entity
 
@@ -28,7 +18,70 @@ using (var session = store.CreateSession())
 }
 ```
 
-### Bulk insert
+### Saving an entity
+
+```csharp
+var store = new PostgresStore(connectionString);
+
+using (var session = store.CreateSession())
+{
+    session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+    session.Commit();
+}
+```
+
+### Modifying an entity
+
+```csharp
+var store = new PostgresStore(connectionString);
+
+using (var session = store.CreateSession())
+{
+    var car = session.Get<Car>(carId);
+	car.Model = "Mustang";
+
+    session.Modify(car);
+    session.Commit();
+}
+```
+
+### Deleting an entity
+
+```csharp
+var store = new PostgresStore(connectionString);
+
+using (var session = store.CreateSession())
+{
+    var car = session.Get<Car>(carId);
+
+    session.Delete(car);
+    session.Commit();
+}
+```
+
+### Querying for entities
+
+I plan to move this to a basic linq provider which will simplify this dramatically.
+
+```csharp
+var store = new PostgresStore(connectionString);
+
+using (var session = store.CreateSession())
+{
+	session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+    session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+    session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+    session.Commit();
+
+    var query = new Query { Take = 100 };
+    query.Filters.WithEqual("Make", "Toyota");
+
+    // Act
+	var items = session.Query<Car>(query).ToList();
+}
+```
+
+### Bulk create
 
 ```csharp
 var store = new PostgresStore(connectionString);
@@ -45,3 +98,8 @@ using (var session = store.CreateSession())
     session.Advanced.BulkCreate(items);
 }
 ```
+
+Inspiration
+===
+
+Inspriation from this project has come from Raven DB and Biggy.
