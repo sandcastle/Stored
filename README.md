@@ -76,8 +76,7 @@ using (var session = store.CreateSession())
     var query = new Query { Take = 100 };
     query.Filters.WithEqual("Make", "Toyota");
 
-    // Act
-	var items = session.Query<Car>(query).ToList();
+    var items = session.Query<Car>(query).ToList();
 }
 ```
 
