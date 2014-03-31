@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Stored.Postgres\Stored.Postgres.csproj">
+      <Project>{D4A7994F-E3DB-4C03-A831-217434167CDF}</Project>
+      <Name>Stored.Postgres</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Stored\Stored.csproj">
       <Project>{A2B05E5A-7044-4D99-A25A-B52A0638D985}</Project>
       <Name>Stored</Name>
