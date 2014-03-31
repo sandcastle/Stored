@@ -1,7 +1,7 @@
 Stored
 ======
 
-A light weight data store for storing entities with for unit of work. 
+A light weight data store for storing entities with support for unit of work. 
 
 There are currently 2 supported providers in-memory (really fast) and Postgres.
 
