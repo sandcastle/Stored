@@ -45,7 +45,6 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPostgresSession.cs" />
@@ -54,6 +53,7 @@
     <Compile Include="PostgresStore.cs" />
     <Compile Include="PostgresTableMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreConventions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

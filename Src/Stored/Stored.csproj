@@ -32,14 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityMetadata.cs" />
@@ -58,10 +53,8 @@
     <Compile Include="QueryExtensions.cs" />
     <Compile Include="QueryFitler.cs" />
     <Compile Include="QueryOperator.cs" />
-    <Compile Include="StoreConventions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Stored.nuspec" />
   </ItemGroup>
   <ItemGroup />

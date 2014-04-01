@@ -23,11 +23,6 @@ namespace Stored.Memory
             }
         }
 
-        public StoreConventions Conventions
-        {
-            get { throw new NotImplementedException(); }
-        }
-
         ISession IStore.CreateSession()
         {
             return CreateSession();
