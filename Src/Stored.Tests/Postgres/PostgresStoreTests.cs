@@ -8,7 +8,10 @@ namespace Stored.Tests.Postgres
 {
     public class PostgresStoreTests : PostgresTest
     {
+        const string TraitName = "Integration";
+
         [Fact]
+        [Trait(TraitName, "")]
         public void CanCreate()
         {
             // Arrange
@@ -28,6 +31,7 @@ namespace Stored.Tests.Postgres
         }
 
         [Fact]
+        [Trait(TraitName, "")]
         public void CanBulkCreate()
         {
             // Arrange
@@ -42,6 +46,7 @@ namespace Stored.Tests.Postgres
         }
 
         [Fact]
+        [Trait(TraitName, "")]
         public void CanGet()
         {
             // Arrange
@@ -63,6 +68,7 @@ namespace Stored.Tests.Postgres
         }
 
         [Fact]
+        [Trait(TraitName, "")]
         public void CanUpdate()
         {
             // Arrange
@@ -86,6 +92,7 @@ namespace Stored.Tests.Postgres
         }
 
         [Fact]
+        [Trait(TraitName, "")]
         public void CanDelete()
         {
             // Arrange
@@ -104,6 +111,7 @@ namespace Stored.Tests.Postgres
         }
 
         [Fact]
+        [Trait(TraitName, "")]
         public void CanQuery()
         {
             // Arrange

@@ -10,7 +10,7 @@ namespace Stored.Tests.Postgres
 {
     public class PostgresStotePerfTests : PostgresTest
     {
-        const string TraitName = "Performance Test";
+        const string TraitName = "Performance";
 
         static readonly Random _random = new Random();
         static readonly string[] _products = { "Apples", "Pears", "Chips", "Corn" };
