@@ -11,9 +11,6 @@
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>data database postgres cache linq</tags>
-    <dependencies>
-      <dependency id="Stored" version="1.0" />
-    </dependencies>
   </metadata>
   <files>
     <file src="Stored.dll" target="lib\net45" />
