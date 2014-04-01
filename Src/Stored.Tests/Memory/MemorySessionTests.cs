@@ -125,5 +125,32 @@ namespace Stored.Tests.Memory
             Assert.Equal(2, items.Count());
 
         }
+
+        [Fact]
+        public void CreateWithModelThatHasNoIdShouldThrow()
+        {
+            // Assert
+            Assert.Throws<EntityException>(() => Session.Create(new Bad()));
+        }
+
+        [Fact]
+        public void CreateWithModelThatHasAnIdShouldntOverwrite()
+        {
+            // Arrange
+            var car = new Car
+            {
+                Id = Guid.NewGuid(),
+                Make = "Toyota",
+                Model = "Rav4"
+            };
+
+            // Act
+            car = Session.Create(car);
+            Session.Commit();
+
+            // Asssert
+            Assert.NotNull(car);
+            Assert.Equal(car.Id, car.Id);
+        }
     }
 }

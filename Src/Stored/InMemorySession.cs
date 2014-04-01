@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.CSharp.RuntimeBinder;
 
 namespace Stored
 {
@@ -48,7 +47,7 @@ namespace Stored
         {
             var entities = GetLocalEntities<T>();
 
-            var id = SetEntityId(value);
+            var id = IdentityFactory.SetEntityId(value);
             entities[id] = new Tuple<object, EntityMetadata>(value, new EntityMetadata{ IsCreate = true});
 
             RemoveFromDeleteIfExists<T>(id);
@@ -60,7 +59,7 @@ namespace Stored
         {
             var entities = GetLocalEntities<T>();
 
-            var id = GetEntityId(value);
+            var id = IdentityFactory.GetEntityId(value);
             entities[id] = new Tuple<object, EntityMetadata>(value, new EntityMetadata { IsCreate = false });
 
             return value;
@@ -70,7 +69,7 @@ namespace Stored
         {
             var entities = GetLocalEntities<T>();
 
-            var id = GetEntityId(value);
+            var id = IdentityFactory.GetEntityId(value);
             if (entities.ContainsKey(id) == false)
             {
                 throw new Exception("Cannot delete an entity that is not associated with the session.");
@@ -121,39 +120,6 @@ namespace Stored
             if (deleted.ContainsKey(id))
             {
                 deleted.Remove(id);
-            }
-        }
-
-        static Guid SetEntityId(dynamic value)
-        {
-            try
-            {
-                var id = Guid.NewGuid();
-                value.Id = id;
-
-                return id;
-            }
-            catch (RuntimeBinderException)
-            {
-                throw new Exception("Entity does not have an ID property.");
-            }
-        }
-
-        static Guid GetEntityId(dynamic value)
-        {
-            try
-            {
-                Guid id = value.Id;
-                if (id == Guid.Empty)
-                {
-                    throw new Exception("Entity ID cannot be Empty.");
-                }
-
-                return id;
-            }
-            catch (RuntimeBinderException)
-            {
-                throw new Exception("Entity does not have an ID property.");
             }
         }
     }

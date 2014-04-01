@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.CSharp.RuntimeBinder;
 
 namespace Stored.Memory
 {
@@ -104,26 +103,10 @@ namespace Stored.Memory
             {
                 var dictionary = _session._store[typeof (T)];
 
-                try
+                foreach (var item in items)
                 {
-                    foreach (var item in items)
-                    {
-                        var id = Guid.NewGuid();
-                        try
-                        {
-                            ((dynamic)item).Id = id;
-                        }
-                        catch (RuntimeBinderException)
-                        {
-                            throw new Exception("Entity does not have a valid ID.");
-                        }
-
-                        dictionary[id] = item;
-                    }
-                }
-                catch (RuntimeBinderException)
-                {
-                    throw new Exception("Entity does not value an ID property.");
+                    var id = IdentityFactory.SetEntityId(item);
+                    dictionary[id] = item;
                 }
             }
         }

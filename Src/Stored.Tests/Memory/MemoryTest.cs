@@ -1,6 +1,6 @@
 ﻿using Stored.Memory;
 
-namespace Stored.Tests
+namespace Stored.Tests.Memory
 {
     public class MemoryTest
     {
