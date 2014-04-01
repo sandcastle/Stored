@@ -11,9 +11,12 @@
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>data database postgres cache linq</tags>
+    <dependencies>
+      <dependency id="Stored" version="1.0" />
+    </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\*.pdb" target="lib\net45" />
-    <file src="bin\Release\*.dll" target="lib\net45" />
+    <file src="*.pdb" target="lib\net45" />
+    <file src="*.dll" target="lib\net45" />
   </files>
 </package>
