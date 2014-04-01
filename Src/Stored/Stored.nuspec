@@ -16,7 +16,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="*.pdb" target="lib\net45" />
-    <file src="*.dll" target="lib\net45" />
+    <file src="Stored.pdb" target="lib\net45" />
+    <file src="Stored.dll" target="lib\net45" />
   </files>
 </package>
