@@ -1,0 +1,23 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <Root>$(MSBuildProjectDirectory)\</Root>
+        <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+        <Version>$(BUILD_NUMBER)</Version>
+        <Version Condition="'$(Version)' == ''">1.0.0.0</Version>
+    </PropertyGroup>
+
+    <Target Name="Build">
+
+        <!-- Diagnostics -->
+        <Message Text="Diagnostics:"/>
+        <Message Text="Configuration:   $(Configuration)" />
+        <Message Text="Root:    	      $(Root)" />
+        <Message Text="Version:         $(Version)" />
+
+        <!-- Compile -->
+        <MSBuild Projects="$(Root)Stored.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=Any CPU" />
+      
+    </Target>
+
+</Project>
