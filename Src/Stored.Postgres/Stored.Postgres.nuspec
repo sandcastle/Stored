@@ -15,4 +15,8 @@
       <dependency id="Stored" version="1.0" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\Release\*.pdb" target="lib\net45" />
+    <file src="bin\Release\*.dll" target="lib\net45" />
+  </files>
 </package>
