@@ -16,7 +16,7 @@
         <Message Text="Version:         $(Version)" />
 
         <!-- Compile -->
-        <MSBuild Projects="$(Root)Stored.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=Any CPU" />
+        <MSBuild Projects="$(Root)Stored.sln" Targets="Rebuild" Properties="Configuration=$(Configuration);Platform=Any CPU" />
       
     </Target>
 
