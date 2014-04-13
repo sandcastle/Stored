@@ -1,4 +1,7 @@
 ﻿namespace Stored.Postgres
 {
-    public interface IPostgresSession : ISession { }
+    public interface IPostgresSession : ISession
+    {
+        IPostgresStore Store { get; }
+    }
 }

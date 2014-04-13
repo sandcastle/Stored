@@ -54,10 +54,14 @@
   <ItemGroup>
     <Compile Include="IPostgresSession.cs" />
     <Compile Include="IPostgresStore.cs" />
+    <Compile Include="Query\ObjectReader.cs" />
+    <Compile Include="Query\PostgresQuery.cs" />
     <Compile Include="PostgresSession.cs" />
     <Compile Include="PostgresStore.cs" />
     <Compile Include="PostgresTableMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\PostgresQueryTranslator.cs" />
+    <Compile Include="Query\QueryBuilder.cs" />
     <Compile Include="StoreConventions.cs" />
   </ItemGroup>
   <ItemGroup>

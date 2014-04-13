@@ -120,15 +120,73 @@ namespace Stored.Tests.Postgres
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
-            var query = new Query {Take = 100};
-            query.Filters.WithEqual("Make", "Toyota");
-
             // Act
-            var items = Session.Query<Car>(query).ToList();
+            var items = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .ToList();
 
             // Asssert
             Assert.Equal(2, items.Count());
+        }
 
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanQueryWithSkip()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .Skip(1)
+                .ToList();
+
+            // Asssert
+            Assert.Equal(1, items.Count());
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanQueryWithTake()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .Take(1)
+                .ToList();
+
+            // Asssert
+            Assert.Equal(1, items.Count());
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanQueryOne()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var car = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Astin Martin")
+                .FirstOrDefault();
+
+            // Asssert
+            Assert.NotNull(car);
+            Assert.Equal("DB9 Volante", car.Model);
         }
     }
 }

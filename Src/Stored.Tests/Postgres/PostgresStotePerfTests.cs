@@ -42,14 +42,14 @@ namespace Stored.Tests.Postgres
             watch.Stop();
             Console.WriteLine("Write count {0}", count);
             Console.WriteLine("Write time {0}", watch.Elapsed);
-
-            var query = new Query { Take = 100 };
-            query.Filters.WithEqual("Product", "Apples");
-
+            
             watch.Reset();
             watch.Start();
 
-            var items = Session.Query<Purchase>(query).ToList();
+            var items = Session.Query<Purchase>()
+                .Where(x => x.Product).Equal("Apples")
+                .Take(512)
+                .ToList();
 
             watch.Stop(); 
             Console.WriteLine("Results {0}", items.Count);

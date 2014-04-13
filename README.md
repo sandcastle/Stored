@@ -61,7 +61,7 @@ using (var session = store.CreateSession())
 
 ### Querying for entities
 
-I plan to move this to a basic linq provider which will simplify this dramatically.
+I haven't had time to build a Linq provider yet - feel free to send a pull request for one.
 
 ```csharp
 var store = new PostgresStore(connectionString);
@@ -73,10 +73,9 @@ using (var session = store.CreateSession())
     session.Create(new Car { Make = "Toyota", Model = "Corolla" });
     session.Commit();
 
-    var query = new Query { Take = 100 };
-    query.Filters.WithEqual("Make", "Toyota");
-
-    var items = session.Query<Car>(query).ToList();
+    var items = session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .ToList();
 }
 ```
 

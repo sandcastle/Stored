@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Stored.Memory
 {
-    public class MemorySession : InMemorySession
+    public class MemorySession : SessionBase, IMemorySession
     {
-        readonly MemoryStore _store;
+        readonly IMemoryStore _store;
         readonly MemorySessionAdvanced _advanced;
 
-        public MemorySession(MemoryStore store)
+        public MemorySession(IMemoryStore store)
         {
             _store = store;
             _advanced = new MemorySessionAdvanced(this);
         }
-        
+
+        IMemoryStore IMemorySession.Store
+        {
+            get { return _store; }
+        }
+
         public override ISessionAdvanced Advanced
         {
             get { return _advanced; }
@@ -32,19 +36,9 @@ namespace Stored.Memory
             return default(T);
         }
 
-        public override IEnumerable<T> Query<T>(IQuery query)
+        public override IQuery<T> Query<T>()
         {
-            // TODO: Look at the performance of this..
-            var values = _store[typeof(T)].Values
-                .AsEnumerable();
-
-            foreach (var item in query.Filters)
-            {
-                var localFilter = item;
-                values = values.Where(x => MatchesFilter(x, localFilter));
-            }
-
-            return values.OfType<T>();
+            return new MemoryQuery<T>(this);
         }
 
         public override void Commit()
@@ -73,24 +67,7 @@ namespace Stored.Memory
             DeletedEntities.Clear();
         }
 
-        public bool MatchesFilter(object value, IQueryFilter filter)
-        {
-            dynamic item = value.GetType().GetProperty(filter.Name).GetValue(value, null);
-            
-            switch (filter.Operator)
-            {
-                case QueryOperator.Equal:
-                    return item == filter.Value;
-
-                case QueryOperator.NotEqual:
-                    return item != filter.Value;
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        public class MemorySessionAdvanced : ISessionAdvanced
+        class MemorySessionAdvanced : ISessionAdvanced
         {
             readonly MemorySession _session;
 

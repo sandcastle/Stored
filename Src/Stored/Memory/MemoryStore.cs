@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Stored.Memory
 {
-    public class MemoryStore : IStore
+    public class MemoryStore : IMemoryStore
     {
         readonly Dictionary<Type, Dictionary<Guid, object>> _entities = new Dictionary<Type, Dictionary<Guid, object>>();
 

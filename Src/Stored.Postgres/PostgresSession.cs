@@ -5,10 +5,11 @@ using System.Linq;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 using Npgsql;
+using Stored.Postgres.Query;
 
 namespace Stored.Postgres
 {
-    public class PostgresSession : InMemorySession, IPostgresSession
+    public class PostgresSession : SessionBase, IPostgresSession
     {
         readonly IPostgresStore _store;
         readonly Func<NpgsqlConnection> _connectionFactory;
@@ -30,9 +31,19 @@ namespace Stored.Postgres
             _advanced = new PostgresSessionAdvanced(_store, _connectionFactory);
         }
 
+        public IPostgresStore Store
+        {
+            get { return _store; }
+        }
+
         public override ISessionAdvanced Advanced
         {
             get { return _advanced; }
+        }
+
+        public override IQuery<T> Query<T>()
+        {
+            return new PostgresQuery<T>(this, _connectionFactory);
         }
 
         protected override T GetInternal<T>(Guid id)
@@ -56,36 +67,6 @@ namespace Stored.Postgres
                         }
 
                         return default(T);
-                    }
-                }
-            }
-        }
-
-        public override IEnumerable<T> Query<T>(IQuery query)
-        {
-            var table = _store.GetOrCreateTable(typeof(T));
-
-            var values = new Dictionary<string, object>();
-            var builder = new QueryBuilder(table, query, values);
-
-            using (var connection = _connectionFactory())
-            {
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandType = CommandType.Text;
-                    command.CommandText = builder.Build();
-
-                    foreach (var item in values)
-                    {
-                        command.Parameters.AddWithValue(item.Key, item.Value);
-                    }
-
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            yield return JsonConvert.DeserializeObject<T>(reader.GetString(0), _jsonSettings);
-                        }
                     }
                 }
             }

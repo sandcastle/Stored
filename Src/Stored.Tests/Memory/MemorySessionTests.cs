@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Stored.Tests.Models;
 using Xunit;
@@ -115,15 +116,99 @@ namespace Stored.Tests.Memory
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
-            var query = new Query { Take = 100 };
-            query.Filters.WithEqual("Make", "Toyota");
-
             // Act
-            var items = Session.Query<Car>(query).ToList();
+            var items = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .ToList();
 
             // Asssert
             Assert.Equal(2, items.Count());
 
+        }
+
+        [Fact]
+        public void CanQueryOne()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var car = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Astin Martin")
+                .FirstOrDefault();
+
+            // Asssert
+            Assert.NotNull(car);
+            Assert.Equal("DB9 Volante", car.Model);
+        }
+
+        [Fact]
+        public void CanQueryWithSkip()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .Skip(1)
+                .ToList();
+
+            // Asssert
+            Assert.Equal(1, items.Count());
+        }
+
+        [Fact]
+        public void CanQueryWithTake()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .Take(1)
+                .ToList();
+
+            // Asssert
+            Assert.Equal(1, items.Count());
+        }
+
+        [Fact]
+        public void CanQueryFast()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Carolla" });
+            for (int i = 0; i < 200000; i++)
+            {
+                Session.Create(new Car {Make = "Ford", Model = "Focus"});
+            }
+            Session.Create(new Car { Make = "Toyota", Model = "Carolla" });
+
+            Session.Commit();
+
+            // Act
+            var watch = new Stopwatch();
+            watch.Start();
+
+            var items = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .ToList();
+
+            watch.Stop();
+
+            // Assert - should be sub 100ms for 200k full scan
+            Assert.Equal(2, items.Count);
+            Assert.True(watch.ElapsedMilliseconds < 150); 
         }
 
         [Fact]

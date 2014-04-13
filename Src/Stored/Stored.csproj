@@ -42,21 +42,27 @@
     <Compile Include="EntityException.cs" />
     <Compile Include="EntityMetadata.cs" />
     <Compile Include="IdentityFactory.cs" />
-    <Compile Include="InMemorySession.cs" />
-    <Compile Include="IQuery.cs" />
-    <Compile Include="IQueryFilter.cs" />
+    <Compile Include="Query\BinaryFilter.cs" />
+    <Compile Include="Query\ExpressionHelper.cs" />
+    <Compile Include="Query\FilterBase.cs" />
+    <Compile Include="Query\FilterHelper.cs" />
+    <Compile Include="Query\IFilterBuilder.cs" />
+    <Compile Include="SessionBase.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="ISessionAdvanced.cs" />
     <Compile Include="IStore.cs" />
+    <Compile Include="IQuery.cs" />
     <Compile Include="ITableMetadata.cs" />
+    <Compile Include="Memory\MemoryQuery.cs" />
+    <Compile Include="Memory\IMemorySession.cs" />
+    <Compile Include="Memory\IMemoryStore.cs" />
     <Compile Include="Memory\MemorySession.cs" />
     <Compile Include="Memory\MemoryStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query.cs" />
-    <Compile Include="QueryBuilder.cs" />
-    <Compile Include="QueryExtensions.cs" />
-    <Compile Include="QueryFitler.cs" />
-    <Compile Include="QueryOperator.cs" />
+    <Compile Include="Query\QueryStatistics.cs" />
+    <Compile Include="Query\Restrictions.cs" />
+    <Compile Include="Query\QueryBase.cs" />
+    <Compile Include="Query\BinaryOperator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Stored.nuspec" />

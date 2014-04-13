@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Stored
 {
-    public abstract class InMemorySession : ISession
+    public abstract class SessionBase : ISession
     {
         protected readonly Dictionary<Type, Dictionary<Guid, object>> DeletedEntities = new Dictionary<Type, Dictionary<Guid, object>>();
         protected readonly Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>> Entities = new Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>>();
 
-        protected InMemorySession()
+        protected SessionBase()
         {
             Id = Guid.NewGuid();
         }
@@ -24,7 +24,8 @@ namespace Stored
 
         protected abstract T GetInternal<T>(Guid id);
 
-        public abstract IEnumerable<T> Query<T>(IQuery query);
+        public abstract IQuery<T> Query<T>() 
+            where T : class, new();
 
         public void Clear()
         {
