@@ -61,7 +61,6 @@
     <Compile Include="PostgresTableMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\PostgresQueryTranslator.cs" />
-    <Compile Include="Query\QueryBuilder.cs" />
     <Compile Include="StoreConventions.cs" />
   </ItemGroup>
   <ItemGroup>
