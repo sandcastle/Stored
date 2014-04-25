@@ -71,12 +71,14 @@ namespace Stored
 
         public void Delete<T>(T value)
         {
-            var entities = GetLocalEntities<T>();
-
             var id = IdentityFactory.GetEntityId(value);
-            if (entities.ContainsKey(id) == false)
+
+            // if we are attempting to delete an item that has been 
+            // added or updated in the unit of work, it should just be removed
+            var entities = GetLocalEntities<T>();
+            if (entities.ContainsKey(id))
             {
-                throw new Exception("Cannot delete an entity that is not associated with the session.");
+                entities.Remove(id);
             }
 
             var deleted = GetLocalDeletedEntities<T>();

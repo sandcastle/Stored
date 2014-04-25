@@ -112,6 +112,40 @@ namespace Stored.Tests.Postgres
 
         [Fact]
         [Trait(TraitName, "")]
+        public void CanDeleteWhenNotCreatedInSameSession()
+        {
+            Guid carId;
+
+            // Arrange
+            using (var session1 = Store.CreateSession())
+            {
+                var car = new Car
+                {
+                    Make = "Toyota",
+                    Model = "Rav4"
+                };
+
+                carId = session1.Create(car).Id;
+                session1.Commit();
+            }
+
+            // Act
+            using (var session2 = Store.CreateSession())
+            {
+                var car = session2.Get<Car>(carId);
+                session2.Delete(car);
+                session2.Commit();
+            }
+
+            // Assert
+            using (var session3 = Store.CreateSession())
+            {
+                Assert.Null(Session.Get<Car>(carId));
+            }
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
         public void CanQuery()
         {
             // Arrange
