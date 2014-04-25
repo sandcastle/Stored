@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Stored.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("sandcastle.io")]
 [assembly: AssemblyProduct("Stored.Tests")]
 [assembly: AssemblyCopyright("Copyright © Glenn Morton 2014")]
 [assembly: AssemblyTrademark("")]

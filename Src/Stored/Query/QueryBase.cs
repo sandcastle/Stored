@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Reflection;
 
 namespace Stored.Query
 {
@@ -35,8 +34,9 @@ namespace Stored.Query
 
         public IFilterBuilder<T> Where(Expression<Func<T, object>> expression)
         {
-            var member = expression.GetMember();
-            return new FilterBuilder(this, member);
+            var name = ExpressionHelper.GetName(expression);
+
+            return new FilterBuilder(this, name);
         }
 
         public abstract T FirstOrDefault();
@@ -46,19 +46,19 @@ namespace Stored.Query
         class FilterBuilder : IFilterBuilder<T>
         {
             readonly QueryBase<T> _query;
-            readonly MemberInfo _member;
+            readonly string _propertyName;
 
-            public FilterBuilder(QueryBase<T> query, MemberInfo member)
+            public FilterBuilder(QueryBase<T> query, string propertyName)
             {
                 _query = query;
-                _member = member;
+                _propertyName = propertyName;
             }
 
             public IQuery<T> Equal(object value)
             {
                 _query.Restrictions.Filters.Add(new BinaryFilter
                 {
-                    FieldName = _member.Name,
+                    FieldName = _propertyName,
                     Operator = BinaryOperator.Equal,
                     Value = value
                 });
@@ -70,7 +70,7 @@ namespace Stored.Query
             {
                 _query.Restrictions.Filters.Add(new BinaryFilter
                 {
-                    FieldName = _member.Name,
+                    FieldName = _propertyName,
                     Operator = BinaryOperator.NotEqual,
                     Value = value
                 });

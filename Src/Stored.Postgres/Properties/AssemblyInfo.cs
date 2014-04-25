@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Stored.Postgres")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("sandcastle.io")]
 [assembly: AssemblyProduct("Stored.Postgres")]
 [assembly: AssemblyCopyright("Copyright © Glenn Morton 2014")]
 [assembly: AssemblyTrademark("")]

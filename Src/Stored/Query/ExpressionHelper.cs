@@ -1,47 +1,30 @@
 using System;
 using System.Linq.Expressions;
-using System.Reflection;
 
 namespace Stored.Query
 {
     internal static class ExpressionHelper
     {
-        public static MemberInfo GetMember(this Expression expression)
+        public static string GetName<T>(Expression<Func<T, object>> propertyExpression)
         {
-            var memberExpression = expression.GetMemberExpression();
-            return memberExpression.Member.ToMember();
-        }
+            var body = propertyExpression.Body;
 
-        public static MemberExpression GetMemberExpression(this Expression expression)
-        {
-            var memberExpression = expression;
-            var lambdaExpression = expression as LambdaExpression;
-            if (lambdaExpression != null)
+            var memberExpression = body as MemberExpression;
+            if (memberExpression == null)
             {
-                memberExpression = lambdaExpression.Body;
+                var unaryExpression = body as UnaryExpression;
+                if (unaryExpression != null)
+                {
+                    memberExpression = unaryExpression.Operand as MemberExpression;
+                }
             }
 
-            if (memberExpression.NodeType == ExpressionType.MemberAccess)
+            if (memberExpression == null)
             {
-                return memberExpression as MemberExpression;
+                throw new Exception(String.Format("Unknown property type: '{0}'.", body));
             }
 
-            throw new ArgumentException("Not a member access", "expression");
-        }
-
-        public static MemberInfo ToMember(this MemberInfo memberInfo)
-        {
-            if (memberInfo == null)
-            {
-                throw new NullReferenceException("Cannot create member from null.");
-            }
-
-            if (memberInfo is PropertyInfo)
-            {
-                return memberInfo;
-            }
-
-            throw new InvalidOperationException(String.Format("Cannot convert MemberInfo '{0}' to Member.", memberInfo.Name));
+            return memberExpression.Member.Name;
         }
     }
 }

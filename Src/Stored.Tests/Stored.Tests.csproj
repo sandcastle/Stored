@@ -58,11 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExpressionHelperTests.cs" />
     <Compile Include="Memory\MemorySessionTests.cs" />
     <Compile Include="Memory\MemoryTest.cs" />
+    <Compile Include="Memory\Scenarios\UserTests.cs" />
     <Compile Include="Models\Bad.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Purchase.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Postgres\PostgresConfig.cs" />
     <Compile Include="Postgres\PostgresStoreTests.cs" />
     <Compile Include="Postgres\PostgresStotePerfTests.cs" />
