@@ -61,6 +61,8 @@
     <Compile Include="ExpressionHelperTests.cs" />
     <Compile Include="Memory\MemorySessionTests.cs" />
     <Compile Include="Memory\MemoryTest.cs" />
+    <Compile Include="Memory\Scenarios\MultiFilterTests.cs" />
+    <Compile Include="Memory\Scenarios\UserFactory.cs" />
     <Compile Include="Memory\Scenarios\UserTests.cs" />
     <Compile Include="Models\Bad.cs" />
     <Compile Include="Models\Car.cs" />

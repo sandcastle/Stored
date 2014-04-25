@@ -196,6 +196,24 @@ namespace Stored.Tests.Memory
         }
 
         [Fact]
+        public void CanQueryWithoutRestrictions()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .ToList();
+
+            // Assert
+            Assert.Equal(3, items.Count);
+
+        }
+
+        [Fact]
         public void CanQueryOne()
         {
             // Arrange

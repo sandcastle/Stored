@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using Stored.Tests.Models;
+﻿using Stored.Tests.Models;
 using Xunit;
 
 namespace Stored.Tests.Memory.Scenarios
 {
     public class UserTests : MemoryTest
     {
-        static readonly string[] _names = { "Tara Nore", "Sally Fields", "Byron Sims", "Wally Walkers", "Jane Saw" };
-
         [Fact]
         public void CanRandomlyQueryUser()
         {
             // Arrange
-            var users = CreateUsers();
+            var users = UserFactory.CreateUsers(3);
 
             Session.CreateAll(users);            
             Session.Commit();
@@ -34,7 +30,7 @@ namespace Stored.Tests.Memory.Scenarios
         public void CanReturnTheSecondUser()
         {
             // Arrange
-            var users = CreateUsers();
+            var users = UserFactory.CreateUsers(3);
 
             Session.CreateAll(users);
             Session.Commit();
@@ -47,31 +43,6 @@ namespace Stored.Tests.Memory.Scenarios
             // Assert
             Assert.NotNull(result);
             Assert.Equal(users[1].Id, result.Id);
-        }
-
-        static List<User> CreateUsers()
-        {
-            var list = new List<User>();
-
-            for (var i = 0; i < 3; i++)
-            {
-                list.Add(new User
-                {
-                    Id = Guid.NewGuid(),
-                    ApiKey = CreateKey(),
-                    Name = _names[new Random().Next(0, _names.Length - 1)]
-                });
-            }
-
-            return list;
-        }
-
-        static string CreateKey()
-        {
-            return Guid.NewGuid()
-                .ToString("N")
-                .ToUpper()
-                .Substring(0, 15);
         }
     }
 }
