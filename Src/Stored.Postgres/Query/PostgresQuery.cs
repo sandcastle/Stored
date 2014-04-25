@@ -39,6 +39,9 @@ namespace Stored.Postgres.Query
 
         IEnumerable<T> Execute()
         {
+            QueryStatistics.Skip = Restrictions.Skip;
+            QueryStatistics.Take = Restrictions.Take;
+
             var connection = _connectionFactory();
             var command = connection.CreateCommand();
             

@@ -8,6 +8,7 @@ namespace Stored.Query
         where T : class, new()
     {
         readonly Restrictions _restrictions = new Restrictions();
+        readonly QueryStatistics _stats = new QueryStatistics();
 
         protected Restrictions Restrictions
         {
@@ -28,7 +29,7 @@ namespace Stored.Query
 
         public IQuery<T> Statistics(out QueryStatistics stats)
         {
-            stats = new QueryStatistics();
+            stats = _stats;
             return this;
         }
 
@@ -37,6 +38,11 @@ namespace Stored.Query
             var name = ExpressionHelper.GetName(expression);
 
             return new FilterBuilder(this, name);
+        }
+
+        protected QueryStatistics QueryStatistics
+        {
+            get { return _stats; }
         }
 
         public abstract T FirstOrDefault();

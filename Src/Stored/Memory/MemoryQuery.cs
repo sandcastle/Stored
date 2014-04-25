@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Stored.Query;
 
@@ -16,16 +17,30 @@ namespace Stored.Memory
 
         public override T FirstOrDefault()
         {
-            return GetRestricted()
+            Take(1);
+
+            return GetRestrictedWithStatistics()
+                .Skip(Restrictions.Skip)
                 .FirstOrDefault();
         }
 
         public override List<T> ToList()
         {
-            return GetRestricted()
+            return GetRestrictedWithStatistics()
                 .Skip(Restrictions.Skip)
                 .Take(Restrictions.Take)
                 .ToList();
+        }
+
+        IEnumerable<T> GetRestrictedWithStatistics()
+        {
+            QueryStatistics.Skip = Restrictions.Skip;
+            QueryStatistics.Take = Restrictions.Take;
+
+            var restricted = GetRestricted();
+            QueryStatistics.TotalCount = new Lazy<int>(restricted.Count);
+
+            return restricted;
         }
 
         IEnumerable<T> GetRestricted()
