@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
@@ -11,6 +12,8 @@ namespace Stored.Postgres
 {
     public class PostgresSession : SessionBase, IPostgresSession
     {
+        const int AllBatchSize = 2048;
+
         readonly IPostgresStore _store;
         readonly Func<NpgsqlConnection> _connectionFactory;
         readonly PostgresSessionAdvanced _advanced;
@@ -43,10 +46,47 @@ namespace Stored.Postgres
 
         public override IList<T> All<T>()
         {
-            return new PostgresQuery<T>(this, _connectionFactory)
-                .Skip(0)
-                .Take(Int32.MaxValue)
-                .ToList();
+            var table = _store.GetOrCreateTable(typeof(T));
+
+            // NOTE: Reading records is done in batches, not a single query
+            //       in case there is an huge number of records
+
+            var records = new List<T>();
+            var total = 0;
+            var batchSize = _store.Conventions.AllBatchSize;
+
+            using (var connection = _connectionFactory())
+            {
+                while (true)
+                {
+                    var results = 0;
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = String.Format(@"SELECT body FROM public.{0} LIMIT {1} OFFSET {2};", table.Name, batchSize, total);
+
+                        Debug.WriteLine(command.CommandText);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                records.Add(JsonConvert.DeserializeObject<T>(reader.GetString(0), _jsonSettings));
+                                total += 1;
+                                results += 1;
+                            }
+                        }
+                    }
+
+                    if (results < AllBatchSize)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return records;
         }
 
         public override IQuery<T> Query<T>()
@@ -66,6 +106,8 @@ namespace Stored.Postgres
                     command.CommandText = String.Format(@"SELECT body FROM public.{0} WHERE id = :id LIMIT 1;", table.Name);
 
                     command.Parameters.AddWithValue(":id", id);
+
+                    Debug.WriteLine(command.CommandText);
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -111,6 +153,8 @@ namespace Stored.Postgres
                     command.CommandType = CommandType.Text;
                     command.CommandText = String.Format(@"INSERT INTO public.{0} (id, body) VALUES (:id, :body);", table.Name);
 
+                    Debug.WriteLine(command.CommandText);
+
                     command.Parameters.AddWithValue(":id", item.Key);
                     command.Parameters.AddWithValue(":body", JsonConvert.SerializeObject(item.Value, _jsonSettings));
 
@@ -131,6 +175,8 @@ namespace Stored.Postgres
                     command.CommandText =
                         String.Format(@"UPDATE public.{0} SET body = :body WHERE id = :id;", table.Name);
 
+                    Debug.WriteLine(command.CommandText);
+
                     command.Parameters.AddWithValue(":id", item.Key);
                     command.Parameters.AddWithValue(":body", JsonConvert.SerializeObject(item.Value, _jsonSettings));
 
@@ -149,6 +195,8 @@ namespace Stored.Postgres
                 {
                     command.CommandType = CommandType.Text;
                     command.CommandText = String.Format(@"DELETE FROM public.{0} WHERE id = :id;", table.Name);
+
+                    Debug.WriteLine(command.CommandText);
 
                     command.Parameters.AddWithValue(":id", item);
 
