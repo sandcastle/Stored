@@ -41,6 +41,14 @@ namespace Stored.Postgres
             get { return _advanced; }
         }
 
+        public override IList<T> All<T>()
+        {
+            return new PostgresQuery<T>(this, _connectionFactory)
+                .Skip(0)
+                .Take(Int32.MaxValue)
+                .ToList();
+        }
+
         public override IQuery<T> Query<T>()
         {
             return new PostgresQuery<T>(this, _connectionFactory);

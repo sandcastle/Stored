@@ -63,6 +63,7 @@
     <Compile Include="Query\Restrictions.cs" />
     <Compile Include="Query\QueryBase.cs" />
     <Compile Include="Query\BinaryOperator.cs" />
+    <Compile Include="SessionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Stored.nuspec" />

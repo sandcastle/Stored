@@ -15,11 +15,7 @@ namespace Stored.Tests.Memory.Scenarios
             // Arrange
             var users = CreateUsers();
 
-            foreach (var user in users)
-            {
-                Session.Create(user);    
-            }
-            
+            Session.CreateAll(users);            
             Session.Commit();
 
             var key = users[1].ApiKey;
@@ -40,11 +36,7 @@ namespace Stored.Tests.Memory.Scenarios
             // Arrange
             var users = CreateUsers();
 
-            foreach (var user in users)
-            {
-                Session.Create(user);
-            }
-
+            Session.CreateAll(users);
             Session.Commit();
             
             // Act

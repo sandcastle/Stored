@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Stored.Memory
 {
@@ -34,6 +35,14 @@ namespace Stored.Memory
             }
 
             return default(T);
+        }
+
+        public override IList<T> All<T>()
+        {
+            return _store[typeof(T)]
+                .Values
+                .OfType<T>()
+                .ToList();
         }
 
         public override IQuery<T> Query<T>()

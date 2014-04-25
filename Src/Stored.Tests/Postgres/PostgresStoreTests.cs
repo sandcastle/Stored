@@ -25,7 +25,7 @@ namespace Stored.Tests.Postgres
             car = Session.Create(car);
             Session.Commit();
 
-            // Asssert
+            // Assert
             Assert.NotNull(car);
             Assert.NotEqual(Guid.Empty, car.Id);
         }
@@ -61,7 +61,7 @@ namespace Stored.Tests.Postgres
             // Act
             var again = Session.Get<Car>(car.Id);
             
-            // Asssert
+            // Assert
             Assert.NotNull(again);
             Assert.Equal(car.Id, again.Id);
             Assert.Equal("Rav4", again.Model);
@@ -85,7 +85,7 @@ namespace Stored.Tests.Postgres
             // Act
             var updated = Session.Modify(car);
 
-            // Asssert
+            // Assert
             Assert.NotNull(updated);
             Assert.Equal(car.Id, updated.Id);
             Assert.Equal("Corolla", updated.Model);
@@ -106,7 +106,7 @@ namespace Stored.Tests.Postgres
 
             car.Model = "Corolla";
 
-            // Act / Asssert
+            // Act / Assert
             Assert.DoesNotThrow(() => Session.Delete(car));
         }
 
@@ -125,8 +125,44 @@ namespace Stored.Tests.Postgres
                 .Where(x => x.Make).Equal("Toyota")
                 .ToList();
 
-            // Asssert
+            // Assert
             Assert.Equal(2, items.Count());
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanCreateAll()
+        {
+            // Arrange
+            Session.CreateAll(new[] {
+                new Car { Make = "Toyota", Model = "Rav4" },
+                new Car { Make = "Astin Martin", Model = "DB9 Volante" },
+                new Car { Make = "Toyota", Model = "Corolla" }
+            });
+            Session.Commit();
+
+            // Act
+            var items = Session.All<Car>();
+
+            // Assert
+            Assert.Equal(3, items.Count);
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanGetAll()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.All<Car>();
+
+            // Assert
+            Assert.Equal(3, items.Count);
         }
 
         [Fact]
@@ -145,7 +181,7 @@ namespace Stored.Tests.Postgres
                 .Skip(1)
                 .ToList();
 
-            // Asssert
+            // Assert
             Assert.Equal(1, items.Count());
         }
 
@@ -165,7 +201,7 @@ namespace Stored.Tests.Postgres
                 .Take(1)
                 .ToList();
 
-            // Asssert
+            // Assert
             Assert.Equal(1, items.Count());
         }
 
@@ -184,7 +220,7 @@ namespace Stored.Tests.Postgres
                 .Where(x => x.Make).Equal("Astin Martin")
                 .FirstOrDefault();
 
-            // Asssert
+            // Assert
             Assert.NotNull(car);
             Assert.Equal("DB9 Volante", car.Model);
         }

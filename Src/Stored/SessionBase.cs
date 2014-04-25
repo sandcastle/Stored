@@ -24,6 +24,9 @@ namespace Stored
 
         protected abstract T GetInternal<T>(Guid id);
 
+        public abstract IList<T> All<T>() 
+            where T : class, new();
+
         public abstract IQuery<T> Query<T>() 
             where T : class, new();
 

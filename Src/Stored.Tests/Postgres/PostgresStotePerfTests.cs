@@ -55,7 +55,7 @@ namespace Stored.Tests.Postgres
             Console.WriteLine("Results {0}", items.Count);
             Console.WriteLine("Query time {0}", watch.Elapsed);
 
-            // Asssert
+            // Assert
             Assert.True(items.Count <= count);
             Assert.True(items.All(x => x.Product == "Apples"));
             Assert.True(watch.ElapsedMilliseconds < 500); // should be less than 600 ms
