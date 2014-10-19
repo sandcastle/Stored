@@ -7,7 +7,7 @@ namespace Stored
 {
     internal static class IdentityFactory
     {
-        static readonly Dictionary<Type, PropertyInfo> _keyCache = new Dictionary<Type, PropertyInfo>();
+        static readonly Dictionary<Type, PropertyInfo> KeyCache = new Dictionary<Type, PropertyInfo>();
 
         public static Guid SetEntityId(object value)
         {
@@ -56,21 +56,26 @@ namespace Stored
 
         static bool TryGetIdProperty(object value, out PropertyInfo propertyInfo)
         {
+            if (value == null)
+            {
+                propertyInfo = null;
+                return false;
+            }
+
             var type = value.GetType();
 
-            if (_keyCache.ContainsKey(type))
+            if (KeyCache.ContainsKey(type))
             {
-                propertyInfo = _keyCache[type];
+                propertyInfo = KeyCache[type];
+                return true;
             }
-            else
-            {
-                propertyInfo = value.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                                   .Where(x => x.Name.Equals("id", StringComparison.OrdinalIgnoreCase))
-                                   .Where(x => x.PropertyType == typeof(Guid))
-                                   .FirstOrDefault(x => x.CanRead && x.CanWrite);
+            
+            propertyInfo = value.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(x => x.Name.Equals("id", StringComparison.OrdinalIgnoreCase))
+                .Where(x => x.PropertyType == typeof(Guid))
+                .FirstOrDefault(x => x.CanRead && x.CanWrite);
 
-                _keyCache[type] = propertyInfo;
-            }
+            KeyCache[type] = propertyInfo;
 
             return (propertyInfo != null);
         }
