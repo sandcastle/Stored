@@ -45,6 +45,50 @@ namespace Stored.Query
             return new FilterBuilder(this, propertyName);
         }
 
+        public IQuery<T> OrderBy(Expression<Func<T, object>> expression, SortType sortType = SortType.Undefined, SortOrder order = SortOrder.Ascending)
+        {
+            var name = ExpressionHelper.GetName(expression);
+
+            if (sortType == SortType.Undefined)
+            {
+                var propType = ExpressionHelper.GetPropertyType(expression);
+
+                var theSortType = SortType.Text;
+                switch (propType.ToString())
+                {
+                    case "System.DateTime":
+                        theSortType = SortType.Date;
+                        break;
+                    case "System.Int16":
+                    case "System.Int32":
+                    case "System.Int64":
+                        theSortType = SortType.Number;
+                        break;
+                    default: break;
+                }
+
+                Restrictions.SortClause.SortType = theSortType;
+            }
+            else
+            {
+                Restrictions.SortClause.SortType = sortType;
+            }
+
+            Restrictions.SortClause.FieldName = name;
+            Restrictions.SortClause.SortOrder = order;
+
+            return this;
+        }
+
+        public IQuery<T> OrderBy(string propertyName, SortType sortType = SortType.Text, SortOrder order = SortOrder.Ascending)
+        {
+            Restrictions.SortClause.FieldName = propertyName.Replace("-", "").Replace("'", "");
+            Restrictions.SortClause.SortOrder = order;
+            Restrictions.SortClause.SortType = sortType;
+
+            return this;
+        }
+
         protected QueryStatistics QueryStatistics
         {
             get { return _stats; }
