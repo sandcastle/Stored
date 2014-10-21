@@ -79,6 +79,24 @@ using (var session = store.CreateSession())
 }
 ```
 
+### Ordering entities
+
+```csharp
+var store = new PostgresStore(connectionString);
+
+using (var session = store.CreateSession())
+{
+	session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+    session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+    session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+    session.Commit();
+
+    var item = session.Query<Car>()
+                      .OrderBy(x => x.Make)
+                      .ToList();
+}
+```
+
 ### Bulk create
 
 ```csharp
