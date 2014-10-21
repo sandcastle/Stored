@@ -39,16 +39,25 @@
           <!-- Compile -->
           <MSBuild Projects="$(Root)Src\Stored.sln" Targets="Rebuild" Properties="Configuration=$(Configuration);Platform=Any CPU" />
       
-      </Target>
+    </Target>
 
     <Target Name="Test" DependsOnTargets="Build">
+        <!--
         <xunitproject ProjectFile="$(Root)build.xunit" />
+        -->
     </Target>
 
     <Target Name="Package" DependsOnTargets="Test">
 
-        <Exec Command='"$(NuGet)" pack "$(Root)Src\Stored\Stored.nuspec" -NoDefaultExcludes -BasePath "$(Root)Src\Stored\bin\Release" -OutputDirectory "$(Root)Build\Artifacts"  -Version "$(Version)" -NoPackageAnalysis' />
-        <Exec Command='"$(NuGet)" pack "$(Root)Src\Stored.Postgres\Stored.Postgres.nuspec" -NoDefaultExcludes -BasePath "$(Root)Src\Stored.Postgres\bin\Release" -OutputDirectory "$(Root)Build\Artifacts" -Version "$(Version)" -NoPackageAnalysis' />
+        <Exec Command='"$(Root)Src\.nuget\nuget.exe" pack "$(Root)Src\Stored\Stored.nuspec" -NoDefaultExcludes -BasePath "$(Root)Src\Stored\bin\Release" -OutputDirectory "$(Root)Build\Artifacts"  -Version "$(Version)" -NoPackageAnalysis' />
+        <Exec Command='"$(Root)Src\.nuget\nuget.exe" pack "$(Root)Src\Stored.Postgres\Stored.Postgres.nuspec" -NoDefaultExcludes -BasePath "$(Root)Src\Stored.Postgres\bin\Release" -OutputDirectory "$(Root)Build\Artifacts" -Version "$(Version)" -NoPackageAnalysis' />
+
+    </Target>
+
+    <Target Name="Publish" DependsOnTargets="Package">
+
+        <Exec Command='"$(Root)Src\.nuget\nuget.exe" push "$(Root)Build\Artifacts\Stored.$(Version).nupkg" 978b8639-edcf-41cb-ac65-ca1914ffc1b4' />
+        <Exec Command='"$(Root)Src\.nuget\nuget.exe" push "$(Root)Build\Artifacts\Stored.Postgres.$(Version).nupkg" 978b8639-edcf-41cb-ac65-ca1914ffc1b4' />
 
     </Target>
 

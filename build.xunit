@@ -1,0 +1,5 @@
+﻿<xunit>
+  <assemblies>
+    <assembly filename="Src\Stored.Tests\bin\Release\Stored.Tests.dll" />
+  </assemblies>
+</xunit>
