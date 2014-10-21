@@ -165,6 +165,25 @@ namespace Stored.Tests.Postgres
 
         [Fact]
         [Trait(TraitName, "")]
+        public void CanQueryStringFilter()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where("Make").Equal("Toyota")
+                .ToList();
+
+            // Assert
+            Assert.Equal(2, items.Count());
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
         public void CanQueryWithoutRestrictions()
         {
             // Arrange
@@ -179,6 +198,88 @@ namespace Stored.Tests.Postgres
 
             // Assert
             Assert.Equal(3, items.Count);
+
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanQuerySortedWithoutRestrictions()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var item = Session.Query<Car>()
+                              .OrderBy(x => x.Make)
+                              .FirstOrDefault();
+
+            // Assert
+            Assert.Equal("Astin Martin", item.Make);
+
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanQuerySorted()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .OrderBy(x => x.Model)
+                .ToList();
+
+            // Assert
+            Assert.Equal(2, items.Count());
+            Assert.Equal("Corolla", items[0].Model);
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanQuerySortedDescending()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where(x => x.Make).Equal("Toyota")
+                .OrderBy(x => x.Model, order: SortOrder.Descending)
+                .ToList();
+
+            // Assert
+            Assert.Equal(2, items.Count());
+            Assert.Equal("Rav4", items[0].Model);
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanQuerySortedWithoutRestrictionsWithPropertyName()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var item = Session.Query<Car>()
+                              .OrderBy("Make")
+                              .FirstOrDefault();
+
+            // Assert
+            Assert.Equal("Astin Martin", item.Make);
 
         }
 

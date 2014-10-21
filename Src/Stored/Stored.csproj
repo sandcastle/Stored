@@ -47,6 +47,7 @@
     <Compile Include="Query\FilterBase.cs" />
     <Compile Include="Query\FilterHelper.cs" />
     <Compile Include="Query\IFilterBuilder.cs" />
+    <Compile Include="Query\SortClause.cs" />
     <Compile Include="SessionBase.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="ISessionAdvanced.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="Query\QueryBase.cs" />
     <Compile Include="Query\BinaryOperator.cs" />
     <Compile Include="SessionExtensions.cs" />
+    <Compile Include="SortOrder.cs" />
+    <Compile Include="SortType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Stored.nuspec" />

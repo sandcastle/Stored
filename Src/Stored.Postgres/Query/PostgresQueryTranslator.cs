@@ -29,6 +29,34 @@ namespace Stored.Postgres.Query
                 }
             }
 
+            if (!String.IsNullOrWhiteSpace(restrictions.SortClause.FieldName))
+            {
+                builder.AppendLine();
+                var sortClause = String.Empty;
+                switch (restrictions.SortClause.SortType)
+                {
+                    case SortType.Undefined:
+                        //do nothing
+                        break;
+                    
+                    case SortType.Date:
+                        sortClause = "ORDER BY CAST(CAST(body->'{0}' as TEXT) as DATE) {1}";
+                        break;
+                    case SortType.Number:
+                        //TODO: replace fixed number size with more dynamic.
+                        sortClause = "ORDER BY to_number((body->'{0}')::TEXT, '9999999999999999') {1}";
+                        break;
+                    
+                    default:
+                        //Text will always be the default conversion
+                        sortClause = "ORDER BY (body->'{0}')::TEXT {1}";
+                        break;
+                }
+
+                builder.AppendFormat(sortClause, restrictions.SortClause.FieldName,
+                    restrictions.SortClause.SortOrder == SortOrder.Ascending ? "" : "DESC");
+            }
+
             if (restrictions.Take > 0)
             {
                 builder.AppendLine();
