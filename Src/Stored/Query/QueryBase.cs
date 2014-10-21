@@ -40,6 +40,11 @@ namespace Stored.Query
             return new FilterBuilder(this, name);
         }
 
+        public IFilterBuilder<T> Where(string propertyName)
+        {
+            return new FilterBuilder(this, propertyName);
+        }
+
         protected QueryStatistics QueryStatistics
         {
             get { return _stats; }

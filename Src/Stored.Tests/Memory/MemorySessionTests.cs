@@ -196,6 +196,25 @@ namespace Stored.Tests.Memory
         }
 
         [Fact]
+        public void CanQueryStringFilter()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where("Make").Equal("Toyota")
+                .ToList();
+
+            // Assert
+            Assert.Equal(2, items.Count());
+
+        }
+
+        [Fact]
         public void CanQueryWithoutRestrictions()
         {
             // Arrange
