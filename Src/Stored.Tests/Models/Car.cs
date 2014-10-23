@@ -7,5 +7,13 @@ namespace Stored.Tests.Models
         public Guid Id { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
+        public CarType CarType { get; set; }
+    }
+
+    public enum CarType
+    {
+        Sedan = 0,
+        Hatch,
+        SUV
     }
 }
