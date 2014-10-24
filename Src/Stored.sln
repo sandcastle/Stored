@@ -26,8 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{22E0B75B
 		..\Build.cmd = ..\Build.cmd
 		..\build.proj = ..\build.proj
 		..\build.sh = ..\build.sh
+		..\build.xunit = ..\build.xunit
+		..\mono.xunit = ..\mono.xunit
 		..\publish.sh = ..\publish.sh
-		..\unit.xunit = ..\unit.xunit
 	EndProjectSection
 EndProject
 Global
