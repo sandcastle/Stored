@@ -7,8 +7,6 @@ namespace Stored.Tests.Postgres
 {
     public class PostgresTest : IDisposable
     {
-        const string ConnectionString = "Server=127.0.0.1;Port=5433;Database=integration_test;User Id=test_user;Password=123456;";
-
         readonly PostgresStore _store;
         readonly PostgresSession _session;
 
@@ -16,7 +14,7 @@ namespace Stored.Tests.Postgres
         {
             Cleanup();
 
-            _store = new PostgresStore(ConnectionString);
+            _store = new PostgresStore(PostgresConfig.ConnectionString);
             _session = _store.CreateSession();
         }
 

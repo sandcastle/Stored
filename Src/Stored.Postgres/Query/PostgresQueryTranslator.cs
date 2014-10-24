@@ -87,7 +87,7 @@ namespace Stored.Postgres.Query
 
         static string GetBinaryComparison(BinaryFilter filter, Dictionary<string, object> parameters)
         {
-            parameters.Add(":" + filter.FieldName, GetDbValue(filter.Value));
+            parameters.Add(":" + filter.FieldName, TypeHelper.GetUnderlyingValue(filter.Value).ToString());
 
             var type = GetJsonType(typeof(String));
 

@@ -168,18 +168,37 @@ namespace Stored.Tests.Postgres
         public void CanQueryEnum()
         {
             // Arrange
-            Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.SUV });
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.Suv });
             Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
-            Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Sedan });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Hatch });
             Session.Commit();
 
             // Act
             var items = Session.Query<Car>()
-                .Where(x => x.CarType).Equal(CarType.Sedan)
+                .Where(x => x.CarType).Equal(CarType.Hatch)
                 .ToList();
 
             // Assert
-            Assert.Equal(2, items.Count());
+            Assert.Equal(1, items.Count());
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanQueryEnumWithUnderlyingType()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.Suv });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Hatch });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where(x => x.CarType).Equal(1)
+                .ToList();
+
+            // Assert
+            Assert.Equal(1, items.Count());
         }
 
         [Fact]

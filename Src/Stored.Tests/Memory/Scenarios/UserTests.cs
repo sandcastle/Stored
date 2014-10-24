@@ -1,4 +1,5 @@
-﻿using Stored.Tests.Models;
+﻿using System.Linq;
+using Stored.Tests.Models;
 using Xunit;
 
 namespace Stored.Tests.Memory.Scenarios
@@ -24,6 +25,44 @@ namespace Stored.Tests.Memory.Scenarios
             // Assert
             Assert.Equal(1, results.Count);
             Assert.Equal(key, results[0].ApiKey);
+        }
+
+        [Fact]
+        public void CanQueryWithEnum()
+        {
+            // Arrange
+            var users = UserFactory.CreateUsers(10);
+
+            Session.CreateAll(users);
+            Session.Commit();
+
+            // Act
+            var result = Session.Query<User>()
+                .Where(x => x.Type).Equal(UserType.Vip)
+                .ToList();
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(users.Count(x => x.Type == UserType.Vip), result.Count);
+        }
+
+        [Fact]
+        public void CanQueryWithEnumByUnderlyingType()
+        {
+            // Arrange
+            var users = UserFactory.CreateUsers(10);
+
+            Session.CreateAll(users);
+            Session.Commit();
+
+            // Act
+            var result = Session.Query<User>()
+                .Where(x => x.Type).Equal(1)
+                .ToList();
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(users.Count(x => x.Type == UserType.Vip), result.Count);
         }
 
         [Fact]

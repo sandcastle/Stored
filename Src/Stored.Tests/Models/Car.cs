@@ -13,7 +13,7 @@ namespace Stored.Tests.Models
     public enum CarType
     {
         Sedan = 0,
-        Hatch,
-        SUV
+        Hatch = 1,
+        Suv = 2
     }
 }

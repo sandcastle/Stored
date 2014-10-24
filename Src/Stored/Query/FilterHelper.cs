@@ -24,12 +24,12 @@ namespace Stored.Query
 
             if (filter.Operator == BinaryOperator.Equal)
             {
-                return (x) => property.GetValue(x, null).Equals(filter.Value);
+                return (x) => TypeHelper.GetUnderlyingValue(property.GetValue(x, null)).Equals(filter.Value);
             }
 
             if (filter.Operator == BinaryOperator.NotEqual)
             {
-                return (x) => property.GetValue(x, null).Equals(filter.Value) == false;
+                return (x) => TypeHelper.GetUnderlyingValue(property.GetValue(x, null)).Equals(filter.Value) == false;
             }
 
             throw new NotSupportedException(String.Format("Operator {0} is not supported.", filter.Operator));

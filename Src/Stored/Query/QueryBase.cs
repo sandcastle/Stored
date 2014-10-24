@@ -35,9 +35,7 @@ namespace Stored.Query
 
         public IFilterBuilder<T> Where(Expression<Func<T, object>> expression)
         {
-            var name = ExpressionHelper.GetName(expression);
-
-            return new FilterBuilder(this, name);
+            return new FilterBuilder(this, ExpressionHelper.GetName(expression));
         }
 
         public IFilterBuilder<T> Where(string propertyName)
@@ -115,7 +113,7 @@ namespace Stored.Query
                 {
                     FieldName = _propertyName,
                     Operator = BinaryOperator.Equal,
-                    Value = value
+                    Value = TypeHelper.GetUnderlyingValue(value)
                 });
 
                 return _query;
@@ -127,7 +125,7 @@ namespace Stored.Query
                 {
                     FieldName = _propertyName,
                     Operator = BinaryOperator.NotEqual,
-                    Value = value
+                    Value = TypeHelper.GetUnderlyingValue(value)
                 });
 
                 return _query;

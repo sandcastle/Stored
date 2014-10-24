@@ -48,6 +48,7 @@
     <Compile Include="Query\FilterHelper.cs" />
     <Compile Include="Query\IFilterBuilder.cs" />
     <Compile Include="Query\SortClause.cs" />
+    <Compile Include="Query\TypeHelper.cs" />
     <Compile Include="SessionBase.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="ISessionAdvanced.cs" />
