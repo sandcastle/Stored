@@ -8,7 +8,7 @@ namespace Stored.Postgres.Query
     internal class PostgresQueryTranslator
     {
         public string Translate(
-            Restrictions restrictions, 
+            Restrictions restrictions,
             Dictionary<string, object> parameters,
             ITableMetadata tableMetadata)
         {
@@ -19,7 +19,7 @@ namespace Stored.Postgres.Query
             foreach (var item in restrictions.Filters)
             {
                 builder.AppendLine();
-                builder.AppendFormat("{0} {1}", 
+                builder.AppendFormat("{0} {1}",
                     first ? "WHERE " : "AND ",
                     GetFilter(item, parameters));
 
@@ -38,7 +38,7 @@ namespace Stored.Postgres.Query
                     case SortType.Undefined:
                         //do nothing
                         break;
-                    
+
                     case SortType.Date:
                         sortClause = "ORDER BY CAST(CAST(body->'{0}' as TEXT) as DATE) {1}";
                         break;
@@ -46,7 +46,7 @@ namespace Stored.Postgres.Query
                         //TODO: replace fixed number size with more dynamic.
                         sortClause = "ORDER BY to_number((body->'{0}')::TEXT, '9999999999999999') {1}";
                         break;
-                    
+
                     default:
                         //Text will always be the default conversion
                         sortClause = "ORDER BY (body->'{0}')::TEXT {1}";
@@ -87,7 +87,7 @@ namespace Stored.Postgres.Query
 
         static string GetBinaryComparison(BinaryFilter filter, Dictionary<string, object> parameters)
         {
-            parameters.Add(":" + filter.FieldName, filter.Value);
+            parameters.Add(":" + filter.FieldName, GetDbValue(filter.Value));
 
             var type = GetJsonType(typeof(String));
 
@@ -98,6 +98,18 @@ namespace Stored.Postgres.Query
                 filter.FieldName.ToLower());
         }
 
+        static object GetDbValue(object value)
+        {
+            var type = value.GetType();
+
+            if (type.IsEnum)
+            {
+                return ((int)value).ToString();
+            }
+
+            return value;
+        }
+
         static string GetJsonType(Type type)
         {
             if (type == typeof(String))
@@ -105,12 +117,12 @@ namespace Stored.Postgres.Query
                 return "TEXT";
             }
 
-            if (type == typeof (Guid))
+            if (type == typeof(Guid))
             {
                 return "UUID";
             }
 
-            if (type == typeof (int))
+            if (type == typeof(int))
             {
                 return "INTEGER";
             }
