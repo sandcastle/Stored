@@ -39,7 +39,7 @@ namespace Stored.Postgres
 
             lock (_lock)
             {
-                // re-check after aquiring the lock
+                // re-check after acquiring the lock
                 if (_tables.ContainsKey(type))
                 {
                     return _tables[type];
@@ -60,7 +60,7 @@ namespace Stored.Postgres
                             (
                                 id uuid NOT NULL DEFAULT uuid_generate_v1(), 
                                 body json NOT NULL, 
-                                created time without time zone NOT NULL DEFAULT now(), 
+                                created timestamp without time zone NOT NULL DEFAULT now(), 
                                 row_version integer NOT NULL DEFAULT 1, 
                                 CONSTRAINT pk_{0} PRIMARY KEY (id)
                             );", table.Name);

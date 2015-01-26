@@ -7,6 +7,6 @@ namespace Stored.Postgres
     {
         public int AllBatchSize = 2048; 
 
-        public Func<JsonSerializerSettings> JsonSettings = () =>new JsonSerializerSettings();
+        public Func<JsonSerializerSettings> JsonSettings = () => new JsonSerializerSettings();
     }
 }
