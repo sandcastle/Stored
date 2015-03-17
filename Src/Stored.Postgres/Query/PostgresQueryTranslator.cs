@@ -107,6 +107,11 @@ namespace Stored.Postgres.Query
                 return ((int)value).ToString();
             }
 
+            if (type == typeof(bool))
+            {
+                return value.ToString().ToLower();
+            }
+
             return value;
         }
 
