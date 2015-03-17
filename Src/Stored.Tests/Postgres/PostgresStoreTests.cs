@@ -165,6 +165,44 @@ namespace Stored.Tests.Postgres
 
         [Fact]
         [Trait(TraitName, "")]
+        public void CanQueryBoolTrue()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.SUV, IsAutomatic = true});
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Sedan, IsAutomatic = true});
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where(x => x.IsAutomatic).Equal(true)
+                .ToList();
+
+            // Assert
+            Assert.Equal(2, items.Count());
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void CanQueryBoolFalse()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.SUV, IsAutomatic = true });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Sedan, IsAutomatic = true });
+            Session.Commit();
+
+            // Act
+            var items = Session.Query<Car>()
+                .Where(x => x.IsAutomatic).Equal(false)
+                .ToList();
+
+            // Assert
+            Assert.Equal(1, items.Count());
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
         public void CanQueryEnum()
         {
             // Arrange
