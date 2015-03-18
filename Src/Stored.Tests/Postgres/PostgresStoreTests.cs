@@ -168,7 +168,7 @@ namespace Stored.Tests.Postgres
         public void CanQueryBoolTrue()
         {
             // Arrange
-            Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.SUV, IsAutomatic = true});
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.Suv, IsAutomatic = true});
             Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Sedan, IsAutomatic = true});
             Session.Commit();
@@ -187,7 +187,7 @@ namespace Stored.Tests.Postgres
         public void CanQueryBoolFalse()
         {
             // Arrange
-            Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.SUV, IsAutomatic = true });
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.Suv, IsAutomatic = true });
             Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Sedan, IsAutomatic = true });
             Session.Commit();
