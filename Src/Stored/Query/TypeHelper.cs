@@ -4,6 +4,8 @@ namespace Stored.Query
 {
     internal static class TypeHelper
     {
+        private static Type _boolType = typeof (bool);
+        
         public static object GetUnderlyingValue(object value)
         {
             var type = value.GetType();
@@ -11,6 +13,11 @@ namespace Stored.Query
             {
                 var underlyingType = Enum.GetUnderlyingType(type);
                 return Convert.ChangeType(value, underlyingType);
+            }
+
+            if (type == _boolType)
+            {
+                return value.ToString().ToLower();
             }
 
             return value;
