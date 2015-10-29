@@ -56,8 +56,6 @@ namespace Stored.Tests.Postgres
                     command.ExecuteNonQuery();
                 }
             }
-
-            Thread.Sleep(100);
         }
 
         public void Dispose()
