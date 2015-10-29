@@ -15,12 +15,14 @@ dependencies:
     - mkdir -p ~/docker;
   override:
     - if [[ -e ~/docker/mono.tar ]]; then docker load -i ~/docker/mono.tar; fi
-    - docker pull mono:latest
+    - docker pull mono:4
     - docker save mono > ~/docker/mono.tar
 
 test:
   override:
-    - docker run -i -t -v=`pwd`:/src --entrypoint sh script/build mono
+    - docker run -i -t -v=`pwd`:/src --entrypoint /bin/bash mono /src/script/build
+  post:
+    - cp build/*.nupkg $CIRCLE_ARTIFACTS
 
 deployment:
   prod:
