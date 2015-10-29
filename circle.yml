@@ -1,0 +1,25 @@
+machine:
+  services:
+    - docker
+    - postgresql
+
+dependencies:
+  cache_directories:
+    - Src/packages
+  pre:
+    - mkdir -p ~/docker;
+  override:
+    - if [[ -e ~/docker/mono.tar ]]; then docker load -i ~/docker/mono.tar; fi
+    - docker pull mono:latest
+    - docker save mono > ~/docker/mono.tar
+
+test:
+  override:
+    - docker run -v=`pwd`:/src
+
+deployment:
+  prod:
+    branch: master
+    owner: sandcastle
+    commands:
+      - echo "nuget publish coming soon"
