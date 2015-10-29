@@ -2,6 +2,11 @@ machine:
   services:
     - docker
     - postgresql
+  environment:
+    POSTGRES_HOST=127.0.0.1
+    POSTGRES_PORT=5432
+    POSTGRES_DB=circle_test
+    POSTGRES_USER=ubuntu
 
 dependencies:
   cache_directories:
@@ -15,7 +20,7 @@ dependencies:
 
 test:
   override:
-    - docker run -v=`pwd`:/src
+    - docker run -i -t -v=`pwd`:/src --entrypoint sh script/build mono
 
 deployment:
   prod:

@@ -2,6 +2,7 @@
 using System.Data;
 using Npgsql;
 using Stored.Postgres;
+using System.Threading;
 
 namespace Stored.Tests.Postgres
 {
@@ -37,17 +38,26 @@ namespace Stored.Tests.Postgres
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-
                     command.CommandText = String.Format("DROP SCHEMA public CASCADE;");
                     command.ExecuteNonQuery();
+                }
 
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
                     command.CommandText = String.Format("CREATE SCHEMA public;");
                     command.ExecuteNonQuery();
-                    
+                }
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
                     command.CommandText = "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\" SCHEMA public;";
                     command.ExecuteNonQuery();
                 }
             }
+
+            Thread.Sleep(100);
         }
 
         public void Dispose()

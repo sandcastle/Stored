@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# script/package - packages the app for deployment
+
+# exit on sub-module failure
+set -e
+
+cd "$(dirname "$0")/.."
+
+# ------
+
+version=${1:-1.0.0.0}
+
+# nuget packaging
+nuget pack Src/Stored/Stored.nuspec -NoDefaultExcludes -BasePath Src/Stored/bin/Release -OutputDirectory build -Version ${version}
+nuget pack Src/Stored.Postgres/Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src/Stored.Postgres/bin/Release -OutputDirectory build -Version ${version}
+
+# ------

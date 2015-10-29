@@ -106,8 +106,8 @@ namespace Stored.Tests.Postgres
 
             car.Model = "Corolla";
 
-            // Act / Assert
-            Assert.DoesNotThrow(() => Session.Delete(car));
+            // Act
+            Session.Delete(car);
         }
 
         [Fact]

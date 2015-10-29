@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# script/bootstrap - make sure all required dependencies are installed.
+
+# exit on sub-module failure
+set -e
+
+cd "$(dirname "$0")/.."
+
+# --------
+
+export EnableNuGetPackageRestore=true
+
+# restore nuget packages
+nuget restore Src/Claims.sln
+
+# --------

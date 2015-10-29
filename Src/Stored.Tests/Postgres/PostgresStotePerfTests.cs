@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using Stored.Tests.Models;
 using Xunit;
-using Xunit.Extensions;
 
 namespace Stored.Tests.Postgres
 {
@@ -51,7 +50,7 @@ namespace Stored.Tests.Postgres
                 .Take(512)
                 .ToList();
 
-            watch.Stop(); 
+            watch.Stop();
             Console.WriteLine("Results {0}", items.Count);
             Console.WriteLine("Query time {0}", watch.Elapsed);
 
