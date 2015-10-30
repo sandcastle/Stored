@@ -27,9 +27,9 @@ on_success:
 artifacts:
   - path: 'build\*.nupkg'
 
-test:
-  assemblies:
-    - '**\Stored.Tests.dll'
+# test:
+#   assemblies:
+#     - '**\Stored.Tests.dll'
 
 cache:
   - Src\packages -> **\packages.config
