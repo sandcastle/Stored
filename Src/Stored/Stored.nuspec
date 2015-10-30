@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Stored</id>
-    <version>1.0.0</version>
+    <version>$version$</version>
     <authors>Glenn Morton</authors>
     <owners>Glenn Morton</owners>
     <projectUrl>https://github.com/sandcastle/stored</projectUrl>
