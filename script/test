@@ -14,6 +14,6 @@ sh script/build
 # --------
 
 nuget install xunit.runner.console -Version 2.1.0 -o Src/packages
-mono --runtime=v4.0 Src/packages/xunit.runner.console.2.1.0/tools/xunit.console.exe Src/Stored.Tests/bin/Release/Stored.Tests.dll
+mono --runtime=v4.0 Src/packages/xunit.runner.console.2.1.0/tools/xunit.console.exe -noappdomain Src/Stored.Tests/bin/Release/Stored.Tests.dll
 
 # --------
