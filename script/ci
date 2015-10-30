@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# script/build - compiles the application.
+
+# exit on sub-module failure
+set -e
+
+cd "$(dirname "$0")/.."
+
+# ------
+
+sh script/clean
+sh script/bootstrap
+
+# ------
+
+version=${1:-1.0.0.0}
+
+# build
+xbuild Src/Stored.sln /target:Rebuild /property:Configuration=Release /property:Platform="Any CPU" /property:BUILD_VERSION=${version}
+
+# package
+sh script/package ${version}
+
+# --------
