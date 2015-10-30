@@ -21,7 +21,7 @@ dependencies:
 
 test:
   override:
-    - docker run -i -t -v=`pwd`:/src --entrypoint /bin/bash mono /src/script/ci
+    - docker run -i -t -v=`pwd`:/src -w=/src --entrypoint /bin/bash mono script/ci
   post:
     - cp build/*.nupkg $CIRCLE_ARTIFACTS
 
