@@ -34,14 +34,8 @@ on_success:
   - appveyor PushArtifact build\Stored.%appveyor_build_version%.nupkg
   - appveyor PushArtifact build\Stored.Postgres.%appveyor_build_version%.nupkg
 
-
 artifacts:
   - path: 'build\*.nupkg'
 
 cache:
   - Src\packages -> **\packages.config
-
-# deploy:
-# - provider: NuGet
-#   api_key:
-#     secure: SgOCT0qR452G0mfbqzqIKgN2DXWpAHJi+DFs/LGcd6YUexz+Okw5NNpx8o/59vwl
