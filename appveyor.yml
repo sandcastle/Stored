@@ -20,12 +20,12 @@ before_build:
 build:
   project: Src\Stored.sln
 
-on_success:
-  - cmd: nuget pack Src\Stored\Stored.nuspec -NoDefaultExcludes -BasePath Src\Stored\bin\Release -OutputDirectory build -Version %appveyor_build_version%
-  - cmd: nuget pack Src\Stored.Postgres\Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src\Stored.Postgres\bin\Release -OutputDirectory build -Version %appveyor_build_version%
+# on_success:
+#   - cmd: nuget pack Src\Stored\Stored.nuspec -NoDefaultExcludes -BasePath Src\Stored\bin\Release -OutputDirectory build -Version %appveyor_build_version%
+#   - cmd: nuget pack Src\Stored.Postgres\Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src\Stored.Postgres\bin\Release -OutputDirectory build -Version %appveyor_build_version%
 
-artifacts:
-  - path: 'build\*.nupkg'
+# artifacts:
+#   - path: 'build\*.nupkg'
 
 test:
   assemblies:
