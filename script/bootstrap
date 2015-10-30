@@ -12,6 +12,6 @@ cd "$(dirname "$0")/.."
 export EnableNuGetPackageRestore=true
 
 # restore nuget packages
-nuget restore Src/Claims.sln
+nuget restore Src/Stored.sln
 
 # --------
