@@ -1,0 +1,35 @@
+services:
+  - postgresql
+  
+platform:
+  - Mixed Platforms
+
+configuration:
+  - Release
+
+assembly_info:
+  patch: true
+
+before_build:
+  - cmd: set POSTGRES_HOST=127.0.0.1
+  - cmd: set POSTGRES_DB=postgres
+  - cmd: set POSTGRES_USER=postgres
+  - cmd: set POSTGRES_PASS=Password12!
+  - cmd: nuget restore Src\Stored.sln
+
+build:
+  project: Src\Stored.sln
+
+after_build:
+  - cmd: nuget pack Src\Stored\Stored.nuspec -NoDefaultExcludes -BasePath Src\Stored\bin\Release -OutputDirectory build -Version {version}
+  - cmd: nuget pack Src\Stored.Postgres\Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src\Stored.Postgres\bin\Release -OutputDirectory build -Version {version}
+
+artifacts:
+  - path: 'build\*.nupkg'
+
+test:
+  assemblies:
+    - '**\Stored.Tests.dll'
+
+cache:
+  - Src\packages -> **\packages.config

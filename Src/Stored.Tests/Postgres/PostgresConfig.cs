@@ -9,7 +9,13 @@ namespace Stored.Tests.Postgres
 
         static PostgresConfig()
         {
-            ConnectionString = String.Format("Server={0};Port={1};Database={2};User Id={3};", 
+            var password = GetVariable("POSTGRES_PASS", String.Empty);
+            if (String.IsNullOrWhiteSpace(password) == false)
+            {
+                password = "Password=" + password + ";";
+            }
+
+            ConnectionString = String.Format("Server={0};Port={1};Database={2};User Id={3};{4}", 
                 GetVariable("POSTGRES_HOST", "192.168.99.100"),
                 GetVariable("POSTGRES_PORT", "5432"),
                 GetVariable("POSTGRES_DB", "stored_db"),
