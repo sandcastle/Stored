@@ -29,7 +29,7 @@ namespace Stored.Tests.Postgres
             Assert.NotNull(car);
             Assert.NotEqual(Guid.Empty, car.Id);
         }
-
+        
         [Fact]
         [Trait(TraitName, "")]
         public void CanBulkCreate()
@@ -106,8 +106,8 @@ namespace Stored.Tests.Postgres
 
             car.Model = "Corolla";
 
-            // Act / Assert
-            Assert.DoesNotThrow(() => Session.Delete(car));
+            // Act
+            Session.Delete(car);
         }
 
         [Fact]

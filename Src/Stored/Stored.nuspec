@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Stored</id>
-    <version>1.0.0</version>
+    <version>$version$</version>
     <authors>Glenn Morton</authors>
     <owners>Glenn Morton</owners>
     <projectUrl>https://github.com/sandcastle/stored</projectUrl>
@@ -13,6 +13,6 @@
     <tags>data database postgres cache linq</tags>
   </metadata>
   <files>
-    <file src="Stored.dll" target="lib/net40" />
+    <file src="Stored.dll" target="lib/net45" />
   </files>
 </package>

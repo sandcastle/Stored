@@ -14,6 +14,8 @@ namespace Stored.Tests.Postgres
         {
             Cleanup();
 
+            Console.WriteLine("Postgres Connection: " + PostgresConfig.ConnectionString);
+
             _store = new PostgresStore(PostgresConfig.ConnectionString);
             _session = _store.CreateSession();
         }
@@ -37,14 +39,10 @@ namespace Stored.Tests.Postgres
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-
                     command.CommandText = String.Format("DROP SCHEMA public CASCADE;");
                     command.ExecuteNonQuery();
-
-                    command.CommandText = String.Format("CREATE SCHEMA public;");
-                    command.ExecuteNonQuery();
                     
-                    command.CommandText = "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\" SCHEMA public;";
+                    command.CommandText = String.Format("CREATE SCHEMA public;");
                     command.ExecuteNonQuery();
                 }
             }

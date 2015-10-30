@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Stored.Postgres</id>
-    <version>1.0.0</version>
+    <version>$version$</version>
     <authors>Glenn Morton</authors>
     <owners>Glenn Morton</owners>
     <projectUrl>https://github.com/sandcastle/stored</projectUrl>
@@ -12,12 +12,12 @@
     <copyright>Copyright 2014</copyright>
     <tags>data database postgres cache linq</tags>
     <dependencies>
-      <dependency id="Stored" version="1.0" />
-      <dependency id="Npgsql" version="2.1.2" />
-      <dependency id="Newtonsoft.Json" version="6.0.2" />      
+      <dependency id="Stored" version="$version$" />
+      <dependency id="Npgsql" version="3.0.3" />
+      <dependency id="Newtonsoft.Json" version="7.0.1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="Stored.Postgres.dll" target="lib/net40" />
+    <file src="Stored.Postgres.dll" target="lib/net45" />
   </files>
 </package>

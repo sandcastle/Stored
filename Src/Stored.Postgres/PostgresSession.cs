@@ -7,6 +7,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 using Npgsql;
 using Stored.Postgres.Query;
+using NpgsqlTypes;
 
 namespace Stored.Postgres
 {
@@ -64,7 +65,7 @@ namespace Stored.Postgres
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandType = CommandType.Text;
-                        command.CommandText = String.Format(@"SELECT body FROM public.{0} LIMIT {1} OFFSET {2};", table.Name, batchSize, total);
+                        command.CommandText = String.Format(@"SELECT body FROM {0} LIMIT {1} OFFSET {2};", table.Name, batchSize, total);
 
                         Debug.WriteLine(command.CommandText);
 
@@ -103,7 +104,7 @@ namespace Stored.Postgres
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format(@"SELECT body FROM public.{0} WHERE id = :id LIMIT 1;", table.Name);
+                    command.CommandText = String.Format(@"SELECT body FROM {0} WHERE id = :id LIMIT 1;", table.Name);
 
                     command.Parameters.AddWithValue(":id", id);
 
@@ -151,12 +152,12 @@ namespace Stored.Postgres
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format(@"INSERT INTO public.{0} (id, body) VALUES (:id, :body);", table.Name);
+                    command.CommandText = String.Format(@"INSERT INTO {0} (id, body) VALUES (:id, :body);", table.Name);
 
                     Debug.WriteLine(command.CommandText);
 
                     command.Parameters.AddWithValue(":id", item.Key);
-                    command.Parameters.AddWithValue(":body", JsonConvert.SerializeObject(item.Value, _jsonSettings));
+                    command.Parameters.AddWithValue(":body", NpgsqlDbType.Json, JsonConvert.SerializeObject(item.Value, _jsonSettings));
 
                     command.ExecuteNonQuery();
                 }
@@ -173,12 +174,12 @@ namespace Stored.Postgres
                 {
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Format(@"UPDATE public.{0} SET body = :body WHERE id = :id;", table.Name);
+                        String.Format(@"UPDATE {0} SET body = :body WHERE id = :id;", table.Name);
 
                     Debug.WriteLine(command.CommandText);
 
                     command.Parameters.AddWithValue(":id", item.Key);
-                    command.Parameters.AddWithValue(":body", JsonConvert.SerializeObject(item.Value, _jsonSettings));
+                    command.Parameters.AddWithValue(":body", NpgsqlDbType.Json, JsonConvert.SerializeObject(item.Value, _jsonSettings));
 
                     command.ExecuteNonQuery();
                 }
@@ -194,7 +195,7 @@ namespace Stored.Postgres
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format(@"DELETE FROM public.{0} WHERE id = :id;", table.Name);
+                    command.CommandText = String.Format(@"DELETE FROM {0} WHERE id = :id;", table.Name);
 
                     Debug.WriteLine(command.CommandText);
 
@@ -224,40 +225,26 @@ namespace Stored.Postgres
 
                 using (var connection = _connectionFactory())
                 {
-                    using (var command = connection.CreateCommand())
+                    using (var writer = connection.BeginBinaryImport(String.Format("COPY {0} (id, body) FROM STDIN BINARY", table.Name)))
                     {
-                        command.CommandType = CommandType.Text;
-                        command.CommandText = String.Format("COPY public.{0}(id, body) FROM STDIN;", table.Name);
-
-                        var serializer = new NpgsqlCopySerializer(connection);
-                        var copyIn = new NpgsqlCopyIn(command, connection, serializer.ToStream);
-
-                        try
+                        foreach (var item in items)
                         {
-                            copyIn.Start();
-
-                            foreach (var item in items)
+                            var id = Guid.NewGuid();
+                            try
                             {
-                                var id = Guid.NewGuid();
-                                try
-                                {
-                                    ((dynamic) item).Id = id;
-                                }
-                                catch (RuntimeBinderException)
-                                {
-                                    throw new Exception("Entity does not have a valid ID.");
-                                }
-
-                                serializer.AddString(id.ToString("N"));
-                                serializer.AddString(JsonConvert.SerializeObject(item, _store.Conventions.JsonSettings()));
-                                serializer.EndRow();
-                                serializer.Flush();
+                                ((dynamic)item).Id = id;
+                            }
+                            catch (RuntimeBinderException)
+                            {
+                                throw new Exception("Entity does not have a valid ID.");
                             }
 
-                            copyIn.End();
-                            serializer.Close();
+                            var body = JsonConvert.SerializeObject(item, _store.Conventions.JsonSettings());
+
+                            writer.StartRow();
+                            writer.Write(id.ToString("N"), NpgsqlDbType.Uuid);
+                            writer.Write(body, NpgsqlDbType.Json);
                         }
-                        catch (NpgsqlException) { }
                     }
                 }
             }

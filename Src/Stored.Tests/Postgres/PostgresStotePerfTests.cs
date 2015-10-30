@@ -51,7 +51,7 @@ namespace Stored.Tests.Postgres
                 .Take(512)
                 .ToList();
 
-            watch.Stop(); 
+            watch.Stop();
             Console.WriteLine("Results {0}", items.Count);
             Console.WriteLine("Query time {0}", watch.Elapsed);
 

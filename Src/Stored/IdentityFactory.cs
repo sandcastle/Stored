@@ -9,6 +9,11 @@ namespace Stored
     {
         static readonly Dictionary<Type, PropertyInfo> KeyCache = new Dictionary<Type, PropertyInfo>();
 
+        public static void Clear()
+        {
+            KeyCache.Clear();
+        }
+
         public static Guid SetEntityId(object value)
         {
             PropertyInfo propertyInfo;
@@ -74,6 +79,16 @@ namespace Stored
                 .Where(x => x.Name.Equals("id", StringComparison.OrdinalIgnoreCase))
                 .Where(x => x.PropertyType == typeof(Guid))
                 .FirstOrDefault(x => x.CanRead && x.CanWrite);
+
+            if (KeyCache == null)
+            {
+                throw new Exception("Cache is null");
+            }
+
+            if (type == null)
+            {
+                throw new Exception("type is null");
+            }
 
             KeyCache[type] = propertyInfo;
 

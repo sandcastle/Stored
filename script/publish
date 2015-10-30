@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# script/publish - deploys the app
+
+# exit on sub-module failure
+set -e
+
+cd "$(dirname "$0")/.."
+
+# ------
+
+version=${1:-1.0.0.0}
+
+nuget push build/Stored.${version}.nupkg  978b8639-edcf-41cb-ac65-ca1914ffc1b4
+nuget push build/Stored.Postgres.${version}.nupkg  978b8639-edcf-41cb-ac65-ca1914ffc1b4
+
+# ------

@@ -1,0 +1,47 @@
+version: 1.2.{build}
+
+services:
+  - postgresql
+  
+platform:
+  - Any CPU
+
+configuration:
+  - Release
+
+assembly_info:
+  patch: true
+
+before_build:
+  - cmd: set POSTGRES_HOST=127.0.0.1
+  - cmd: set POSTGRES_DB=postgres
+  - cmd: set POSTGRES_USER=postgres
+  - cmd: set POSTGRES_PASS=Password12!
+  - cmd: nuget restore Src\Stored.sln
+
+build:
+  project: Src\Stored.sln
+  verbosity: normal
+
+test:
+  assemblies:
+    - '**\Stored.Tests.dll'
+
+on_success:
+  - cmd: mkdir build
+  - cmd: nuget pack Src\Stored\Stored.nuspec -NoDefaultExcludes -BasePath Src\Stored\bin\Release -OutputDirectory build -Version %appveyor_build_version%
+  - cmd: nuget pack Src\Stored.Postgres\Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src\Stored.Postgres\bin\Release -OutputDirectory build -Version %appveyor_build_version%
+  - appveyor PushArtifact build\Stored.%appveyor_build_version%.nupkg
+  - appveyor PushArtifact build\Stored.Postgres.%appveyor_build_version%.nupkg
+
+
+artifacts:
+  - path: 'build\*.nupkg'
+
+cache:
+  - Src\packages -> **\packages.config
+
+# deploy:
+# - provider: NuGet
+#   api_key:
+#     secure: SgOCT0qR452G0mfbqzqIKgN2DXWpAHJi+DFs/LGcd6YUexz+Okw5NNpx8o/59vwl

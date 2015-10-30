@@ -58,7 +58,7 @@ namespace Stored.Postgres
                         command.CommandText = String.Format(@"
                             CREATE TABLE IF NOT EXISTS public.{0}
                             (
-                                id uuid NOT NULL DEFAULT uuid_generate_v1(), 
+                                id uuid NOT NULL DEFAULT md5(random()::text || clock_timestamp()::text)::uuid,
                                 body json NOT NULL, 
                                 created timestamp without time zone NOT NULL DEFAULT now(), 
                                 row_version integer NOT NULL DEFAULT 1, 
