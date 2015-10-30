@@ -21,8 +21,6 @@ namespace Stored.Tests.Postgres
                 GetVariable("POSTGRES_DB", "stored_db"),
                 GetVariable("POSTGRES_USER", "postgres"),
                 password);
-
-            Console.WriteLine(ConnectionString);
         }
         
         /// <summary>

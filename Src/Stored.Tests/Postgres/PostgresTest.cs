@@ -14,6 +14,8 @@ namespace Stored.Tests.Postgres
         {
             Cleanup();
 
+            Console.WriteLine("Postgres Connection: " + PostgresConfig.ConnectionString);
+
             _store = new PostgresStore(PostgresConfig.ConnectionString);
             _session = _store.CreateSession();
         }
