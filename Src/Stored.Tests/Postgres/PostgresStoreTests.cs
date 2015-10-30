@@ -30,7 +30,7 @@ namespace Stored.Tests.Postgres
             Assert.NotEqual(Guid.Empty, car.Id);
         }
         
-        [Fact(Skip = "Bulk COPY is broken - NpgSql changed in v3")]
+        [Fact]
         [Trait(TraitName, "")]
         public void CanBulkCreate()
         {

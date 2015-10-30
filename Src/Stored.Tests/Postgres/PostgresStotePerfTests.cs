@@ -15,7 +15,7 @@ namespace Stored.Tests.Postgres
         static readonly Random _random = new Random();
         static readonly string[] _products = { "Apples", "Pears", "Chips", "Corn" };
 
-        [Theory(Skip="Bulk COPY is broken - NpgSql changed in v3")]
+        [Theory]
         [InlineData(10)]
         [InlineData(1000)]
         [InlineData(1000000)]
