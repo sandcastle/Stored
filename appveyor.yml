@@ -20,22 +20,20 @@ before_build:
   - cmd: nuget restore Src\Stored.sln
 
 build:
-  publish_nuget: true
-  publish_nuget_symbols: true
-  include_nuget_references: true
-  verbosity: normal
   project: Src\Stored.sln
-
-# on_success:
-#   - cmd: nuget pack Src\Stored\Stored.nuspec -NoDefaultExcludes -BasePath Src\Stored\bin\Release -OutputDirectory build -Version %appveyor_build_version%
-#   - cmd: nuget pack Src\Stored.Postgres\Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src\Stored.Postgres\bin\Release -OutputDirectory build -Version %appveyor_build_version%
-
-# artifacts:
-#   - path: 'build\*.nupkg'
+  verbosity: normal
 
 test:
   assemblies:
     - '**\Stored.Tests.dll'
+
+on_success:
+  - cmd: dir build
+  - cmd: nuget pack Src\Stored\Stored.nuspec -NoDefaultExcludes -BasePath Src\Stored\bin\Release -OutputDirectory build -Version %appveyor_build_version%
+  - cmd: nuget pack Src\Stored.Postgres\Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src\Stored.Postgres\bin\Release -OutputDirectory build -Version %appveyor_build_version%
+
+artifacts:
+  - path: 'build\*.nupkg'
 
 cache:
   - Src\packages -> **\packages.config
