@@ -28,7 +28,7 @@ test:
     - '**\Stored.Tests.dll'
 
 on_success:
-  - cmd: dir build
+  - cmd: mkdir build
   - cmd: nuget pack Src\Stored\Stored.nuspec -NoDefaultExcludes -BasePath Src\Stored\bin\Release -OutputDirectory build -Version %appveyor_build_version%
   - cmd: nuget pack Src\Stored.Postgres\Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src\Stored.Postgres\bin\Release -OutputDirectory build -Version %appveyor_build_version%
 
