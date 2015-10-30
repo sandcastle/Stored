@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Stored.Tests.Models;
 using Xunit;
+using Xunit.Extensions;
 
 namespace Stored.Tests.Postgres
 {
