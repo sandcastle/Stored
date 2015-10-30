@@ -12,7 +12,7 @@
     <copyright>Copyright 2014</copyright>
     <tags>data database postgres cache linq</tags>
     <dependencies>
-      <dependency id="Stored" version="1.0" />
+      <dependency id="Stored" version="1" />
       <dependency id="Npgsql" version="3.0.3" />
       <dependency id="Newtonsoft.Json" version="7.0.1" />
     </dependencies>
