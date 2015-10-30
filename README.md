@@ -1,4 +1,4 @@
-Stored
+Stored [![Circle CI](https://circleci.com/gh/sandcastle/Stored.svg?style=svg)](https://circleci.com/gh/sandcastle/Stored) [![Build status](https://ci.appveyor.com/api/projects/status/mo1d8h8yos77nfav/branch/master?svg=true)](https://ci.appveyor.com/project/sandcastle/stored/branch/master)
 ======
 
 A light weight data store for storing entities with support for unit of work. 
