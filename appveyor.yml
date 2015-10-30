@@ -2,7 +2,7 @@ services:
   - postgresql
   
 platform:
-  - Mixed Platforms
+  - Any CPU
 
 configuration:
   - Release
