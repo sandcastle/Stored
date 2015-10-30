@@ -225,21 +225,25 @@ namespace Stored.Postgres
 
                 using (var connection = _connectionFactory())
                 {
-                    using (var writer = connection.BeginTextImport(String.Format("COPY {0}(id, body) FROM STDIN;", table.Name)))
+                    using (var writer = connection.BeginBinaryImport(String.Format("COPY {0} (id, body) FROM STDIN BINARY", table.Name)))
                     {
                         foreach (var item in items)
                         {
                             var id = Guid.NewGuid();
                             try
                             {
-                                ((dynamic) item).Id = id;
+                                ((dynamic)item).Id = id;
                             }
                             catch (RuntimeBinderException)
                             {
                                 throw new Exception("Entity does not have a valid ID.");
                             }
 
-                            writer.Write(String.Format("{0}\t{1}\n", id.ToString("N"), JsonConvert.SerializeObject(item, _store.Conventions.JsonSettings())));
+                            var body = JsonConvert.SerializeObject(item, _store.Conventions.JsonSettings());
+
+                            writer.StartRow();
+                            writer.Write(id.ToString("N"), NpgsqlDbType.Uuid);
+                            writer.Write(body, NpgsqlDbType.Json);
                         }
                     }
                 }

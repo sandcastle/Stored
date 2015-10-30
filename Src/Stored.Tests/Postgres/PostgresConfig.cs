@@ -14,10 +14,8 @@ namespace Stored.Tests.Postgres
                 GetVariable("POSTGRES_PORT", "5432"),
                 GetVariable("POSTGRES_DB", "stored_db"),
                 GetVariable("POSTGRES_USER", "postgres"));
-
-            Console.WriteLine(ConnectionString);
         }
-
+        
         /// <summary>
         /// Gets the specified variable, or the default value if not availables.
         /// </summary>

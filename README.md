@@ -99,6 +99,8 @@ using (var session = store.CreateSession())
 
 ### Bulk create
 
+*IMPORTANT: This API is broken in v3 of NpgSql*
+
 ```csharp
 var store = new PostgresStore(connectionString);
 
