@@ -31,8 +31,8 @@ on_success:
   - cmd: mkdir build
   - cmd: nuget pack Src\Stored\Stored.nuspec -NoDefaultExcludes -BasePath Src\Stored\bin\Release -OutputDirectory build -Version %appveyor_build_version%
   - cmd: nuget pack Src\Stored.Postgres\Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src\Stored.Postgres\bin\Release -OutputDirectory build -Version %appveyor_build_version%
-  - ps: Push-AppveyorArtifact build\Stored.$(appveyor_build_version).nupkg
-  - ps: Push-AppveyorArtifact build\Stored.Postgres.$(appveyor_build_version).nupkg
+  - ps: Push-AppveyorArtifact "build\Stored.$($env:APPVEYOR_BUILD_VERSION).nupkg"
+  - ps: Push-AppveyorArtifact "build\Stored.Postgres.$($env:APPVEYOR_BUILD_VERSION).nupkg"
 
 artifacts:
   - path: 'build\*.nupkg'
