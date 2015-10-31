@@ -32,14 +32,8 @@ namespace Stored.Postgres
 
         PostgresTableMetadata IPostgresStore.GetOrCreateTable(Type type)
         {
-            if (_tables.ContainsKey(type))
-            {
-                return _tables[type];
-            }
-
             lock (_lock)
             {
-                // re-check after acquiring the lock
                 if (_tables.ContainsKey(type))
                 {
                     return _tables[type];

@@ -65,7 +65,7 @@ namespace Stored.Postgres
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandType = CommandType.Text;
-                        command.CommandText = String.Format(@"SELECT body FROM {0} LIMIT {1} OFFSET {2};", table.Name, batchSize, total);
+                        command.CommandText = String.Format(@"SELECT body FROM public.{0} LIMIT {1} OFFSET {2};", table.Name, batchSize, total);
 
                         Debug.WriteLine(command.CommandText);
 
@@ -104,7 +104,7 @@ namespace Stored.Postgres
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format(@"SELECT body FROM {0} WHERE id = :id LIMIT 1;", table.Name);
+                    command.CommandText = String.Format(@"SELECT body FROM public.{0} WHERE id = :id LIMIT 1;", table.Name);
 
                     command.Parameters.AddWithValue(":id", id);
 
@@ -152,7 +152,7 @@ namespace Stored.Postgres
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format(@"INSERT INTO {0} (id, body) VALUES (:id, :body);", table.Name);
+                    command.CommandText = String.Format(@"INSERT INTO public.{0} (id, body) VALUES (:id, :body);", table.Name);
 
                     Debug.WriteLine(command.CommandText);
 
@@ -174,7 +174,7 @@ namespace Stored.Postgres
                 {
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Format(@"UPDATE {0} SET body = :body WHERE id = :id;", table.Name);
+                        String.Format(@"UPDATE public.{0} SET body = :body WHERE id = :id;", table.Name);
 
                     Debug.WriteLine(command.CommandText);
 
@@ -195,7 +195,7 @@ namespace Stored.Postgres
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format(@"DELETE FROM {0} WHERE id = :id;", table.Name);
+                    command.CommandText = String.Format(@"DELETE FROM public.{0} WHERE id = :id;", table.Name);
 
                     Debug.WriteLine(command.CommandText);
 
@@ -225,7 +225,7 @@ namespace Stored.Postgres
 
                 using (var connection = _connectionFactory())
                 {
-                    using (var writer = connection.BeginBinaryImport(String.Format("COPY {0} (id, body) FROM STDIN BINARY", table.Name)))
+                    using (var writer = connection.BeginBinaryImport(String.Format("COPY public.{0} (id, body) FROM STDIN BINARY", table.Name)))
                     {
                         foreach (var item in items)
                         {
