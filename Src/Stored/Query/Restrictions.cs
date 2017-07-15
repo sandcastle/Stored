@@ -16,5 +16,16 @@ namespace Stored.Query
         public int Take { get; set; }
         public SortClause SortClause { get; set; }
         public List<FilterBase> Filters { get; private set; }
+
+        public Restrictions Clone()
+        {
+            return new Restrictions
+                {
+                    Skip = Skip,
+                    Take = Take,
+                    SortClause = SortClause?.Clone(),
+                    Filters = new List<FilterBase>(Filters) // TODO: Add deep clone
+                };
+        }
     }
 }

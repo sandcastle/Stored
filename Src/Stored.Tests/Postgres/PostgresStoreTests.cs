@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Stored.Query;
 using Stored.Tests.Models;
 using Xunit;
 
@@ -29,7 +30,7 @@ namespace Stored.Tests.Postgres
             Assert.NotNull(car);
             Assert.NotEqual(Guid.Empty, car.Id);
         }
-        
+
         [Fact]
         [Trait(TraitName, "")]
         public void CanBulkCreate()
@@ -289,8 +290,8 @@ namespace Stored.Tests.Postgres
 
             // Act
             var item = Session.Query<Car>()
-                              .OrderBy(x => x.Make)
-                              .FirstOrDefault();
+                .OrderBy(x => x.Make)
+                .FirstOrDefault();
 
             // Assert
             Assert.Equal("Astin Martin", item.Make);
@@ -351,8 +352,8 @@ namespace Stored.Tests.Postgres
 
             // Act
             var item = Session.Query<Car>()
-                              .OrderBy("Make")
-                              .FirstOrDefault();
+                .OrderBy("Make")
+                .FirstOrDefault();
 
             // Assert
             Assert.Equal("Astin Martin", item.Make);
@@ -453,6 +454,32 @@ namespace Stored.Tests.Postgres
             // Assert
             Assert.NotNull(car);
             Assert.Equal("DB9 Volante", car.Model);
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
+        public void DoesReturnCorrectTotalCount()
+        {
+            // Arrange
+            Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
+            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
+            Session.Commit();
+
+            QueryStatistics stats;
+
+            // Act
+            var items = Session.Query<Car>()
+                .Statistics(out stats)
+                .Where(x => x.Make).Equal("Toyota")
+                .Skip(1)
+                .ToList();
+
+            // Assert
+            Assert.Equal(1, items.Count);
+            Assert.Equal(2, stats.TotalCount.Value);
+            Assert.Equal(1, stats.Skip);
+            Assert.Equal(1024, stats.Take);
         }
     }
 }

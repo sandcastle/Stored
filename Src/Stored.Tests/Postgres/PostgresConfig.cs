@@ -5,7 +5,7 @@ namespace Stored.Tests.Postgres
 {
     public static class PostgresConfig
     {
-        public readonly static string ConnectionString;
+        public static readonly string ConnectionString;
 
         static PostgresConfig()
         {
@@ -16,13 +16,13 @@ namespace Stored.Tests.Postgres
             }
 
             ConnectionString = String.Format("Server={0};Port={1};Database={2};User Id={3};CommandTimeout=120;{4}",
-                GetVariable("POSTGRES_HOST", "192.168.99.100"),
+                GetVariable("POSTGRES_HOST", "host"),
                 GetVariable("POSTGRES_PORT", "5432"),
                 GetVariable("POSTGRES_DB", "stored_db"),
                 GetVariable("POSTGRES_USER", "postgres"),
                 password);
         }
-        
+
         /// <summary>
         /// Gets the specified variable, or the default value if not availables.
         /// </summary>

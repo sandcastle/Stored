@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Stored.Query
 {
-    public abstract class QueryBase<T> : IQuery<T> 
+    public abstract class QueryBase<T> : IQuery<T>
         where T : class, new()
     {
         readonly Restrictions _restrictions = new Restrictions();
@@ -62,7 +62,6 @@ namespace Stored.Query
                     case "System.Int64":
                         theSortType = SortType.Number;
                         break;
-                    default: break;
                 }
 
                 Restrictions.SortClause.SortType = theSortType;

@@ -39,10 +39,10 @@ namespace Stored.Tests.Postgres
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format("DROP SCHEMA public CASCADE;");
+                    command.CommandText = "DROP SCHEMA public CASCADE;";
                     command.ExecuteNonQuery();
-                    
-                    command.CommandText = String.Format("CREATE SCHEMA public;");
+
+                    command.CommandText = "CREATE SCHEMA public;";
                     command.ExecuteNonQuery();
                 }
             }

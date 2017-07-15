@@ -11,5 +11,15 @@ namespace Stored.Query
         public string FieldName { get; set; }
         public SortType SortType { get; set; }
         public SortOrder SortOrder { get; set; }
+
+        public SortClause Clone()
+        {
+            return new SortClause
+                {
+                    SortType =  SortType,
+                    SortOrder = SortOrder,
+                    FieldName = FieldName?.Clone() as string
+                };
+        }
     }
 }
