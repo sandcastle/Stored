@@ -20,15 +20,9 @@ namespace Stored.Tests.Postgres
             _session = _store.CreateSession();
         }
 
-        public IPostgresStore Store
-        {
-            get { return _store; }
-        }
+        public IPostgresStore Store => _store;
 
-        public IPostgresSession Session
-        {
-            get { return _session; }
-        }
+        public IPostgresSession Session => _session;
 
         static void Cleanup()
         {

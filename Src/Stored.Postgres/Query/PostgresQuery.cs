@@ -39,9 +39,6 @@ namespace Stored.Postgres.Query
 
         IEnumerable<T> Execute()
         {
-            QueryStatistics.Skip = Restrictions.Skip;
-            QueryStatistics.Take = Restrictions.Take;
-
             var connection = _connectionFactory();
             var command = connection.CreateCommand();
 
@@ -58,52 +55,24 @@ namespace Stored.Postgres.Query
 
             Debug.WriteLine(query);
 
-            var totalRows = CountTotalRows(connection);
-            QueryStatistics.TotalCount = new Lazy<int>(() => totalRows);
-
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            return new ObjectReader<T>(reader, _session.Store.Conventions.JsonSettings());
-        }
-
-        int CountTotalRows(NpgsqlConnection connection)
-        {
-            var command = connection.CreateCommand();
-            try
+            if (QueryStatistics != null)
             {
-                var restrictions = Restrictions.Clone();
-                restrictions.Skip = 0;
-                restrictions.Take = 0;
-
-                var values = new Dictionary<string, object>();
-                var query = new PostgresQueryTranslator().Translate(restrictions, values, _metadata);
-
-                var cleanedQuery = query[query.Length - 1] == ';'
-                    ? query.Substring(0, query.Length - 1)
-                    : query;
-
-                var counter = $"select count(*) from ({cleanedQuery}) total_counter;";
-                Debug.WriteLine(counter);
-
-                command.CommandType = CommandType.Text;
-                command.CommandText = counter;
-
-                foreach (var item in values)
-                {
-                    command.Parameters.AddWithValue(item.Key, item.Value);
-                }
-
-                return Convert.ToInt32(command.ExecuteScalar());
+                QueryStatistics.Skip = Restrictions.Skip;
+                QueryStatistics.Take = Restrictions.Take;
             }
-            finally
-            {
-                command.Dispose();
-            }
+
+            return new ObjectReader<T>(reader, _session.Store.Conventions.JsonSettings(), QueryStatistics);
         }
 
         string Translate(Dictionary<string, object> parameters)
         {
-            return new PostgresQueryTranslator().Translate(Restrictions, parameters, _metadata);
+            return new PostgresQueryTranslator().Translate(
+                Restrictions,
+                parameters,
+                _metadata,
+                QueryStatistics != null);
         }
 
         public override string ToString()

@@ -6,17 +6,23 @@ namespace Stored.Query
     {
         public static Func<T, bool> Filter<T>(FilterBase filter)
         {
-            if (filter is BinaryFilter)
+            var binaryFilter = filter as BinaryFilter;
+            if (binaryFilter != null)
             {
-                return BinaryFilter<T>(filter as BinaryFilter);
+                return BinaryFilter<T>(binaryFilter);
             }
 
-            throw new NotSupportedException("");
+            throw new NotSupportedException($"Filter type '{filter.GetType()}' not supported");
         }
 
         public static Func<T, bool> BinaryFilter<T>(BinaryFilter filter)
         {
             var property = typeof(T).GetProperty(filter.FieldName);
+            if (property == null)
+            {
+                throw new InvalidOperationException("Property not found.");
+            }
+
             if (property.CanRead == false)
             {
                 throw new Exception("Property cannot be read.");
@@ -24,15 +30,15 @@ namespace Stored.Query
 
             if (filter.Operator == BinaryOperator.Equal)
             {
-                return (x) => TypeHelper.GetUnderlyingValue(property.GetValue(x, null)).Equals(filter.Value);
+                return x => TypeHelper.GetUnderlyingValue(property.GetValue(x, null)).Equals(filter.Value);
             }
 
             if (filter.Operator == BinaryOperator.NotEqual)
             {
-                return (x) => TypeHelper.GetUnderlyingValue(property.GetValue(x, null)).Equals(filter.Value) == false;
+                return x => TypeHelper.GetUnderlyingValue(property.GetValue(x, null)).Equals(filter.Value) == false;
             }
 
-            throw new NotSupportedException(String.Format("Operator {0} is not supported.", filter.Operator));
+            throw new NotSupportedException($"Operator '{filter.Operator}' is not supported.");
         }
     }
 }

@@ -16,6 +16,10 @@ namespace Stored.Query
         public static Type GetPropertyType<T>(Expression<Func<T, object>> propertyExpression)
         {
             var member = GetMemberInfo(propertyExpression) as PropertyInfo;
+            if (member == null)
+            {
+                throw new InvalidOperationException("Property not found.");
+            }
 
             return member.PropertyType;
         }
@@ -36,7 +40,7 @@ namespace Stored.Query
 
             if (memberExpression == null)
             {
-                throw new Exception(String.Format("Unknown property type: '{0}'.", body));
+                throw new Exception($"Unknown property type: '{body}'.");
             }
 
             return memberExpression.Member;

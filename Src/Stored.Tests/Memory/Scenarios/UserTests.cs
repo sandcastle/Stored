@@ -12,7 +12,7 @@ namespace Stored.Tests.Memory.Scenarios
             // Arrange
             var users = UserFactory.CreateUsers(3);
 
-            Session.CreateAll(users);            
+            Session.CreateAll(users);
             Session.Commit();
 
             var key = users[1].ApiKey;

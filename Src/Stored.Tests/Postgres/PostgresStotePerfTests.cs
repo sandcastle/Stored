@@ -24,7 +24,7 @@ namespace Stored.Tests.Postgres
         {
             var purchases = new List<Purchase>();
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 purchases.Add(new Purchase
                 {
@@ -42,7 +42,7 @@ namespace Stored.Tests.Postgres
             watch.Stop();
             Console.WriteLine("Write count {0}", count);
             Console.WriteLine("Write time {0}", watch.Elapsed);
-            
+
             watch.Reset();
             watch.Start();
 
@@ -58,7 +58,7 @@ namespace Stored.Tests.Postgres
             // Assert
             Assert.True(items.Count <= count);
             Assert.True(items.All(x => x.Product == "Apples"));
-            Assert.True(watch.ElapsedMilliseconds < 500); // should be less than 600 ms
+            Assert.True(watch.ElapsedMilliseconds < 2000);
         }
 
         static string SelectProduct()

@@ -7,13 +7,7 @@ namespace Stored.Query
     public abstract class QueryBase<T> : IQuery<T>
         where T : class, new()
     {
-        readonly Restrictions _restrictions = new Restrictions();
-        readonly QueryStatistics _stats = new QueryStatistics();
-
-        protected Restrictions Restrictions
-        {
-            get { return _restrictions; }
-        }
+        protected Restrictions Restrictions { get; } = new Restrictions();
 
         public IQuery<T> Take(int count)
         {
@@ -29,7 +23,7 @@ namespace Stored.Query
 
         public IQuery<T> Statistics(out QueryStatistics stats)
         {
-            stats = _stats;
+            stats = QueryStatistics ?? (QueryStatistics = new QueryStatistics());
             return this;
         }
 
@@ -86,10 +80,7 @@ namespace Stored.Query
             return this;
         }
 
-        protected QueryStatistics QueryStatistics
-        {
-            get { return _stats; }
-        }
+        protected QueryStatistics QueryStatistics { get; private set; }
 
         public abstract T FirstOrDefault();
 

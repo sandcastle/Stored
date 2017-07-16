@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Stored.Query;
 
 namespace Stored.Memory
 {
-    public class MemoryQuery<T> : QueryBase<T> 
+    public class MemoryQuery<T> : QueryBase<T>
         where T : class, new()
     {
         readonly IMemorySession _session;
@@ -33,8 +34,11 @@ namespace Stored.Memory
 
         IEnumerable<T> GetRestricted()
         {
-            QueryStatistics.Skip = Restrictions.Skip;
-            QueryStatistics.Take = Restrictions.Take;
+            if (QueryStatistics != null)
+            {
+                QueryStatistics.Skip = Restrictions.Skip;
+                QueryStatistics.Take = Restrictions.Take;
+            }
 
             var values = _session.Store[typeof (T)].Values
                 .OfType<T>();
@@ -44,6 +48,13 @@ namespace Stored.Memory
                 var filterFunction = FilterHelper.Filter<T>(filter);
 
                 values = values.Where(filterFunction);
+            }
+
+            if (QueryStatistics != null)
+            {
+                QueryStatistics.Skip = Restrictions.Skip;
+                QueryStatistics.Take = Restrictions.Take;
+                QueryStatistics.TotalCount = new Lazy<long>(() => values.LongCount());
             }
 
             return values;

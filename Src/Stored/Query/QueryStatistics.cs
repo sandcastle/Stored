@@ -6,10 +6,10 @@ namespace Stored.Query
     {
         public QueryStatistics()
         {
-            TotalCount = new Lazy<int>(() => 0);
+            TotalCount = new Lazy<long>(() => 0);
         }
 
-        public Lazy<int> TotalCount { get; set; }
+        public Lazy<long> TotalCount { get; set; }
         public int Skip { get; set; }
         public int Take { get; set; }
     }

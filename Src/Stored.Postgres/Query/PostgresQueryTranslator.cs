@@ -10,10 +10,15 @@ namespace Stored.Postgres.Query
         public string Translate(
             Restrictions restrictions,
             Dictionary<string, object> parameters,
-            ITableMetadata tableMetadata)
+            ITableMetadata tableMetadata,
+            bool hasStats)
         {
             var builder = new StringBuilder();
-            builder.AppendFormat("SELECT body FROM public.{0}", tableMetadata.Name);
+            builder.AppendFormat(
+                hasStats
+                    ? "SELECT body, count(1) OVER() as total_rows FROM public.{0}"
+                    : "SELECT body FROM public.{0}",
+                tableMetadata.Name);
 
             var first = true;
             foreach (var item in restrictions.Filters)
@@ -29,10 +34,10 @@ namespace Stored.Postgres.Query
                 }
             }
 
-            if (!String.IsNullOrWhiteSpace(restrictions.SortClause.FieldName))
+            if (!string.IsNullOrWhiteSpace(restrictions.SortClause.FieldName))
             {
                 builder.AppendLine();
-                var sortClause = String.Empty;
+                var sortClause = string.Empty;
                 switch (restrictions.SortClause.SortType)
                 {
                     case SortType.Undefined:
@@ -43,7 +48,7 @@ namespace Stored.Postgres.Query
                         sortClause = "ORDER BY CAST(CAST(body->'{0}' as TEXT) as DATE) {1}";
                         break;
                     case SortType.Number:
-                        //TODO: replace fixed number size with more dynamic.
+                        // TODO: replace fixed number size with more dynamic.
                         sortClause = "ORDER BY to_number((body->'{0}')::TEXT, '9999999999999999') {1}";
                         break;
 
@@ -82,42 +87,22 @@ namespace Stored.Postgres.Query
                 return GetBinaryComparison(binaryFilter, parameters);
             }
 
-            throw new Exception(String.Format("Filter type {0} not supported.", filter.GetType().Name));
+            throw new Exception($"Filter type {filter.GetType().Name} not supported.");
         }
 
         static string GetBinaryComparison(BinaryFilter filter, Dictionary<string, object> parameters)
         {
             parameters.Add(":" + filter.FieldName, TypeHelper.GetUnderlyingValue(filter.Value).ToString());
 
-            var type = GetJsonType(typeof(String));
+            var type = GetJsonType(typeof(string));
 
-            return String.Format("(body->>'{0}')::{1} {2} :{3}",
-                filter.FieldName,
-                type,
-                GetOperator(filter.Operator),
-                filter.FieldName.ToLower());
-        }
-
-        static object GetDbValue(object value)
-        {
-            var type = value.GetType();
-
-            if (type.IsEnum)
-            {
-                return ((int)value).ToString();
-            }
-
-            if (type == typeof(bool))
-            {
-                return value.ToString().ToLower();
-            }
-
-            return value;
+            return
+                $"(body->>'{filter.FieldName}')::{type} {GetOperator(filter.Operator)} :{filter.FieldName.ToLower()}";
         }
 
         static string GetJsonType(Type type)
         {
-            if (type == typeof(String))
+            if (type == typeof(string))
             {
                 return "TEXT";
             }
@@ -152,7 +137,7 @@ namespace Stored.Postgres.Query
                 case BinaryOperator.GreaterThanOrEqual:
                     return ">=";
                 default:
-                    throw new ArgumentOutOfRangeException("binaryOperator");
+                    throw new ArgumentOutOfRangeException(nameof(binaryOperator));
             }
         }
     }

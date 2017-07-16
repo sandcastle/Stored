@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Stored.Query;
 using Stored.Tests.Models;
 using Xunit;
@@ -141,7 +140,7 @@ namespace Stored.Tests.Postgres
             // Assert
             using (var session3 = Store.CreateSession())
             {
-                Assert.Null(Session.Get<Car>(carId));
+                Assert.Null(session3.Get<Car>(carId));
             }
         }
 
@@ -161,7 +160,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(2, items.Count());
+            Assert.Equal(2, items.Count);
         }
 
         [Fact]
@@ -180,7 +179,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(2, items.Count());
+            Assert.Equal(2, items.Count);
         }
 
         [Fact]
@@ -199,7 +198,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count());
+            Assert.Equal(1, items.Count);
         }
 
         [Fact]
@@ -218,7 +217,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count());
+            Assert.Equal(1, items.Count);
         }
 
         [Fact]
@@ -237,7 +236,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count());
+            Assert.Equal(1, items.Count);
         }
 
         [Fact]
@@ -256,7 +255,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(2, items.Count());
+            Assert.Equal(2, items.Count);
         }
 
         [Fact]
@@ -315,7 +314,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(2, items.Count());
+            Assert.Equal(2, items.Count);
             Assert.Equal("Corolla", items[0].Model);
         }
 
@@ -336,7 +335,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(2, items.Count());
+            Assert.Equal(2, items.Count);
             Assert.Equal("Rav4", items[0].Model);
         }
 
@@ -413,7 +412,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count());
+            Assert.Equal(1, items.Count);
         }
 
         [Fact]
@@ -433,7 +432,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count());
+            Assert.Equal(1, items.Count);
         }
 
         [Fact]

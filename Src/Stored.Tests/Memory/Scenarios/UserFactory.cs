@@ -8,10 +8,10 @@ namespace Stored.Tests.Memory.Scenarios
     {
         static readonly string[] _names =
         {
-            "Tara Nore", 
-            "Sally Fields", 
-            "Byron Sims", 
-            "Wally Walkers", 
+            "Tara Nore",
+            "Sally Fields",
+            "Byron Sims",
+            "Wally Walkers",
             "Jane Saw",
             "Damon Tully",
             "Glenn Aesop",
@@ -25,13 +25,12 @@ namespace Stored.Tests.Memory.Scenarios
 
             for (var i = 0; i < count; i++)
             {
-
                 list.Add(new User
                 {
                     Id = Guid.NewGuid(),
                     ApiKey = CreateKey(),
                     Name = _names[random.Next(0, _names.Length - 1)],
-                    Type = ((UserType)(random.Next(0, 100) % 2))
+                    Type = ((UserType) (random.Next(0, 100) % 2))
                 });
             }
 

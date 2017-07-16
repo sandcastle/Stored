@@ -7,28 +7,24 @@ namespace Stored.Postgres
 {
     public class PostgresStore : IPostgresStore
     {
-        readonly string _connectionString;
         readonly IDictionary<Type, PostgresTableMetadata> _tables = new Dictionary<Type, PostgresTableMetadata>();
         static readonly object _lock = new object();
 
         public PostgresStore(string connectionString)
         {
-            if (String.IsNullOrEmpty(connectionString))
+            if (string.IsNullOrEmpty(connectionString))
             {
-                throw new ArgumentNullException("connectionString");
+                throw new ArgumentNullException(nameof(connectionString));
             }
 
-            _connectionString = connectionString;
+            ConnectionString = connectionString;
 
             Conventions = new StoreConventions();
         }
 
-        public StoreConventions Conventions { get; private set; }
+        public StoreConventions Conventions { get; }
 
-        public string ConnectionString
-        {
-            get { return _connectionString; }
-        }
+        public string ConnectionString { get; }
 
         PostgresTableMetadata IPostgresStore.GetOrCreateTable(Type type)
         {
@@ -41,7 +37,7 @@ namespace Stored.Postgres
 
                 var table = new PostgresTableMetadata(type);
 
-                var connection = new NpgsqlConnection(_connectionString);
+                var connection = new NpgsqlConnection(ConnectionString);
                 try
                 {
                     connection.Open();
@@ -49,13 +45,13 @@ namespace Stored.Postgres
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandType = CommandType.Text;
-                        command.CommandText = String.Format(@"
+                        command.CommandText = string.Format(@"
                             CREATE TABLE IF NOT EXISTS public.{0}
                             (
                                 id uuid NOT NULL DEFAULT md5(random()::text || clock_timestamp()::text)::uuid,
-                                body json NOT NULL, 
-                                created timestamp without time zone NOT NULL DEFAULT now(), 
-                                row_version integer NOT NULL DEFAULT 1, 
+                                body json NOT NULL,
+                                created timestamp without time zone NOT NULL DEFAULT now(),
+                                row_version integer NOT NULL DEFAULT 1,
                                 CONSTRAINT pk_{0} PRIMARY KEY (id)
                             );", table.Name);
                         command.ExecuteNonQuery();
@@ -63,7 +59,9 @@ namespace Stored.Postgres
                 }
                 catch (NpgsqlException exception)
                 {
-                    throw new Exception(String.Format("Could not create table {0}; see the inner exception for more information.", table.Name), exception);
+                    throw new Exception(
+                        $"Could not create table {table.Name}; see the inner exception for more information.",
+                        exception);
                 }
                 finally
                 {

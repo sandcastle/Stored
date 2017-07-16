@@ -5,18 +5,17 @@ namespace Stored
 {
     public abstract class SessionBase : ISession
     {
-        protected readonly Dictionary<Type, Dictionary<Guid, object>> DeletedEntities = new Dictionary<Type, Dictionary<Guid, object>>();
-        protected readonly Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>> Entities = new Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>>();
+        protected readonly Dictionary<Type, Dictionary<Guid, object>> DeletedEntities
+            = new Dictionary<Type, Dictionary<Guid, object>>();
+        protected readonly Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>> Entities
+            = new Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>>();
 
         protected SessionBase()
         {
             Id = Guid.NewGuid();
         }
 
-        /// <summary>
-        /// The session ID.
-        /// </summary>
-        public Guid Id { get; private set; }
+        public Guid Id { get; }
 
         public abstract ISessionAdvanced Advanced { get; }
 
@@ -24,10 +23,10 @@ namespace Stored
 
         protected abstract T GetInternal<T>(Guid id);
 
-        public abstract IList<T> All<T>() 
+        public abstract IList<T> All<T>()
             where T : class, new();
 
-        public abstract IQuery<T> Query<T>() 
+        public abstract IQuery<T> Query<T>()
             where T : class, new();
 
         public void Clear()

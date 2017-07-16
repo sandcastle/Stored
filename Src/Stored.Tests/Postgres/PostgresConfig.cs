@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 
 namespace Stored.Tests.Postgres
 {
@@ -9,18 +8,15 @@ namespace Stored.Tests.Postgres
 
         static PostgresConfig()
         {
-            var password = GetVariable("POSTGRES_PASS", String.Empty);
-            if (String.IsNullOrWhiteSpace(password) == false)
+            var password = GetVariable("POSTGRES_PASS", string.Empty);
+            if (string.IsNullOrWhiteSpace(password) == false)
             {
                 password = "Password=" + password + ";";
             }
 
-            ConnectionString = String.Format("Server={0};Port={1};Database={2};User Id={3};CommandTimeout=120;{4}",
-                GetVariable("POSTGRES_HOST", "host"),
-                GetVariable("POSTGRES_PORT", "5432"),
-                GetVariable("POSTGRES_DB", "stored_db"),
-                GetVariable("POSTGRES_USER", "postgres"),
-                password);
+            ConnectionString =
+                $"Server={GetVariable("POSTGRES_HOST", "host")};Port={GetVariable("POSTGRES_PORT", "5432")};"
+              + $"Database={GetVariable("POSTGRES_DB", "stored_db")};User Id={GetVariable("POSTGRES_USER", "postgres")};CommandTimeout=120;{password}";
         }
 
         /// <summary>
@@ -32,12 +28,9 @@ namespace Stored.Tests.Postgres
         static string GetVariable(string name, string defaultValue)
         {
             var value = Environment.GetEnvironmentVariable(name);
-            if (String.IsNullOrWhiteSpace(value))
-            {
-                return defaultValue;
-            }
-
-            return value;
+            return string.IsNullOrWhiteSpace(value)
+                ? defaultValue
+                : value;
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Stored.Tests.Memory.Scenarios
             // Assert
             Assert.Equal(2, results.Count);
         }
-        
+
         [Fact]
         public void CanQueryWithThreeFilters()
         {
@@ -64,12 +64,12 @@ namespace Stored.Tests.Memory.Scenarios
         {
             return new[]
             {
-                new Car { Make = "Toyota", Model = "Rav 4" },
-                new Car { Make = "Ferarri", Model = "F50" },
-                new Car { Make = "Ford", Model = "Focus" },
-                new Car { Make = "Ford", Model = "Festiva" },
-                new Car { Make = "Ford", Model = "Shelby Mustang" },
-                new Car { Make = "Ford", Model = "Shelby Mustang", Id = _knownId }
+                new Car {Make = "Toyota", Model = "Rav 4"},
+                new Car {Make = "Ferarri", Model = "F50"},
+                new Car {Make = "Ford", Model = "Focus"},
+                new Car {Make = "Ford", Model = "Festiva"},
+                new Car {Make = "Ford", Model = "Shelby Mustang"},
+                new Car {Make = "Ford", Model = "Shelby Mustang", Id = _knownId}
             };
         }
     }

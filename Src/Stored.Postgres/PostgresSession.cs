@@ -15,46 +15,39 @@ namespace Stored.Postgres
     {
         const int AllBatchSize = 2048;
 
-        readonly IPostgresStore _store;
         readonly Func<NpgsqlConnection> _connectionFactory;
         readonly PostgresSessionAdvanced _advanced;
         readonly JsonSerializerSettings _jsonSettings;
 
         public PostgresSession(IPostgresStore store)
         {
-            _store = store;
+            Store = store;
             _connectionFactory = () =>
             {
-                var connection = new NpgsqlConnection(_store.ConnectionString);
+                var connection = new NpgsqlConnection(Store.ConnectionString);
                 connection.Open();
 
                 return connection;
             };
 
-            _jsonSettings = _store.Conventions.JsonSettings();
-            _advanced = new PostgresSessionAdvanced(_store, _connectionFactory);
+            _jsonSettings = Store.Conventions.JsonSettings();
+            _advanced = new PostgresSessionAdvanced(Store, _connectionFactory);
         }
 
-        public IPostgresStore Store
-        {
-            get { return _store; }
-        }
+        public IPostgresStore Store { get; }
 
-        public override ISessionAdvanced Advanced
-        {
-            get { return _advanced; }
-        }
+        public override ISessionAdvanced Advanced => _advanced;
 
         public override IList<T> All<T>()
         {
-            var table = _store.GetOrCreateTable(typeof(T));
+            var table = Store.GetOrCreateTable(typeof(T));
 
             // NOTE: Reading records is done in batches, not a single query
             //       in case there is an huge number of records
 
             var records = new List<T>();
             var total = 0;
-            var batchSize = _store.Conventions.AllBatchSize;
+            var batchSize = Store.Conventions.AllBatchSize;
 
             using (var connection = _connectionFactory())
             {
@@ -65,7 +58,8 @@ namespace Stored.Postgres
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandType = CommandType.Text;
-                        command.CommandText = String.Format(@"SELECT body FROM public.{0} LIMIT {1} OFFSET {2};", table.Name, batchSize, total);
+                        command.CommandText =
+                            $@"SELECT body FROM public.{table.Name} LIMIT {batchSize} OFFSET {total};";
 
                         Debug.WriteLine(command.CommandText);
 
@@ -97,14 +91,14 @@ namespace Stored.Postgres
 
         protected override T GetInternal<T>(Guid id)
         {
-            var table = _store.GetOrCreateTable(typeof(T));
+            var table = Store.GetOrCreateTable(typeof(T));
 
             using (var connection = _connectionFactory())
             {
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format(@"SELECT body FROM public.{0} WHERE id = :id LIMIT 1;", table.Name);
+                    command.CommandText = $@"SELECT body FROM public.{table.Name} WHERE id = :id LIMIT 1;";
 
                     command.Parameters.AddWithValue(":id", id);
 
@@ -145,14 +139,14 @@ namespace Stored.Postgres
 
         void ExecuteCreateSet(NpgsqlConnection connection, Type type, IEnumerable<KeyValuePair<Guid, object>> items)
         {
-            var table = _store.GetOrCreateTable(type);
+            var table = Store.GetOrCreateTable(type);
 
             foreach (var item in items)
             {
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format(@"INSERT INTO public.{0} (id, body) VALUES (:id, :body);", table.Name);
+                    command.CommandText = $@"INSERT INTO public.{table.Name} (id, body) VALUES (:id, :body);";
 
                     Debug.WriteLine(command.CommandText);
 
@@ -166,7 +160,7 @@ namespace Stored.Postgres
 
         void ExecuteModifySet(NpgsqlConnection connection, Type type, IEnumerable<KeyValuePair<Guid, object>> items)
         {
-            var table = _store.GetOrCreateTable(type);
+            var table = Store.GetOrCreateTable(type);
 
             foreach (var item in items)
             {
@@ -174,7 +168,7 @@ namespace Stored.Postgres
                 {
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Format(@"UPDATE public.{0} SET body = :body WHERE id = :id;", table.Name);
+                        $@"UPDATE public.{table.Name} SET body = :body WHERE id = :id;";
 
                     Debug.WriteLine(command.CommandText);
 
@@ -188,14 +182,14 @@ namespace Stored.Postgres
 
         void ExecuteDeleteSet(NpgsqlConnection connection, Type type, IEnumerable<Guid> items)
         {
-            var table = _store.GetOrCreateTable(type);
+            var table = Store.GetOrCreateTable(type);
 
             foreach (var item in items)
             {
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Format(@"DELETE FROM public.{0} WHERE id = :id;", table.Name);
+                    command.CommandText = $@"DELETE FROM public.{table.Name} WHERE id = :id;";
 
                     Debug.WriteLine(command.CommandText);
 
@@ -225,7 +219,8 @@ namespace Stored.Postgres
 
                 using (var connection = _connectionFactory())
                 {
-                    using (var writer = connection.BeginBinaryImport(String.Format("COPY public.{0} (id, body) FROM STDIN BINARY", table.Name)))
+                    using (var writer = connection.BeginBinaryImport(
+                        $"COPY public.{table.Name} (id, body) FROM STDIN BINARY"))
                     {
                         foreach (var item in items)
                         {

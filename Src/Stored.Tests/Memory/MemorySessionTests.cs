@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using Stored.Tests.Models;
 using Xunit;
 
@@ -138,7 +137,7 @@ namespace Stored.Tests.Memory
             // Assert
             using (var session3 = Store.CreateSession())
             {
-                Assert.Null(Session.Get<Car>(carId));
+                Assert.Null(session3.Get<Car>(carId));
             }
         }
 
@@ -173,7 +172,7 @@ namespace Stored.Tests.Memory
             var items = Session.All<Car>();
 
             // Assert
-            Assert.Equal(3, items.Count());
+            Assert.Equal(3, items.Count);
         }
 
         [Fact]
@@ -191,7 +190,7 @@ namespace Stored.Tests.Memory
                 .ToList();
 
             // Assert
-            Assert.Equal(2, items.Count());
+            Assert.Equal(2, items.Count);
 
         }
 
@@ -210,7 +209,7 @@ namespace Stored.Tests.Memory
                 .ToList();
 
             // Assert
-            Assert.Equal(2, items.Count());
+            Assert.Equal(2, items.Count);
 
         }
 
@@ -267,7 +266,7 @@ namespace Stored.Tests.Memory
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count());
+            Assert.Equal(1, items.Count);
         }
 
         [Fact]
@@ -286,7 +285,7 @@ namespace Stored.Tests.Memory
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count());
+            Assert.Equal(1, items.Count);
         }
 
         [Fact]

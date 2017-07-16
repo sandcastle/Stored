@@ -7,11 +7,11 @@ namespace Stored
 {
     internal static class IdentityFactory
     {
-        static readonly Dictionary<Type, PropertyInfo> KeyCache = new Dictionary<Type, PropertyInfo>();
+        static readonly Dictionary<Type, PropertyInfo> _keyCache = new Dictionary<Type, PropertyInfo>();
 
         public static void Clear()
         {
-            KeyCache.Clear();
+            _keyCache.Clear();
         }
 
         public static Guid SetEntityId(object value)
@@ -69,9 +69,9 @@ namespace Stored
 
             var type = value.GetType();
 
-            if (KeyCache.ContainsKey(type))
+            if (_keyCache.ContainsKey(type))
             {
-                propertyInfo = KeyCache[type];
+                propertyInfo = _keyCache[type];
                 return true;
             }
             
@@ -80,7 +80,7 @@ namespace Stored
                 .Where(x => x.PropertyType == typeof(Guid))
                 .FirstOrDefault(x => x.CanRead && x.CanWrite);
 
-            if (KeyCache == null)
+            if (_keyCache == null)
             {
                 throw new Exception("Cache is null");
             }
@@ -90,7 +90,7 @@ namespace Stored
                 throw new Exception("type is null");
             }
 
-            KeyCache[type] = propertyInfo;
+            _keyCache[type] = propertyInfo;
 
             return (propertyInfo != null);
         }

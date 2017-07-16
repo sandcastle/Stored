@@ -12,7 +12,6 @@ namespace Stored
         IList<T> All<T>() where T : class, new();
         IQuery<T> Query<T>() where T : class, new();
         void Commit();
-        
         ISessionAdvanced Advanced { get; }
     }
 }

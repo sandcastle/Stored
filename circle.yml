@@ -11,7 +11,7 @@ dependencies:
     - mkdir -p ~/docker;
   override:
     - if [[ -e ~/docker/mono.tar ]]; then docker load -i ~/docker/mono.tar; fi
-    - docker pull mono:4
+    - docker pull mono:5
     - docker save mono > ~/docker/mono.tar
 
 test:

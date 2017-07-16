@@ -24,7 +24,7 @@ namespace Stored.Tests
         public void CanGetMemberExpressionType()
         {
             // Act / Assert
-            Assert.Equal(typeof(String), ExpressionHelper.GetPropertyType<TestClass>(x => x.PropertyOne));
+            Assert.Equal(typeof(string), ExpressionHelper.GetPropertyType<TestClass>(x => x.PropertyOne));
         }
 
         [Fact]

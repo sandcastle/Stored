@@ -6,7 +6,7 @@ namespace Stored
     public class EntityException : Exception
     {
         public EntityException()
-            : this(String.Empty, null) { }
+            : this(string.Empty, null) { }
 
         public EntityException(string message)
             : this(message, null) { }

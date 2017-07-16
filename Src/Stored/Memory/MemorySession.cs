@@ -15,15 +15,9 @@ namespace Stored.Memory
             _advanced = new MemorySessionAdvanced(this);
         }
 
-        IMemoryStore IMemorySession.Store
-        {
-            get { return _store; }
-        }
+        IMemoryStore IMemorySession.Store => _store;
 
-        public override ISessionAdvanced Advanced
-        {
-            get { return _advanced; }
-        }
+        public override ISessionAdvanced Advanced => _advanced;
 
         protected override T GetInternal<T>(Guid id)
         {
