@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Stored.Query;
 using Stored.Tests.Models;
 using Xunit;
 
@@ -313,7 +315,7 @@ namespace Stored.Tests.Memory
 
             // Assert - should be sub 100ms for 200k full scan
             Assert.Equal(2, items.Count);
-            Assert.True(watch.ElapsedMilliseconds < 150); 
+            Assert.True(watch.ElapsedMilliseconds < 150);
         }
 
         [Fact]
@@ -341,6 +343,40 @@ namespace Stored.Tests.Memory
             // Assert
             Assert.NotNull(car);
             Assert.Equal(car.Id, car.Id);
+        }
+
+        [Fact]
+        public void CanCreateInParallelWithoutIssue()
+        {
+            const int itemCount = 10000;
+
+            // Arrange
+            var items = new List<int>();
+            for (var i = 0; i < itemCount; i++)
+            {
+                items.Add(i);
+            }
+
+            // Act
+            Parallel.ForEach(items, i =>
+            {
+                var car = new Car
+                {
+                    Id = Guid.NewGuid(),
+                    Make = $"Toyota {i}",
+                    Model = $"Rav4 {i}"
+                };
+                Session.Create(car);
+            });
+            Session.Commit();
+
+            QueryStatistics stats;
+            Session.Query<Car>()
+                .Take(2)
+                .Statistics(out stats)
+                .ToList();
+
+            Assert.Equal(itemCount, stats.TotalCount.Value);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 
@@ -7,7 +7,7 @@ namespace Stored
 {
     internal static class IdentityFactory
     {
-        static readonly Dictionary<Type, PropertyInfo> _keyCache = new Dictionary<Type, PropertyInfo>();
+        static readonly ConcurrentDictionary<Type, PropertyInfo> _keyCache = new ConcurrentDictionary<Type, PropertyInfo>();
 
         public static void Clear()
         {
@@ -74,7 +74,7 @@ namespace Stored
                 propertyInfo = _keyCache[type];
                 return true;
             }
-            
+
             propertyInfo = value.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(x => x.Name.Equals("id", StringComparison.OrdinalIgnoreCase))
                 .Where(x => x.PropertyType == typeof(Guid))

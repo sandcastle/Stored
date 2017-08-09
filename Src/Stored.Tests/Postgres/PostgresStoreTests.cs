@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Stored.Query;
 using Stored.Tests.Models;
 using Xunit;
@@ -479,6 +480,41 @@ namespace Stored.Tests.Postgres
             Assert.Equal(2, stats.TotalCount.Value);
             Assert.Equal(1, stats.Skip);
             Assert.Equal(1024, stats.Take);
+        }
+
+
+        [Fact]
+        public void CanCreateInParallelWithoutIssue()
+        {
+            const int itemCount = 500;
+
+            // Arrange
+            var items = new List<int>();
+            for (var i = 0; i < itemCount; i++)
+            {
+                items.Add(i);
+            }
+
+            // Act
+            Parallel.ForEach(items, i =>
+            {
+                var car = new Car
+                {
+                    Id = Guid.NewGuid(),
+                    Make = $"Toyota {i}",
+                    Model = $"Rav4 {i}"
+                };
+                Session.Create(car);
+            });
+            Session.Commit();
+
+            QueryStatistics stats;
+            Session.Query<Car>()
+                .Take(2)
+                .Statistics(out stats)
+                .ToList();
+
+            Assert.Equal(itemCount, stats.TotalCount.Value);
         }
     }
 }
