@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Stored.Query
 {
-    internal static class ExpressionHelper
+    public static class ExpressionHelper
     {
         public static string GetName<T>(Expression<Func<T, object>> propertyExpression)
         {

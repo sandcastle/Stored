@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Stored.Query;
 using Stored.Tests.Models;
 using Xunit;
 
@@ -370,10 +369,9 @@ namespace Stored.Tests.Memory
             });
             Session.Commit();
 
-            QueryStatistics stats;
             Session.Query<Car>()
                 .Take(2)
-                .Statistics(out stats)
+                .Statistics(out var stats)
                 .ToList();
 
             Assert.Equal(itemCount, stats.TotalCount.Value);

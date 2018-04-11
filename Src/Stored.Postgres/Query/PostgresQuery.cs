@@ -32,10 +32,7 @@ namespace Stored.Postgres.Query
             return Execute().FirstOrDefault();
         }
 
-        public override List<T> ToList()
-        {
-            return Execute().ToList();
-        }
+        public override List<T> ToList() => Execute().ToList();
 
         IEnumerable<T> Execute()
         {
@@ -66,18 +63,12 @@ namespace Stored.Postgres.Query
             return new ObjectReader<T>(reader, _session.Store.Conventions.JsonSettings(), QueryStatistics);
         }
 
-        string Translate(Dictionary<string, object> parameters)
-        {
-            return new PostgresQueryTranslator().Translate(
-                Restrictions,
-                parameters,
-                _metadata,
-                QueryStatistics != null);
-        }
+        string Translate(Dictionary<string, object> parameters) => new PostgresQueryTranslator().Translate(
+            Restrictions,
+            parameters,
+            _metadata,
+            QueryStatistics != null);
 
-        public override string ToString()
-        {
-            return Translate(new Dictionary<string, object>());
-        }
+        public override string ToString() => Translate(new Dictionary<string, object>());
     }
 }

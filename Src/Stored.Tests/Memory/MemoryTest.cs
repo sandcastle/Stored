@@ -4,7 +4,7 @@ namespace Stored.Tests.Memory
 {
     public class MemoryTest
     {
-        public MemoryTest()
+        protected MemoryTest()
         {
             Store = new MemoryStore();
             Session = Store.CreateSession();

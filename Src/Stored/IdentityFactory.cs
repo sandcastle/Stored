@@ -5,19 +5,15 @@ using System.Reflection;
 
 namespace Stored
 {
-    internal static class IdentityFactory
+    public static class IdentityFactory
     {
         static readonly ConcurrentDictionary<Type, PropertyInfo> _keyCache = new ConcurrentDictionary<Type, PropertyInfo>();
 
-        public static void Clear()
-        {
-            _keyCache.Clear();
-        }
+        public static void Clear() => _keyCache.Clear();
 
         public static Guid SetEntityId(object value)
         {
-            PropertyInfo propertyInfo;
-            if (TryGetIdProperty(value, out propertyInfo) == false)
+            if (TryGetIdProperty(value, out var propertyInfo) == false)
             {
                 throw new EntityException("Entity does not have an ID property of type Guid.");
             }
@@ -43,8 +39,7 @@ namespace Stored
 
         public static Guid GetEntityId(object value)
         {
-            PropertyInfo propertyInfo;
-            if (TryGetIdProperty(value, out propertyInfo) == false)
+            if (TryGetIdProperty(value, out var propertyInfo) == false)
             {
                 throw new EntityException("Entity does not have an ID property of type Guid.");
             }

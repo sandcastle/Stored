@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace Stored
 {
@@ -13,8 +12,5 @@ namespace Stored
 
         public EntityException(string message, Exception innerException)
             : base(message, innerException) { }
-
-        public EntityException(SerializationInfo info, StreamingContext context)
-            : base(info, context) { }
     }
 }

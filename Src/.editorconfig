@@ -1,0 +1,37 @@
+root = false
+
+# https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.cs]
+indent_size = 4
+
+[*.cs]
+dotnet_style_predefined_type_for_locals_parameters_members = true : warning
+dotnet_style_predefined_type_for_member_access = true : warning
+dotnet_style_object_initializer = true : warning
+dotnet_style_coalesce_expression = true : warning
+dotnet_style_null_propagation = true : warning
+dotnet_sort_system_directives_first = true
+dotnet_style_explicit_tuple_names = true : warning
+csharp_prefer_braces = true : warning
+csharp_style_var_for_built_in_types = false : warning
+csharp_style_var_when_type_is_apparent = true : warning
+csharp_style_expression_bodied_methods = true : warning
+csharp_style_pattern_matching_over_is_with_cast_check = true : warning
+csharp_style_pattern_matching_over_as_with_null_check = true : warning
+csharp_style_inlined_variable_declaration = true : warning
+csharp_style_expression_bodied_constructors = true : warning
+csharp_style_expression_bodied_operators = true : warning
+csharp_style_expression_bodied_properties = true : warning
+csharp_style_expression_bodied_indexers = true : warning
+csharp_style_expression_bodied_accessors = true : warning
+csharp_prefer_simple_default_expression = true : warning
+csharp_style_throw_expression = true : warning

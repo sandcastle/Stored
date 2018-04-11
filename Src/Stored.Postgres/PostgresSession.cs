@@ -84,10 +84,7 @@ namespace Stored.Postgres
             return records;
         }
 
-        public override IQuery<T> Query<T>()
-        {
-            return new PostgresQuery<T>(this, _connectionFactory);
-        }
+        public override IQuery<T> Query<T>() => new PostgresQuery<T>(this, _connectionFactory);
 
         protected override T GetInternal<T>(Guid id)
         {

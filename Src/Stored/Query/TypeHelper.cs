@@ -2,7 +2,7 @@
 
 namespace Stored.Query
 {
-    internal static class TypeHelper
+    public static class TypeHelper
     {
         static readonly Type _boolType = typeof (bool);
 

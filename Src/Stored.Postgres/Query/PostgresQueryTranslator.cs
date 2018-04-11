@@ -81,8 +81,7 @@ namespace Stored.Postgres.Query
 
         static string GetFilter(FilterBase filter, Dictionary<string, object> parameters)
         {
-            var binaryFilter = filter as BinaryFilter;
-            if (binaryFilter != null)
+            if (filter is BinaryFilter binaryFilter)
             {
                 return GetBinaryComparison(binaryFilter, parameters);
             }
@@ -90,7 +89,7 @@ namespace Stored.Postgres.Query
             throw new Exception($"Filter type {filter.GetType().Name} not supported.");
         }
 
-        static string GetBinaryComparison(BinaryFilter filter, Dictionary<string, object> parameters)
+        static string GetBinaryComparison(BinaryFilter filter, IDictionary<string, object> parameters)
         {
             parameters.Add(":" + filter.FieldName, TypeHelper.GetUnderlyingValue(filter.Value).ToString());
 
