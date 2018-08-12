@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Stored
 {
@@ -13,10 +15,7 @@ namespace Stored
         protected readonly Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>> Entities
             = new Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>>();
 
-        protected SessionBase()
-        {
-            Id = Guid.NewGuid();
-        }
+        protected SessionBase() => Id = Guid.NewGuid();
 
         public Guid Id { get; }
 
@@ -26,11 +25,16 @@ namespace Stored
 
         protected abstract T GetInternal<T>(Guid id);
 
-        public abstract IList<T> All<T>()
+        public abstract IReadOnlyList<T> All<T>()
+            where T : class, new();
+
+        public abstract Task<IReadOnlyList<T>> AllAsync<T>(CancellationToken token = default)
             where T : class, new();
 
         public abstract IQuery<T> Query<T>()
             where T : class, new();
+
+        public abstract Task CommitAsync(CancellationToken token = default);
 
         public void Clear()
         {

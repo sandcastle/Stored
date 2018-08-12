@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Stored.Query;
 using Stored.Tests.Models;
 using Xunit;
 
@@ -267,7 +268,7 @@ namespace Stored.Tests.Memory
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Empty(items);
         }
 
         [Fact]
@@ -286,7 +287,7 @@ namespace Stored.Tests.Memory
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Empty(items);
         }
 
         [Fact]

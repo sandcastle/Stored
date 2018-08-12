@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Stored.Query
 {
@@ -22,5 +23,28 @@ namespace Stored.Query
 
             return value;
         }
+
+        internal static string ValueToStrings(object value)
+        {
+            if (value == null)
+            {
+                return "null";
+            }
+
+            var type = value.GetType();
+            if (type.IsPrimitive || _callToStringTypes.Any(t => t.IsAssignableFrom(type)))
+            {
+                return value.ToString();
+            }
+
+            // TODO: Support custom conversions
+
+            return value.ToString();
+        }
+
+        static readonly Type[] _callToStringTypes = {
+            typeof(DateTime),
+            typeof(string)
+        };
     }
 }

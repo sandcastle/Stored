@@ -18,7 +18,7 @@ namespace Stored.Tests.Postgres
         [Theory]
         [InlineData(10)]
         [InlineData(1000)]
-        [InlineData(1000000)]
+        [InlineData(1_000_000)]
         [Trait(TraitName, "")]
         public void CanQueryLargeDataSets(int count)
         {
@@ -29,7 +29,7 @@ namespace Stored.Tests.Postgres
                 purchases.Add(new Purchase
                 {
                     Product = SelectProduct(),
-                    Price = (decimal)_random.Next(100, 1000) / 10,
+                    Price = (decimal)_random.Next(100, 1_000) / 10,
                     Qty = _random.Next(1, 10)
                 });
             }
@@ -61,9 +61,6 @@ namespace Stored.Tests.Postgres
             Assert.True(watch.ElapsedMilliseconds < 2000);
         }
 
-        static string SelectProduct()
-        {
-            return _products[_random.Next(0, _products.Length)];
-        }
+        static string SelectProduct() => _products[_random.Next(0, _products.Length)];
     }
 }

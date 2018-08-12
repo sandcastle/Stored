@@ -9,6 +9,7 @@ namespace Stored.Tests.Models
         public string Model { get; set; }
         public bool IsAutomatic { get; set; }
         public CarType CarType { get; set; }
+        public bool IsActive { get; set; }
     }
 
     public enum CarType

@@ -43,7 +43,7 @@ namespace Stored.Postgres
             var table = Store.GetOrCreateTable(typeof(T));
 
             // NOTE: Reading records is done in batches, not a single query
-            //       in case there is an huge number of records
+            // in case there is an huge number of records
 
             var records = new List<T>();
             var total = 0;
@@ -59,7 +59,7 @@ namespace Stored.Postgres
                     {
                         command.CommandType = CommandType.Text;
                         command.CommandText =
-                            $@"SELECT body FROM public.{table.Name} LIMIT {batchSize} OFFSET {total};";
+                            $@"select body from public.{table.Name} limit {batchSize} offset {total};";
 
                         Debug.WriteLine(command.CommandText);
 

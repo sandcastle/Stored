@@ -15,7 +15,7 @@ namespace Stored.Tests.Postgres
             }
 
             ConnectionString =
-                $"Server={GetVariable("POSTGRES_HOST", "host")};Port={GetVariable("POSTGRES_PORT", "5432")};"
+                $"Server={GetVariable("POSTGRES_HOST", "localhost")};Port={GetVariable("POSTGRES_PORT", "5432")};"
               + $"Database={GetVariable("POSTGRES_DB", "stored_db")};User Id={GetVariable("POSTGRES_USER", "postgres")};CommandTimeout=120;{password}";
         }
 

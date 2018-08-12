@@ -8,25 +8,23 @@ namespace Stored.Postgres.Query
     internal class PostgresQueryTranslator
     {
         public string Translate(
-            Restrictions restrictions,
+            LegacyRestrictions restrictions,
             Dictionary<string, object> parameters,
             ITableMetadata tableMetadata,
             bool hasStats)
         {
-            var builder = new StringBuilder();
-            builder.AppendFormat(
-                hasStats
-                    ? "SELECT body, count(1) OVER() as total_rows FROM public.{0}"
-                    : "SELECT body FROM public.{0}",
-                tableMetadata.Name);
+            var builder = new PostgresSqlBuilder();
+            builder.AddLine(hasStats
+                ? "select body, count(1) over() as total_rows"
+                : "select body");
+            builder.AddLine($"from public.{tableMetadata.Name}");
 
             var first = true;
             foreach (var item in restrictions.Filters)
             {
-                builder.AppendLine();
-                builder.AppendFormat("{0} {1}",
-                    first ? "WHERE " : "AND ",
-                    GetFilter(item, parameters));
+                builder.Add(first
+                    ? $"where {GetFilter(item, parameters)}"
+                    : $"and {GetFilter(item, parameters)}");
 
                 if (first)
                 {
@@ -34,10 +32,18 @@ namespace Stored.Postgres.Query
                 }
             }
 
+            if (restrictions.Filters.Count > 0)
+            {
+                builder.AddLine();
+            }
+
             if (!string.IsNullOrWhiteSpace(restrictions.SortClause.FieldName))
             {
-                builder.AppendLine();
-                var sortClause = string.Empty;
+                var fieldName = restrictions.SortClause.FieldName;
+                var sortDirection = restrictions.SortClause.SortOrder == SortOrder.Ascending
+                    ? "asc"
+                    : "desc";
+
                 switch (restrictions.SortClause.SortType)
                 {
                     case SortType.Undefined:
@@ -45,41 +51,39 @@ namespace Stored.Postgres.Query
                         break;
 
                     case SortType.Date:
-                        sortClause = "ORDER BY CAST(CAST(body->'{0}' as TEXT) as DATE) {1}";
+                        builder.Add($"ORDER BY CAST(CAST(body->'{fieldName}' as TEXT) as DATE) {sortDirection}");
                         break;
+
                     case SortType.Number:
                         // TODO: replace fixed number size with more dynamic.
-                        sortClause = "ORDER BY to_number((body->'{0}')::TEXT, '9999999999999999') {1}";
+                        builder.Add($"ORDER BY to_number((body->'{fieldName}')::TEXT, '9999999999999999') {sortDirection}");
                         break;
 
                     default:
-                        //Text will always be the default conversion
-                        sortClause = "ORDER BY (body->'{0}')::TEXT {1}";
+                        // Text will always be the default conversion
+                        builder.Add($"ORDER BY (body->'{fieldName}')::TEXT {sortDirection}");
                         break;
                 }
-
-                builder.AppendFormat(sortClause, restrictions.SortClause.FieldName,
-                    restrictions.SortClause.SortOrder == SortOrder.Ascending ? "" : "DESC");
             }
+
+            builder.AddLine();
 
             if (restrictions.Take > 0)
             {
-                builder.AppendLine();
-                builder.AppendFormat("LIMIT {0}", restrictions.Take);
+                builder.Add($"limit {restrictions.Take}");
             }
 
             if (restrictions.Skip > 0)
             {
-                builder.AppendLine();
-                builder.AppendFormat("OFFSET {0}", restrictions.Skip);
+                builder.AddLine();
+                builder.Add($"offset {restrictions.Skip}");
             }
 
-            builder.Append(";");
-
+            builder.Add(";");
             return builder.ToString();
         }
 
-        static string GetFilter(FilterBase filter, Dictionary<string, object> parameters)
+        static string GetFilter(FilterBase filter, IDictionary<string, object> parameters)
         {
             if (filter is BinaryFilter binaryFilter)
             {
@@ -91,12 +95,11 @@ namespace Stored.Postgres.Query
 
         static string GetBinaryComparison(BinaryFilter filter, IDictionary<string, object> parameters)
         {
-            parameters.Add(":" + filter.FieldName, TypeHelper.GetUnderlyingValue(filter.Value).ToString());
+            parameters.Add(":" + filter.FieldName.ToLower(), TypeHelper.GetUnderlyingValue(filter.Value).ToString());
 
             var type = GetJsonType(typeof(string));
 
-            return
-                $"(body->>'{filter.FieldName}')::{type} {GetOperator(filter.Operator)} :{filter.FieldName.ToLower()}";
+            return $"(body->>'{filter.FieldName}')::{type} {GetOperator(filter.Operator)} :{filter.FieldName.ToLower()}";
         }
 
         static string GetJsonType(Type type)

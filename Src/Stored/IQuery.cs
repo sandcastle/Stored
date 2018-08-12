@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Threading;
+using System.Threading.Tasks;
 using Stored.Query;
+using Stored.Query.Restrictions;
 
 namespace Stored
 {
-    public interface IQuery<T>
+    public interface IQuery<TResult>
     {
-        IQuery<T> Take(int count);
-        IQuery<T> Skip(int count);
-        IQuery<T> Statistics(out QueryStatistics stats);
-        IFilterBuilder<T> Where(Expression<Func<T, object>> expression);
-        IFilterBuilder<T> Where(string propertyName);
-        IQuery<T> OrderBy(Expression<Func<T, object>> expression, SortType sortType = SortType.Undefined, SortOrder order = SortOrder.Ascending);
-        IQuery<T> OrderBy(string propertyName, SortType sortType = SortType.Text, SortOrder order = SortOrder.Ascending);
-        T FirstOrDefault();
-        List<T> ToList();
+        IImmutableList<IRestriction> Restrictions { get; }
+
+        IQuery<TResult> Statistics(out QueryStatistics stats);
+        IQuery<TResult> Skip(long amount);
+        IQuery<TResult> Take(long amount);
+
+        Task<TResult> FirstOrDefaultAsync(CancellationToken cancel = default);
+        Task<IReadOnlyList<TResult>> ToListAsync(CancellationToken cancel = default);
+        Task<int> CountAsync(CancellationToken cancel = default);
+        Task<long> CountLongAsync(CancellationToken cancel = default);
     }
 }

@@ -1,125 +1,34 @@
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.Collections.Immutable;
+using System.Threading;
+using System.Threading.Tasks;
+using Stored.Query.Restrictions;
 
 namespace Stored.Query
 {
-    public abstract class QueryBase<T> : IQuery<T>
-        where T : class, new()
+    public abstract class QueryBase<TResult> : IQuery<TResult>
+        where TResult : class, new()
     {
-        protected Restrictions Restrictions { get; } = new Restrictions();
-
-        public IQuery<T> Take(int count)
-        {
-            Restrictions.Take = count;
-            return this;
-        }
-
-        public IQuery<T> Skip(int count)
-        {
-            Restrictions.Skip = count;
-            return this;
-        }
-
-        public IQuery<T> Statistics(out QueryStatistics stats)
-        {
-            stats = QueryStatistics ?? (QueryStatistics = new QueryStatistics());
-            return this;
-        }
-
-        public IFilterBuilder<T> Where(Expression<Func<T, object>> expression)
-        {
-            return new FilterBuilder(this, ExpressionHelper.GetName(expression));
-        }
-
-        public IFilterBuilder<T> Where(string propertyName)
-        {
-            return new FilterBuilder(this, propertyName);
-        }
-
-        public IQuery<T> OrderBy(Expression<Func<T, object>> expression, SortType sortType = SortType.Undefined, SortOrder order = SortOrder.Ascending)
-        {
-            var name = ExpressionHelper.GetName(expression);
-
-            if (sortType == SortType.Undefined)
-            {
-                var propType = ExpressionHelper.GetPropertyType(expression);
-
-                var theSortType = SortType.Text;
-                switch (propType.ToString())
-                {
-                    case "System.DateTime":
-                        theSortType = SortType.Date;
-                        break;
-                    case "System.Int16":
-                    case "System.Int32":
-                    case "System.Int64":
-                        theSortType = SortType.Number;
-                        break;
-                }
-
-                Restrictions.SortClause.SortType = theSortType;
-            }
-            else
-            {
-                Restrictions.SortClause.SortType = sortType;
-            }
-
-            Restrictions.SortClause.FieldName = name;
-            Restrictions.SortClause.SortOrder = order;
-
-            return this;
-        }
-
-        public IQuery<T> OrderBy(string propertyName, SortType sortType = SortType.Text, SortOrder order = SortOrder.Ascending)
-        {
-            Restrictions.SortClause.FieldName = propertyName.Replace("-", "").Replace("'", "");
-            Restrictions.SortClause.SortOrder = order;
-            Restrictions.SortClause.SortType = sortType;
-
-            return this;
-        }
+        public IImmutableList<IRestriction> Restrictions { get; } = ImmutableList.Create<IRestriction>();
 
         protected QueryStatistics QueryStatistics { get; private set; }
 
-        public abstract T FirstOrDefault();
+        public abstract IQuery<TResult> Skip(long amount);
 
-        public abstract List<T> ToList();
+        public abstract IQuery<TResult> Take(long amount);
 
-        class FilterBuilder : IFilterBuilder<T>
+        public abstract Task<TResult> FirstOrDefaultAsync(CancellationToken cancel = default);
+
+        public abstract Task<IReadOnlyList<TResult>> ToListAsync(CancellationToken cancel = default);
+
+        public abstract Task<int> CountAsync(CancellationToken cancel = default);
+
+        public abstract Task<long> CountLongAsync(CancellationToken cancel = default);
+
+        public IQuery<TResult> Statistics(out QueryStatistics stats)
         {
-            readonly QueryBase<T> _query;
-            readonly string _propertyName;
-
-            public FilterBuilder(QueryBase<T> query, string propertyName)
-            {
-                _query = query;
-                _propertyName = propertyName;
-            }
-
-            public IQuery<T> Equal(object value)
-            {
-                _query.Restrictions.Filters.Add(new BinaryFilter
-                {
-                    FieldName = _propertyName,
-                    Operator = BinaryOperator.Equal,
-                    Value = TypeHelper.GetUnderlyingValue(value)
-                });
-
-                return _query;
-            }
-
-            public IQuery<T> NotEqual(object value)
-            {
-                _query.Restrictions.Filters.Add(new BinaryFilter
-                {
-                    FieldName = _propertyName,
-                    Operator = BinaryOperator.NotEqual,
-                    Value = TypeHelper.GetUnderlyingValue(value)
-                });
-
-                return _query;
-            }
+            stats = QueryStatistics ?? (QueryStatistics = new QueryStatistics());
+            return this;
         }
     }
 }

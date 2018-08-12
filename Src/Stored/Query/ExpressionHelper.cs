@@ -6,14 +6,12 @@ namespace Stored.Query
 {
     public static class ExpressionHelper
     {
-        public static string GetName<T>(Expression<Func<T, object>> propertyExpression)
+        public static string GetName<TModel, TProperty>(Expression<Func<TModel, TProperty>> propertyExpression)
         {
-            var member = GetMemberInfo(propertyExpression);
-
-            return member.Name;
+            return GetMemberInfo(propertyExpression).Name;
         }
 
-        public static Type GetPropertyType<T>(Expression<Func<T, object>> propertyExpression)
+        public static Type GetPropertyType<TModel, TProperty>(Expression<Func<TModel, TProperty>> propertyExpression)
         {
             var member = GetMemberInfo(propertyExpression) as PropertyInfo;
             if (member == null)
@@ -24,15 +22,14 @@ namespace Stored.Query
             return member.PropertyType;
         }
 
-        private static MemberInfo GetMemberInfo<T>(Expression<Func<T, object>> propertyExpression)
+        static MemberInfo GetMemberInfo<TModel, TProperty>(Expression<Func<TModel, TProperty>> propertyExpression)
         {
             var body = propertyExpression.Body;
 
             var memberExpression = body as MemberExpression;
             if (memberExpression == null)
             {
-                var unaryExpression = body as UnaryExpression;
-                if (unaryExpression != null)
+                if (body is UnaryExpression unaryExpression)
                 {
                     memberExpression = unaryExpression.Operand as MemberExpression;
                 }

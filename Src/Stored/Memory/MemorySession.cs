@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Stored.Memory
 {
@@ -28,20 +30,25 @@ namespace Stored.Memory
                 return (T)dictionary[id];
             }
 
-            return default(T);
+            return default;
         }
 
-        public override IList<T> All<T>()
-        {
-            return _store[typeof(T)]
+        public override IReadOnlyList<T> All<T>() => 
+            _store[typeof(T)]
                 .Values
                 .OfType<T>()
                 .ToList();
-        }
 
-        public override IQuery<T> Query<T>()
+        public override IQuery<T> Query<T>() =>
+            new MemoryQuery<T>(this);
+
+        public override Task<IReadOnlyList<T>> AllAsync<T>(CancellationToken token = default) =>
+            Task.FromResult(All<T>());
+
+        public override Task CommitAsync(CancellationToken token = default)
         {
-            return new MemoryQuery<T>(this);
+            Commit();
+            return Task.CompletedTask;
         }
 
         public override void Commit()
@@ -74,10 +81,8 @@ namespace Stored.Memory
         {
             readonly MemorySession _session;
 
-            public MemorySessionAdvanced(MemorySession session)
-            {
+            public MemorySessionAdvanced(MemorySession session) =>
                 _session = session;
-            }
 
             public void BulkCreate<T>(IEnumerable<T> items)
             {
@@ -88,6 +93,12 @@ namespace Stored.Memory
                     var id = IdentityFactory.SetEntityId(item);
                     dictionary[id] = item;
                 }
+            }
+
+            public Task BulkCreateAsync<T>(IEnumerable<T> items, CancellationToken token = default)
+            {
+                BulkCreate(items);
+                return Task.CompletedTask;
             }
         }
     }

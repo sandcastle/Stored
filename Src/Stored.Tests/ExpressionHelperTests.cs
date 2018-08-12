@@ -9,43 +9,59 @@ namespace Stored.Tests
         [Fact]
         public void CanGetMemberExpressionName()
         {
-            // Act / Assert
-            Assert.Equal("PropertyOne", ExpressionHelper.GetName<TestClass>(x => x.PropertyOne));
+            Assert.Equal("PropertyString", ExpressionHelper.GetName<TestClass, object>(x => x.PropertyString));
         }
 
         [Fact]
         public void CanGetUnaryExpressionName()
         {
-            // Act / Assert
-            Assert.Equal("PropertyTwo", ExpressionHelper.GetName<TestClass>(x => x.PropertyTwo));
+            Assert.Equal("PropertyGuid", ExpressionHelper.GetName<TestClass, object>(x => x.PropertyGuid));
         }
 
         [Fact]
-        public void CanGetMemberExpressionType()
+        public void CanGetStringPropertyType()
         {
-            // Act / Assert
-            Assert.Equal(typeof(string), ExpressionHelper.GetPropertyType<TestClass>(x => x.PropertyOne));
+            Assert.Equal(typeof(string), ExpressionHelper.GetPropertyType<TestClass, object>(x => x.PropertyString));
         }
 
         [Fact]
-        public void CanGetUnaryExpressionType()
+        public void CanGetGuidPropertyType()
         {
-            // Act / Assert
-            Assert.Equal(typeof(Guid), ExpressionHelper.GetPropertyType<TestClass>(x => x.PropertyTwo));
+            Assert.Equal(typeof(Guid), ExpressionHelper.GetPropertyType<TestClass, object>(x => x.PropertyGuid));
         }
 
         [Fact]
-        public void CanGetDateTimeExpressionType()
+        public void CanGetDateTimePropertyType()
         {
-            // Act / Assert
-            Assert.Equal(typeof(DateTime), ExpressionHelper.GetPropertyType<TestClass>(x => x.PropertyDate));
+            Assert.Equal(typeof(DateTime), ExpressionHelper.GetPropertyType<TestClass, object>(x => x.PropertyDateTime));
+        }
+
+        [Fact]
+        public void CanGetBoolPropertyType()
+        {
+            Assert.Equal(typeof(bool), ExpressionHelper.GetPropertyType<TestClass, object>(x => x.PropertyBool));
+        }
+
+        [Fact]
+        public void CanGetEnumPropertyType()
+        {
+            Assert.Equal(typeof(TestValues), ExpressionHelper.GetPropertyType<TestClass, object>(x => x.PropertyEnum));
         }
 
         class TestClass
         {
-            public string PropertyOne { get; set; }
-            public Guid PropertyTwo { get; set; }
-            public DateTime PropertyDate { get; set; }
+            public string PropertyString { get; set; }
+            public Guid PropertyGuid { get; set; }
+            public DateTime PropertyDateTime { get; set; }
+            public bool PropertyBool { get; set; }
+            public TestValues PropertyEnum { get; set; }
+        }
+
+        enum TestValues
+        {
+            One = 0,
+            Two = 1,
+            Three = 2
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Stored.Tests.Postgres
         readonly PostgresStore _store;
         readonly PostgresSession _session;
 
-        public PostgresTest()
+        protected PostgresTest()
         {
             Cleanup();
 
@@ -20,9 +20,9 @@ namespace Stored.Tests.Postgres
             _session = _store.CreateSession();
         }
 
-        public IPostgresStore Store => _store;
+        protected IPostgresStore Store => _store;
 
-        public IPostgresSession Session => _session;
+        protected IPostgresSession Session => _session;
 
         static void Cleanup()
         {
@@ -42,9 +42,6 @@ namespace Stored.Tests.Postgres
             }
         }
 
-        public void Dispose()
-        {
-            _session.Dispose();
-        }
+        public void Dispose() => _session.Dispose();
     }
 }

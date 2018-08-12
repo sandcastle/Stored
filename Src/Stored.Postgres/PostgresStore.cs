@@ -73,14 +73,8 @@ namespace Stored.Postgres
             }
         }
 
-        ISession IStore.CreateSession()
-        {
-            return CreateSession();
-        }
+        ISession IStore.CreateSession() => CreateSession();
 
-        public PostgresSession CreateSession()
-        {
-            return new PostgresSession(this);
-        }
+        public PostgresSession CreateSession() => new PostgresSession(this);
     }
 }

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Stored.Tests.Postgres
 {
-    public class PostgresStoreTests : PostgresTest
+    public partial class PostgresStoreTests : PostgresTest
     {
         const string TraitName = "Integration";
 
@@ -199,7 +199,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Empty(items);
         }
 
         [Fact]
@@ -218,7 +218,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Empty(items);
         }
 
         [Fact]
@@ -237,7 +237,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Empty(items);
         }
 
         [Fact]
@@ -275,7 +275,6 @@ namespace Stored.Tests.Postgres
 
             // Assert
             Assert.Equal(3, items.Count);
-
         }
 
         [Fact]
@@ -413,7 +412,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Empty(items);
         }
 
         [Fact]
@@ -433,7 +432,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Empty(items);
         }
 
         [Fact]
@@ -466,22 +465,19 @@ namespace Stored.Tests.Postgres
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
-            QueryStatistics stats;
-
             // Act
             var items = Session.Query<Car>()
-                .Statistics(out stats)
+                .Statistics(out var stats)
                 .Where(x => x.Make).Equal("Toyota")
                 .Skip(1)
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Empty(items);
             Assert.Equal(2, stats.TotalCount.Value);
             Assert.Equal(1, stats.Skip);
             Assert.Equal(1024, stats.Take);
         }
-
 
         [Fact]
         public void CanCreateInParallelWithoutIssue()
@@ -508,10 +504,9 @@ namespace Stored.Tests.Postgres
             });
             Session.Commit();
 
-            QueryStatistics stats;
             Session.Query<Car>()
                 .Take(2)
-                .Statistics(out stats)
+                .Statistics(out var stats)
                 .ToList();
 
             Assert.Equal(itemCount, stats.TotalCount.Value);

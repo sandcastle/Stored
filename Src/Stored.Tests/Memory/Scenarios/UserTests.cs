@@ -23,7 +23,7 @@ namespace Stored.Tests.Memory.Scenarios
                 .ToList();
 
             // Assert
-            Assert.Equal(1, results.Count);
+            Assert.Empty(results);
             Assert.Equal(key, results[0].ApiKey);
         }
 
@@ -73,7 +73,7 @@ namespace Stored.Tests.Memory.Scenarios
 
             Session.CreateAll(users);
             Session.Commit();
-            
+
             // Act
             var result = Session.Query<User>()
                 .Where(x => x.Id).Equal(users[1].Id)

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace Stored.Query
 {
-    public class Restrictions
+    public class LegacyRestrictions
     {
-        public Restrictions()
+        public LegacyRestrictions()
         {
             Filters = new List<FilterBase>();
             Skip = 0;
@@ -17,15 +17,12 @@ namespace Stored.Query
         public SortClause SortClause { get; set; }
         public List<FilterBase> Filters { get; private set; }
 
-        public Restrictions Clone()
+        public LegacyRestrictions Clone() => new LegacyRestrictions
         {
-            return new Restrictions
-                {
-                    Skip = Skip,
-                    Take = Take,
-                    SortClause = SortClause?.Clone(),
-                    Filters = new List<FilterBase>(Filters) // TODO: Add deep clone
-                };
-        }
+            Skip = Skip,
+            Take = Take,
+            SortClause = SortClause?.Clone(),
+            Filters = new List<FilterBase>(Filters) // TODO: Add deep clone
+        };
     }
 }
