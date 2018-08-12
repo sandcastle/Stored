@@ -16,7 +16,7 @@ namespace Stored
                 .Statistics(out var stats)
                 .Take(take)
                 .Skip(skip)
-                .ToListAsync<TResult>(token);
+                .ToListAsync(token);
 
             return new QueryPage<TResult>(results, stats.TotalCount.Value, take, skip);
         }
@@ -27,7 +27,7 @@ namespace Stored
         {
             var results = await query
                 .Take(1)
-                .ToListAsync<TResult>(token);
+                .ToListAsync(token);
 
             if (results.Count != 1)
             {
@@ -43,7 +43,7 @@ namespace Stored
         {
             var results = await query
                 .Take(1)
-                .ToListAsync<TResult>(token);
+                .ToListAsync(token);
 
             return results.Count == 1
                 ? results[0]
@@ -55,7 +55,7 @@ namespace Stored
             CancellationToken token = default)
         {
             var results = await query
-                .ToListAsync<TResult>(token);
+                .ToListAsync(token);
 
             if (results.Count == 0)
             {
@@ -75,7 +75,7 @@ namespace Stored
             CancellationToken token = default)
         {
             var results = await query
-                .ToListAsync<TResult>(token);
+                .ToListAsync(token);
 
             return results.Count == 1
                 ? results[0]

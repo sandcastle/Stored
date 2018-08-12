@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 using Npgsql;
@@ -83,6 +85,10 @@ namespace Stored.Postgres
 
             return records;
         }
+
+        public override Task<IReadOnlyList<T>> AllAsync<T>(CancellationToken token = default) => throw new NotImplementedException();
+
+        public override Task CommitAsync(CancellationToken token = default) => throw new NotImplementedException();
 
         public override IQuery<T> Query<T>() => new PostgresQuery<T>(this, _connectionFactory);
 
@@ -240,6 +246,8 @@ namespace Stored.Postgres
                     }
                 }
             }
+
+            public Task BulkCreateAsync<T>(IEnumerable<T> items, CancellationToken token = default) => throw new NotImplementedException();
         }
     }
 }

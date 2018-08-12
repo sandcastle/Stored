@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text;
 using Stored.Query;
+using Stored.Query.Restrictions;
 
 namespace Stored.Postgres.Query
 {
     internal class PostgresQueryTranslator
     {
         public string Translate(
-            LegacyRestrictions restrictions,
+            IImmutableList<IRestriction> restrictions,
             Dictionary<string, object> parameters,
             ITableMetadata tableMetadata,
             bool hasStats)
