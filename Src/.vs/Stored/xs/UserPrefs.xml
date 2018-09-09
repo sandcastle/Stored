@@ -1,0 +1,23 @@
+﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupConfiguration="{97A4AD1D-243E-4AA2-BBAB-E338DC48B15F}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Stored.Tests/Memory/MemorySessionTests.cs">
+    <Files>
+      <File FileName="Stored.Tests/Memory/MemorySessionTests.cs" Line="12" Column="15" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Stored" expanded="True">
+            <Node name="Stored.Tests" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Stored.Tests PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

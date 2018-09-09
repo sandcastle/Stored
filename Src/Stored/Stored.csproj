@@ -4,5 +4,19 @@
     <LangVersion>7.1</LangVersion>
     <OutputType>Library</OutputType>
     <LangVersion>latest</LangVersion>
+    <PackOnBuild>true</PackOnBuild>
+    <Owners>Sandcastle Group Pty Ltd</Owners>
+    <Summary>A light weight data access library for storing entities with support for unit of work.</Summary>
+    <Title>Stored</Title>
+    <PackageId>Stored</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Glenn Morton</Authors>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/sandcastle/stored</PackageProjectUrl>
+    <PackageTags>data database postgres cache linq</PackageTags>
+    <Description>A light weight data access library for storing entities with support for unit of work.</Description>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+  </ItemGroup>
 </Project>

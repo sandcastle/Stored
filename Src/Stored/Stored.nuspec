@@ -13,6 +13,6 @@
     <tags>data database postgres cache linq</tags>
   </metadata>
   <files>
-    <file src="Stored.dll" target="lib/net45" />
+    <file src="Stored.dll" target="lib/netstandard2.0" />
   </files>
 </package>

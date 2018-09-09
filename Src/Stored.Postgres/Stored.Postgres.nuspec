@@ -10,14 +10,15 @@
     <description>The Postgres SQL provider for the Stored data access library.</description>
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright 2014</copyright>
-    <tags>data database postgres cache linq</tags>
+    <tags></tags>
     <dependencies>
       <dependency id="Stored" version="$version$" />
-      <dependency id="Npgsql" version="3.0.3" />
-      <dependency id="Newtonsoft.Json" version="7.0.1" />
+      <dependency id="Npgsql" version="4.0.3" />
+      <dependency id="Newtonsoft.Json" version="11.0.2" />
+      <dependency id="Microsoft.CSharp" version="4.4.1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="Stored.Postgres.dll" target="lib/net45" />
+    <file src="Stored.Postgres.dll" target="lib/netstandard2.0" />
   </files>
 </package>

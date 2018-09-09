@@ -14,8 +14,8 @@ version=${1:-1.0.0.0}
 mkdir -p dist
 
 # build project
-dotnet build Src/Stored.sln
-dotnet publish -o
+dotnet build -c Release Src/Stored/Stored.csproj
+dotnet build -c Release Src/Stored.Postgres/Stored.Postgres.csproj
 
 # package
 sh script/package ${version}

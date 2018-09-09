@@ -1,0 +1,48 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: microsoft/dotnet:build
+    services:
+    - postgres
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    steps:
+      - checkout
+
+      - setup_remote_docker
+
+      - restore_cache:
+          key: stored-{{ .Branch }}
+
+      - run:
+          name: Dependencies
+          command: sh script/update
+
+      - run:
+          name: Test
+          command: sh script/test
+
+      - run:
+          name: Build
+          command: sh script/build
+
+      - run:
+          name: List After
+          command: ls -la
+
+      - save_cache:
+          key: stored-{{ .Branch }}
+          paths:
+            - ~/.nuget
+
+      - store_artifacts:
+          path: dist/
+
+      - deploy:
+          name: Deploy
+          command: |
+            # sh script/publish
