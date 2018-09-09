@@ -6,3 +6,8 @@ cd "$(dirname "$0")/.."
 # ------
 
 export NUGET_VERSION=$(cat version.txt)
+
+export POSTGRES_HOST=127.0.0.1
+export POSTGRES_PORT=5432
+export POSTGRES_DB=stored_db
+export POSTGRES_USER=postgres
