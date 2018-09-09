@@ -5,6 +5,6 @@ cd "$(dirname "$0")/.."
 
 # --------
 
-dotnet restore Src/Stored.sln
+sh script/bootstrap
 
 # --------

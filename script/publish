@@ -1,8 +1,4 @@
 #!/bin/sh
-
-# script/publish - deploys the app
-
-# exit on sub-module failure
 set -e
 
 cd "$(dirname "$0")/.."

@@ -5,95 +5,299 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a688849b-2ce0-4cd1-84e5-80b57a924bb2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Stored/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestCollection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestFixture.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Stored.Tests/Postgres/Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Stored/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Stored/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Stored/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Stored/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Stored/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Stored/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Stored/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Stored/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Stored.Postgres/PostgresSession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Postgres/PostgresSession.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Postgres/Properties/AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Postgres/Query/PostgresQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Postgres/Query/PostgresQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Postgres/Query/PostgresQueryTranslator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Postgres/Query/PostgresQueryTranslator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Postgres/PostgresStore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Postgres/PostgresStore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Postgres/StoreConventions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Postgres/StoreConventions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Postgres/packages.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Tests/Memory/MemoryTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Memory/MemoryTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Tests/Properties/AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Tests/ExpressionHelperTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/ExpressionHelperTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Tests/Memory/MemorySessionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Memory/MemorySessionTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/MultiFilterTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/MultiFilterTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/UserTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/UserTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStoreTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStoreTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStotePerfTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStorePerfTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Stored.Tests/Stored.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Stored.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Tests/packages.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.sln.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored/EntityException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored/EntityException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored/IdentityFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored/IdentityFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored/Properties/AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored/Query/ExpressionHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored/Query/ExpressionHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored/Query/IFilterBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored/Query/IFilterBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored/Query/TypeHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Stored/Query/TypeHelper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Stored/Stored.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Stored/Stored.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../script/bootstrap" beforeDir="false" afterPath="$PROJECT_DIR$/../script/bootstrap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../script/build" beforeDir="false" afterPath="$PROJECT_DIR$/../script/build" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../script/ci" beforeDir="false" afterPath="$PROJECT_DIR$/../script/ci" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../script/clean" beforeDir="false" afterPath="$PROJECT_DIR$/../script/clean" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../script/package" beforeDir="false" afterPath="$PROJECT_DIR$/../script/package" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../script/publish" beforeDir="false" afterPath="$PROJECT_DIR$/../script/publish" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../script/test" beforeDir="false" afterPath="$PROJECT_DIR$/../script/test" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1310354249">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cs" value="41" />
+          <entry key="csproj" value="3" />
+          <entry key="md" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="C#" value="41" />
+          <entry key="Csproj" value="3" />
+          <entry key="Markdown" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cs" value="805" />
+          <entry key="csproj" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="C#" value="805" />
+          <entry key="Csproj" value="14" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PostgresStoreTests.cs" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStoreTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+            <state relative-caret-position="-853">
+              <caret line="435" selection-start-line="435" selection-end-line="435" />
               <folding>
-                <marker date="1502297816000" expanded="false" signature="6:137" ph="..." />
-                <marker date="1502297816000" expanded="true" signature="170:15351" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="223:15349" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="356:716" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="432:511" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="799:1107" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="883:1028" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="1183:1608" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="1259:1338" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="1687:2154" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="1763:1842" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="2233:2528" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="2309:2388" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="2634:3408" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="2749:3005" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="2814:2905" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="3082:3235" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="3315:3398" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="3486:4003" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="4089:4720" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="4807:5441" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="5523:6121" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="6221:6807" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="6897:7409" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="7506:7972" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="8075:8597" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="8681:9290" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="9384:10019" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="10138:10655" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="10737:11191" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="10807:11020" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="11270:11707" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="11793:12335" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="12421:12963" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="13044:13616" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="13713:14468" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="14539:15343" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="14701:14759" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="14820:15079" ph="{...}" />
-                <marker date="1502297816000" expanded="true" signature="14885:15027" ph="{...}" />
+                <marker date="1536486771744" expanded="false" signature="6:137" ph="..." />
+                <marker date="1536486771744" expanded="true" signature="170:15238" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="223:15236" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="356:716" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="432:511" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="799:1107" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="883:1028" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="1183:1608" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="1259:1338" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="1687:2154" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="1763:1842" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="2233:2528" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="2309:2388" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="2634:3408" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="2749:3005" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="2814:2905" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="3082:3235" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="3315:3398" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="3486:4003" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="4089:4720" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="4807:5433" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="5515:6105" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="6205:6783" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="6873:7385" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="7482:7947" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="8050:8571" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="8655:9264" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="9358:9993" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="10112:10629" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="10711:11165" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="10781:10994" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="11244:11681" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="11767:12301" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="12387:12921" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="13002:13574" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="13671:14386" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="14457:15230" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="14619:14677" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="14738:14997" ph="{...}" />
+                <marker date="1536486771744" expanded="true" signature="14803:14945" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MemoryTest.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Stored.Tests/Memory/MemoryTest.cs">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestFixture.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
               <folding>
-                <marker date="1523415076606" expanded="true" signature="51:414" ph="{...}" />
-                <marker date="1523415076606" expanded="true" signature="81:412" ph="{...}" />
-                <marker date="1523415076606" expanded="true" signature="118:310" ph="{...}" />
+                <marker date="1536491124537" expanded="true" signature="31:76" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Stored.Postgres/PostgresSession.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="212" column="46" selection-start-line="212" selection-start-column="46" selection-end-line="212" selection-end-column="46" />
+              <folding>
+                <marker date="1536492580256" expanded="false" signature="6:234" ph="..." />
+                <marker date="1536492580256" expanded="true" signature="261:8562" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="328:8560" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="595:1003" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="671:849" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="1157:2613" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="1240:1367" ph="/* NOTE: Reading records is done in batches, not a single query ... */" />
+                <marker date="1536492580256" expanded="true" signature="1555:2574" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="1598:2560" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="1723:2418" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="2029:2396" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="2105:2370" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="2467:2542" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="2764:3615" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="2892:3605" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="2971:3591" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="3288:3573" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="3353:3510" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="3654:4406" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="3722:4328" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="3783:4132" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="4187:4314" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="4524:5195" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="4629:5185" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="4708:5171" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="5313:6004" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="5418:5994" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="5497:5980" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="6100:6614" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="6205:6604" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="6284:6590" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="6672:8554" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="7031:7214" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="7275:8544" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="7416:8530" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="7482:7527" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="7681:8512" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="7755:8490" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="7866:7983" ph="{...}" />
+                <marker date="1536492580256" expanded="true" signature="8042:8191" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stored.Postgres/StoreConventions.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+              <folding>
+                <marker date="1536491521729" expanded="false" signature="6:36" ph="..." />
+                <marker date="1536491521729" expanded="true" signature="63:334" ph="{...}" />
+                <marker date="1536491521729" expanded="true" signature="99:332" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestCollection.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1536490846652" expanded="true" signature="45:178" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/Tests.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <marker date="1536490661149" expanded="true" signature="31:139" ph="{...}" />
+                <marker date="1536490661149" expanded="true" signature="63:137" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTest.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <marker date="1536491105197" expanded="true" signature="6:82" ph="..." />
+                <marker date="1536491105197" expanded="true" signature="115:1639" ph="{...}" />
+                <marker date="1536491105197" expanded="true" signature="194:1637" ph="{...}" />
+                <marker date="1536491105197" expanded="true" signature="316:480" ph="{...}" />
+                <marker date="1536491105197" expanded="true" signature="709:1631" ph="{...}" />
+                <marker date="1536491105197" expanded="true" signature="783:1461" ph="{...}" />
+                <marker date="1536491105197" expanded="true" signature="982:1447" ph="{...}" />
+                <marker date="1536491105197" expanded="true" signature="1479:1534" ph="{...}" />
+                <marker date="1536491105197" expanded="true" signature="1554:1621" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStorePerfTests.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+              <folding>
+                <marker date="1536491391230" expanded="true" signature="6:132" ph="..." />
+                <marker date="1536491391230" expanded="true" signature="165:1921" ph="{...}" />
+                <marker date="1536491391230" expanded="true" signature="222:1919" ph="{...}" />
+                <marker date="1536491391230" expanded="true" signature="601:1813" ph="{...}" />
+                <marker date="1536491391230" expanded="true" signature="706:975" ph="{...}" />
+                <marker date="1536491391230" expanded="true" signature="780:959" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stored/ISessionAdvanced.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <marker date="1534095801441" expanded="true" signature="51:155" ph="{...}" />
+                <marker date="1534095801441" expanded="true" signature="91:153" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresConfig.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+              <folding>
+                <marker date="1535979014254" expanded="false" signature="6:27" ph="..." />
+                <marker date="1535979014254" expanded="true" signature="60:1423" ph="{...}" />
+                <marker date="1535979014254" expanded="true" signature="101:1421" ph="{...}" />
+                <marker date="1535979014254" expanded="true" signature="196:872" ph="{...}" />
+                <marker date="1535979014254" expanded="true" signature="279:599" ph="{...}" />
+                <marker date="1535979014254" expanded="true" signature="737:810" ph="{...}" />
+                <marker date="1535979014254" expanded="true" signature="882:1150" ph="/// Gets the specified variable, or the default value if not available. ... " />
+                <marker date="1535979014254" expanded="true" signature="1218:1415" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -104,27 +308,71 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>ExpressionHelper</find>
+      <find>astin</find>
+      <find>Astin</find>
+      <find>DROP SCHEMA</find>
+      <find>Ferarri</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Models/Car.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Models/Purchase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/IPostgresStore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Models/Bad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/MultiFilterTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/UserTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Models/User.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Memory/MemorySessionTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Stored.Tests/Memory/MemoryTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored.Postgres/Query/PostgresQuery.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored.Postgres/Query/PostgresQueryTranslator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored/IdentityFactory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored.Postgres/PostgresSession.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Memory/MemorySession.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/SessionBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Memory/MemoryStore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/ISession.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Memory/MemoryQuery.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/EntityMetadata.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Memory/IMemoryStore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Query/BinaryFilter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Memory/IMemorySession.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/obj/Release/netstandard2.0/Stored.Postgres.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Stored/Query/IFilterBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/724F386D-8F5B-4395-A7FA-46C7A3A38A2A/b4/01ff0251/ExecutionTimer.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/724F386D-8F5B-4395-A7FA-46C7A3A38A2A/26/69fafb28/TestInvoker`1.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Stored/Query/FilterHelper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Query/ExpressionHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Query/SortClause.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Query/QueryBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Query/QueryStatistics.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/IdentityFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/Query/TypeHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/ISessionAdvanced.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/ITableMetadata.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStoreTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Stored/Model/DataModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Stored/SortType.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored/Query/ExpressionHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored/IQuery.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored/EntityException.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored.Postgres/obj/Release/netcoreapp2.0/Stored.Postgres.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored/Query/TypeHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStoreTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Postgres/Tests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/Query/PostgresQuery.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Stored.Tests/ExpressionHelperTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/SessionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/ab/db9f4648/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestFixture.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/IStore.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/Query/PostgresQueryTranslator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/EntityException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/IQuery.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/IPostgresSession.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/PostgresSession.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored/SortOrder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/StoreConventions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/PostgresStore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresConfig.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/PostgresTableMetadata.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Postgres/Query/ObjectReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStorePerfTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTest.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -132,17 +380,32 @@
         <option value="$PROJECT_DIR$/Stored/Query/IFilterBuilder.cs" />
         <option value="$PROJECT_DIR$/Stored/Model/DataModel.cs" />
         <option value="$PROJECT_DIR$/Stored/EntityException.cs" />
-        <option value="$PROJECT_DIR$/Stored/Stored.csproj" />
         <option value="$PROJECT_DIR$/Stored/IdentityFactory.cs" />
-        <option value="$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.csproj" />
-        <option value="$PROJECT_DIR$/Stored.Postgres/PostgresSession.cs" />
         <option value="$PROJECT_DIR$/Stored.Postgres/Query/PostgresQuery.cs" />
         <option value="$PROJECT_DIR$/Stored/Query/TypeHelper.cs" />
         <option value="$PROJECT_DIR$/Stored.Postgres/Query/PostgresQueryTranslator.cs" />
-        <option value="$PROJECT_DIR$/Stored.Tests/ExpressionHelperTests.cs" />
         <option value="$PROJECT_DIR$/Stored/Query/ExpressionHelper.cs" />
         <option value="$PROJECT_DIR$/Stored.Tests/Memory/MemoryTest.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresConfig.cs" />
+        <option value="$PROJECT_DIR$/../README.md" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/UserTests.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Memory/MemorySessionTests.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/MultiFilterTests.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStoreTests.cs" />
+        <option value="$PROJECT_DIR$/Stored/Stored.csproj" />
+        <option value="$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.csproj" />
         <option value="$PROJECT_DIR$/Stored.Tests/Stored.Tests.csproj" />
+        <option value="$PROJECT_DIR$/Stored.Tests/ExpressionHelperTests.cs" />
+        <option value="$PROJECT_DIR$/Stored.Postgres/PostgresStore.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStotePerfTests.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Postgres/Tests.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Postgres/Collection.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestCollection.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTest.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestFixture.cs" />
+        <option value="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStorePerfTests.cs" />
+        <option value="$PROJECT_DIR$/Stored.Postgres/StoreConventions.cs" />
+        <option value="$PROJECT_DIR$/Stored.Postgres/PostgresSession.cs" />
       </list>
     </option>
   </component>
@@ -156,7 +419,9 @@
     <option name="width" value="1920" />
     <option name="height" value="1080" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="SolutionExplorer" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -166,63 +431,36 @@
         <subPane>
           <expand>
             <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Stored (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Stored" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Stored (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Stored.Tests" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Stored" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Stored.Tests" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Stored (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Stored.Tests" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Dependencies" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Stored" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Stored.Tests" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Models" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Stored (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Stored.Tests" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Dependencies" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name=".NETCoreApp 2" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Stored (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Stored.Tests" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Dependencies" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name=".NETCoreApp 2" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Packages" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Stored (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Stored.Tests" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Memory" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Stored (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Stored.Tests" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Models" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Stored (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Stored.Tests" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Postgres" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Stored" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Stored.Tests" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Postgres" type="24d0babc:SolutionExplorerModelNode" />
             </path>
           </expand>
           <select />
         </subPane>
-        <option name="show-file-system" value="false" />
-        <option name="show-all-items" value="false" />
+        <option name="show-all-files" value="false" />
       </pane>
-      <pane id="Scratches" />
+      <pane id="FileSystemExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="RiderXUnitUnitTestingPageId" />
@@ -240,57 +478,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="DotNetProject" factoryName=".NET Project">
-      <option name="PROJECT_PATH" value="" />
-      <option name="PROJECT_KIND" value="None" />
-      <option name="PROJECT_TFM" value="" />
-      <option name="EXE_PATH" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="USE_MONO" value="0" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
-      <node-interpreter value="project" />
-      <working-dir value="" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -298,6 +485,7 @@
       <tasks />
       <arguments />
       <envs />
+      <method v="2" />
     </configuration>
   </component>
   <component name="TaskManager">
@@ -311,11 +499,14 @@
       <workItem from="1504804197976" duration="173000" />
       <workItem from="1523403982664" duration="2956000" />
       <workItem from="1523414847307" duration="463000" />
+      <workItem from="1535975526760" duration="5822000" />
+      <workItem from="1536486607125" duration="1199000" />
+      <workItem from="1536489041696" duration="3324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3946000" />
+    <option name="totallyTimeSpent" value="14750000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -330,68 +521,64 @@
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Errors In Solution" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50106496" side_tool="true" weight="0.57412934" />
-      <window_info anchor="bottom" id="Unit Tests" order="7" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="REST Client" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49946752" weight="0.5850746" />
-      <window_info anchor="bottom" id="NuGet" order="7" sideWeight="0.49893504" weight="0.57412934" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25772098" />
-      <window_info anchor="bottom" id="Docker" order="8" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49946752" weight="0.32935324" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27103302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" sideWeight="0.49893504" weight="0.5740933" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Unit Tests" order="9" visible="true" weight="0.37326732" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49946752" weight="0.3891089" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50106496" side_tool="true" weight="0.57326734" />
+      <window_info anchor="bottom" id="Build" order="12" sideWeight="0.49946752" weight="0.3284974" />
+      <window_info anchor="bottom" id="Docker" order="13" />
+      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="REST Client" order="15" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Errors In Solution" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="UnityProjectConfiguration" isUnityUI="false" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresConfig.cs</url>
+          <line>27</line>
+          <properties documentPath="$PROJECT_DIR$/Stored.Tests/Postgres/PostgresConfig.cs" initialLine="27">
+            <startOffsets>
+              <option value="871" />
+            </startOffsets>
+            <endOffsets>
+              <option value="872" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Stored.Postgres/Query/PostgresQueryTranslator.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1751">
-          <caret line="106" column="13" lean-forward="true" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
-          <folding>
-            <marker date="1523408445899" expanded="false" signature="6:86" ph="..." />
-            <marker date="1523408445899" expanded="true" signature="119:4605" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="164:4603" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="362:2685" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="737:1047" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="962:1033" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="1127:2248" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="1284:2056" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="2288:2424" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="2464:2601" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="2776:3036" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="2839:2937" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3140:3460" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3506:3851" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3556:3615" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3654:3713" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3751:3813" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3917:4597" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3963:4587" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Stored/SortType.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -436,36 +623,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Stored.Tests/packages.config" />
-    <entry file="file://$PROJECT_DIR$/../README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="340">
-            <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          </first_editor>
-          <second_editor>
-            <markdownNavigatorState />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stored.Postgres/obj/Release/netcoreapp2.0/Stored.Postgres.AssemblyInfo.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Postgres/obj/Release/netcoreapp2.0/Stored.Postgres.AssemblyInfo.cs" />
     <entry file="file://$PROJECT_DIR$/Stored/EntityException.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stored/Stored.csproj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -490,179 +652,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Stored.Postgres/Query/PostgresQueryTranslator.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="68" column="13" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
-          <folding>
-            <marker date="1523408445899" expanded="false" signature="6:86" ph="..." />
-            <marker date="1523408445899" expanded="true" signature="119:4605" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="164:4603" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="362:2685" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="737:1047" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="962:1033" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="1127:2248" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="1284:2056" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="2288:2424" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="2464:2601" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="2776:3036" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="2839:2937" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3140:3460" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3506:3851" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3556:3615" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3654:3713" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3751:3813" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3917:4597" ph="{...}" />
-            <marker date="1523408445899" expanded="true" signature="3963:4587" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.csproj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="9" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Stored/Query/ExpressionHelper.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="8" column="79" selection-start-line="8" selection-start-column="79" selection-end-line="8" selection-end-column="79" />
-          <folding>
-            <marker date="1523415051355" expanded="false" signature="6:69" ph="..." />
-            <marker date="1523415051355" expanded="true" signature="93:1437" ph="{...}" />
-            <marker date="1523415051355" expanded="true" signature="136:1435" ph="{...}" />
-            <marker date="1523415051355" expanded="true" signature="230:343" ph="{...}" />
-            <marker date="1523415051355" expanded="true" signature="438:711" ph="{...}" />
-            <marker date="1523415051355" expanded="true" signature="556:660" ph="{...}" />
-            <marker date="1523415051355" expanded="true" signature="811:1429" ph="{...}" />
-            <marker date="1523415051355" expanded="true" signature="973:1229" ph="{...}" />
-            <marker date="1523415051355" expanded="true" signature="1095:1215" ph="{...}" />
-            <marker date="1523415051355" expanded="true" signature="1272:1374" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stored.Postgres/PostgresSession.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="86" column="61" selection-start-line="86" selection-start-column="61" selection-end-line="86" selection-end-column="61" />
-          <folding>
-            <marker date="1523408200811" expanded="false" signature="6:234" ph="..." />
-            <marker date="1523408200811" expanded="true" signature="261:8641" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="328:8639" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="595:1003" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="671:849" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="1157:2676" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="1240:1367" ph="/* NOTE: Reading records is done in batches, not a single query ... */" />
-            <marker date="1523408200811" expanded="true" signature="1555:2637" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="1598:2623" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="1723:2481" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="2092:2459" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="2168:2433" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="2530:2605" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="2827:3740" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="2955:3730" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="3034:3716" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="3410:3698" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="3475:3632" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="3779:4531" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="3847:4453" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="3908:4257" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="4312:4439" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="4649:5379" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="4754:5369" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="4833:5355" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="5497:6247" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="5602:6237" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="5681:6223" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="6343:6916" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="6448:6906" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="6527:6892" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="6981:8633" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="7240:7356" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="7417:8623" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="7558:8609" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="7729:8591" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="7803:8569" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="7914:8031" ph="{...}" />
-            <marker date="1523408200811" expanded="true" signature="8090:8239" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stored.Tests/Stored.Tests.csproj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stored.Tests/ExpressionHelperTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-          <folding>
-            <marker date="1500173275000" expanded="false" signature="6:46" ph="..." />
-            <marker date="1500173275000" expanded="true" signature="70:1409" ph="{...}" />
-            <marker date="1500173275000" expanded="true" signature="111:1407" ph="{...}" />
-            <marker date="1500173275000" expanded="true" signature="181:327" ph="{...}" />
-            <marker date="1500173275000" expanded="true" signature="391:537" ph="{...}" />
-            <marker date="1500173275000" expanded="true" signature="602:757" ph="{...}" />
-            <marker date="1500173275000" expanded="true" signature="821:974" ph="{...}" />
-            <marker date="1500173275000" expanded="true" signature="1041:1199" ph="{...}" />
-            <marker date="1500173275000" expanded="true" signature="1224:1401" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStoreTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-          <folding>
-            <marker date="1502297816000" expanded="false" signature="6:137" ph="..." />
-            <marker date="1502297816000" expanded="true" signature="170:15351" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="223:15349" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="356:716" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="432:511" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="799:1107" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="883:1028" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="1183:1608" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="1259:1338" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="1687:2154" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="1763:1842" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="2233:2528" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="2309:2388" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="2634:3408" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="2749:3005" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="2814:2905" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="3082:3235" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="3315:3398" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="3486:4003" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="4089:4720" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="4807:5441" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="5523:6121" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="6221:6807" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="6897:7409" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="7506:7972" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="8075:8597" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="8681:9290" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="9384:10019" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="10138:10655" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="10737:11191" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="10807:11020" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="11270:11707" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="11793:12335" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="12421:12963" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="13044:13616" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="13713:14468" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="14539:15343" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="14701:14759" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="14820:15079" ph="{...}" />
-            <marker date="1502297816000" expanded="true" signature="14885:15027" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -670,10 +663,344 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored/Memory/MemoryQuery.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored/Memory/MemorySession.cs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored/Memory/IMemorySession.cs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored/Memory/IMemoryStore.cs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored/Memory/MemoryStore.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Postgres/Query/PostgresQueryTranslator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="130" column="31" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Models/Car.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored/Query/BinaryFilter.cs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="191">
+            <caret line="108" column="31" selection-start-line="108" selection-start-column="31" selection-end-line="108" selection-end-column="31" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/UserTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Memory/MemorySessionTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="288" column="33" lean-forward="true" selection-start-line="288" selection-start-column="33" selection-end-line="288" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Memory/Scenarios/MultiFilterTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored/Stored.csproj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="5" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Stored.Tests.csproj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.csproj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/ExpressionHelperTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
           <folding>
-            <marker date="1523415076606" expanded="true" signature="51:414" ph="{...}" />
-            <marker date="1523415076606" expanded="true" signature="81:412" ph="{...}" />
-            <marker date="1523415076606" expanded="true" signature="118:310" ph="{...}" />
+            <marker date="1536489126085" expanded="false" signature="6:46" ph="..." />
+            <marker date="1536489126085" expanded="true" signature="70:1185" ph="{...}" />
+            <marker date="1536489126085" expanded="true" signature="111:1183" ph="{...}" />
+            <marker date="1536489126085" expanded="true" signature="1000:1177" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Postgres/IPostgresStore.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding>
+            <marker date="1446133008000" expanded="true" signature="40:249" ph="{...}" />
+            <marker date="1446133008000" expanded="true" signature="87:247" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Postgres/PostgresStore.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+          <folding>
+            <marker date="1536489507926" expanded="false" signature="6:80" ph="..." />
+            <marker date="1536489507926" expanded="true" signature="107:2717" ph="{...}" />
+            <marker date="1536489507926" expanded="true" signature="157:2715" ph="{...}" />
+            <marker date="1536489507926" expanded="true" signature="386:666" ph="{...}" />
+            <marker date="1536489507926" expanded="true" signature="452:555" ph="{...}" />
+            <marker date="1536489507926" expanded="true" signature="843:2546" ph="{...}" />
+            <marker date="1536489507926" expanded="true" signature="939:1017" ph="{...}" />
+            <marker date="1536489507926" expanded="true" signature="1173:2076" ph="{...}" />
+            <marker date="1536489507926" expanded="true" signature="1300:2058" ph="{...}" />
+            <marker date="1536489507926" expanded="true" signature="2126:2350" ph="{...}" />
+            <marker date="1536489507926" expanded="true" signature="2374:2452" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresConfig.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding>
+            <marker date="1535979014254" expanded="false" signature="6:27" ph="..." />
+            <marker date="1535979014254" expanded="true" signature="60:1423" ph="{...}" />
+            <marker date="1535979014254" expanded="true" signature="101:1421" ph="{...}" />
+            <marker date="1535979014254" expanded="true" signature="196:872" ph="{...}" />
+            <marker date="1535979014254" expanded="true" signature="279:599" ph="{...}" />
+            <marker date="1535979014254" expanded="true" signature="737:810" ph="{...}" />
+            <marker date="1535979014254" expanded="true" signature="882:1150" ph="/// Gets the specified variable, or the default value if not available. ... " />
+            <marker date="1535979014254" expanded="true" signature="1218:1415" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/Tests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <marker date="1536490661149" expanded="true" signature="31:139" ph="{...}" />
+            <marker date="1536490661149" expanded="true" signature="63:137" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Postgres/StoreConventions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding>
+            <marker date="1536491521729" expanded="false" signature="6:36" ph="..." />
+            <marker date="1536491521729" expanded="true" signature="63:334" ph="{...}" />
+            <marker date="1536491521729" expanded="true" signature="99:332" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStoreTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-853">
+          <caret line="435" selection-start-line="435" selection-end-line="435" />
+          <folding>
+            <marker date="1536486771744" expanded="false" signature="6:137" ph="..." />
+            <marker date="1536486771744" expanded="true" signature="170:15238" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="223:15236" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="356:716" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="432:511" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="799:1107" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="883:1028" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="1183:1608" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="1259:1338" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="1687:2154" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="1763:1842" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="2233:2528" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="2309:2388" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="2634:3408" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="2749:3005" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="2814:2905" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="3082:3235" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="3315:3398" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="3486:4003" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="4089:4720" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="4807:5433" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="5515:6105" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="6205:6783" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="6873:7385" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="7482:7947" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="8050:8571" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="8655:9264" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="9358:9993" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="10112:10629" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="10711:11165" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="10781:10994" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="11244:11681" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="11767:12301" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="12387:12921" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="13002:13574" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="13671:14386" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="14457:15230" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="14619:14677" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="14738:14997" ph="{...}" />
+            <marker date="1536486771744" expanded="true" signature="14803:14945" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestFixture.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <marker date="1536491124537" expanded="true" signature="31:76" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTestCollection.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1536490846652" expanded="true" signature="45:178" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresTest.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <marker date="1536491105197" expanded="true" signature="6:82" ph="..." />
+            <marker date="1536491105197" expanded="true" signature="115:1639" ph="{...}" />
+            <marker date="1536491105197" expanded="true" signature="194:1637" ph="{...}" />
+            <marker date="1536491105197" expanded="true" signature="316:480" ph="{...}" />
+            <marker date="1536491105197" expanded="true" signature="709:1631" ph="{...}" />
+            <marker date="1536491105197" expanded="true" signature="783:1461" ph="{...}" />
+            <marker date="1536491105197" expanded="true" signature="982:1447" ph="{...}" />
+            <marker date="1536491105197" expanded="true" signature="1479:1534" ph="{...}" />
+            <marker date="1536491105197" expanded="true" signature="1554:1621" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Tests/Postgres/PostgresStorePerfTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+          <folding>
+            <marker date="1536491391230" expanded="true" signature="6:132" ph="..." />
+            <marker date="1536491391230" expanded="true" signature="165:1921" ph="{...}" />
+            <marker date="1536491391230" expanded="true" signature="222:1919" ph="{...}" />
+            <marker date="1536491391230" expanded="true" signature="601:1813" ph="{...}" />
+            <marker date="1536491391230" expanded="true" signature="706:975" ph="{...}" />
+            <marker date="1536491391230" expanded="true" signature="780:959" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored/ISessionAdvanced.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <marker date="1534095801441" expanded="true" signature="51:155" ph="{...}" />
+            <marker date="1534095801441" expanded="true" signature="91:153" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Stored.Postgres/PostgresSession.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="212" column="46" selection-start-line="212" selection-start-column="46" selection-end-line="212" selection-end-column="46" />
+          <folding>
+            <marker date="1536492580256" expanded="false" signature="6:234" ph="..." />
+            <marker date="1536492580256" expanded="true" signature="261:8562" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="328:8560" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="595:1003" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="671:849" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="1157:2613" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="1240:1367" ph="/* NOTE: Reading records is done in batches, not a single query ... */" />
+            <marker date="1536492580256" expanded="true" signature="1555:2574" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="1598:2560" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="1723:2418" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="2029:2396" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="2105:2370" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="2467:2542" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="2764:3615" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="2892:3605" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="2971:3591" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="3288:3573" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="3353:3510" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="3654:4406" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="3722:4328" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="3783:4132" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="4187:4314" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="4524:5195" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="4629:5185" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="4708:5171" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="5313:6004" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="5418:5994" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="5497:5980" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="6100:6614" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="6205:6604" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="6284:6590" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="6672:8554" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="7031:7214" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="7275:8544" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="7416:8530" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="7482:7527" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="7681:8512" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="7755:8490" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="7866:7983" ph="{...}" />
+            <marker date="1536492580256" expanded="true" signature="8042:8191" ph="{...}" />
           </folding>
         </state>
       </provider>

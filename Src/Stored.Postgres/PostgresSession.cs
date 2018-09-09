@@ -46,22 +46,20 @@ namespace Stored.Postgres
             //       in case there is an huge number of records
 
             var records = new List<T>();
-            var total = 0;
-            var batchSize = Store.Conventions.AllBatchSize;
+            int total = 0;
+            int batchSize = Store.Conventions.AllBatchSize;
 
             using (var connection = _connectionFactory())
             {
                 while (true)
                 {
-                    var results = 0;
+                    int results = 0;
 
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandType = CommandType.Text;
                         command.CommandText =
                             $@"SELECT body FROM public.{table.Name} LIMIT {batchSize} OFFSET {total};";
-
-                        Debug.WriteLine(command.CommandText);
 
                         using (var reader = command.ExecuteReader())
                         {
@@ -99,8 +97,6 @@ namespace Stored.Postgres
 
                     command.Parameters.AddWithValue(":id", id);
 
-                    Debug.WriteLine(command.CommandText);
-
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -108,7 +104,7 @@ namespace Stored.Postgres
                             return JsonConvert.DeserializeObject<T>(reader.GetString(0), _jsonSettings);
                         }
 
-                        return default(T);
+                        return default;
                     }
                 }
             }
@@ -145,8 +141,6 @@ namespace Stored.Postgres
                     command.CommandType = CommandType.Text;
                     command.CommandText = $@"INSERT INTO public.{table.Name} (id, body) VALUES (:id, :body);";
 
-                    Debug.WriteLine(command.CommandText);
-
                     command.Parameters.AddWithValue(":id", item.Key);
                     command.Parameters.AddWithValue(":body", NpgsqlDbType.Json, JsonConvert.SerializeObject(item.Value, _jsonSettings));
 
@@ -167,8 +161,6 @@ namespace Stored.Postgres
                     command.CommandText =
                         $@"UPDATE public.{table.Name} SET body = :body WHERE id = :id;";
 
-                    Debug.WriteLine(command.CommandText);
-
                     command.Parameters.AddWithValue(":id", item.Key);
                     command.Parameters.AddWithValue(":body", NpgsqlDbType.Json, JsonConvert.SerializeObject(item.Value, _jsonSettings));
 
@@ -188,8 +180,6 @@ namespace Stored.Postgres
                     command.CommandType = CommandType.Text;
                     command.CommandText = $@"DELETE FROM public.{table.Name} WHERE id = :id;";
 
-                    Debug.WriteLine(command.CommandText);
-
                     command.Parameters.AddWithValue(":id", item);
 
                     command.ExecuteNonQuery();
@@ -197,9 +187,12 @@ namespace Stored.Postgres
             }
         }
 
-        public class PostgresSessionAdvanced : ISessionAdvanced
+        class PostgresSessionAdvanced : ISessionAdvanced
         {
+            const int BatchSize = 1000;
+
             readonly IPostgresStore _store;
+            readonly JsonSerializerSettings _jsonSettings;
             readonly Func<NpgsqlConnection> _connectionFactory;
 
             public PostgresSessionAdvanced(
@@ -207,6 +200,7 @@ namespace Stored.Postgres
                 Func<NpgsqlConnection> connectionFactory)
             {
                 _store = store;
+                _jsonSettings = _store.Conventions.JsonSettings();
                 _connectionFactory = connectionFactory;
             }
 
@@ -216,26 +210,31 @@ namespace Stored.Postgres
 
                 using (var connection = _connectionFactory())
                 {
-                    using (var writer = connection.BeginBinaryImport(
-                        $"COPY public.{table.Name} (id, body) FROM STDIN BINARY"))
+                    var buckets = items.Partition(BatchSize);
+
+                    foreach (var bucket in buckets)
                     {
-                        foreach (var item in items)
+                        using (var writer = connection.BeginBinaryImport(
+                            $"COPY public.{table.Name} (id, body) FROM STDIN BINARY"))
                         {
-                            var id = Guid.NewGuid();
-                            try
+                            foreach (var item in bucket)
                             {
-                                ((dynamic)item).Id = id;
-                            }
-                            catch (RuntimeBinderException)
-                            {
-                                throw new Exception("Entity does not have a valid ID.");
-                            }
+                                var id = Guid.NewGuid();
+                                try
+                                {
+                                    ((dynamic)item).Id = id;
+                                }
+                                catch (RuntimeBinderException)
+                                {
+                                    throw new Exception("Entity does not have a valid ID.");
+                                }
 
-                            var body = JsonConvert.SerializeObject(item, _store.Conventions.JsonSettings());
+                                string body = JsonConvert.SerializeObject(item, _jsonSettings);
 
-                            writer.StartRow();
-                            writer.Write(id.ToString("N"), NpgsqlDbType.Uuid);
-                            writer.Write(body, NpgsqlDbType.Json);
+                                writer.StartRow();
+                                writer.Write(id, NpgsqlDbType.Uuid);
+                                writer.Write(body, NpgsqlDbType.Json);
+                            }
                         }
                     }
                 }

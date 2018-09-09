@@ -4,11 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using Stored.Tests.Models;
 using Xunit;
-using Xunit.Extensions;
 
 namespace Stored.Tests.Postgres
 {
-    public class PostgresStotePerfTests : PostgresTest
+    public class PostgresStorePerfTests : PostgresTest
     {
         const string TraitName = "Performance";
 
@@ -24,7 +23,7 @@ namespace Stored.Tests.Postgres
         {
             var purchases = new List<Purchase>();
 
-            for (var i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 purchases.Add(new Purchase
                 {
@@ -61,9 +60,7 @@ namespace Stored.Tests.Postgres
             Assert.True(watch.ElapsedMilliseconds < 2000);
         }
 
-        static string SelectProduct()
-        {
-            return _products[_random.Next(0, _products.Length)];
-        }
+        static string SelectProduct() =>
+            _products[_random.Next(0, _products.Length)];
     }
 }

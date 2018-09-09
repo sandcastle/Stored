@@ -39,7 +39,7 @@ namespace Stored.Tests.Postgres
             var items = new List<Car>
             {
                 new Car {Make = "Toyota", Model = "Rav4"},
-                new Car {Make = "Astin Martin", Model = "DB9 Volante"}
+                new Car {Make = "Aston Martin", Model = "DB9 Volante"}
             };
 
             // Act
@@ -151,7 +151,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -170,7 +170,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.Suv, IsAutomatic = true});
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Sedan, IsAutomatic = true});
             Session.Commit();
 
@@ -189,7 +189,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.Suv, IsAutomatic = true });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Sedan, IsAutomatic = true });
             Session.Commit();
 
@@ -199,7 +199,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Single(items);
         }
 
         [Fact]
@@ -208,7 +208,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.Suv });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Hatch });
             Session.Commit();
 
@@ -218,7 +218,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Single(items);
         }
 
         [Fact]
@@ -227,7 +227,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4", CarType = CarType.Suv });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante", CarType = CarType.Sedan });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla", CarType = CarType.Hatch });
             Session.Commit();
 
@@ -237,7 +237,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Single(items);
         }
 
         [Fact]
@@ -246,7 +246,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -265,7 +265,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -275,7 +275,6 @@ namespace Stored.Tests.Postgres
 
             // Assert
             Assert.Equal(3, items.Count);
-
         }
 
         [Fact]
@@ -284,7 +283,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -294,8 +293,7 @@ namespace Stored.Tests.Postgres
                 .FirstOrDefault();
 
             // Assert
-            Assert.Equal("Astin Martin", item.Make);
-
+            Assert.Equal("Aston Martin", item.Make);
         }
 
         [Fact]
@@ -304,7 +302,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -325,7 +323,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -346,7 +344,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -356,7 +354,7 @@ namespace Stored.Tests.Postgres
                 .FirstOrDefault();
 
             // Assert
-            Assert.Equal("Astin Martin", item.Make);
+            Assert.Equal("Aston Martin", item.Make);
 
         }
 
@@ -367,7 +365,7 @@ namespace Stored.Tests.Postgres
             // Arrange
             Session.CreateAll(new[] {
                 new Car { Make = "Toyota", Model = "Rav4" },
-                new Car { Make = "Astin Martin", Model = "DB9 Volante" },
+                new Car { Make = "Aston Martin", Model = "DB9 Volante" },
                 new Car { Make = "Toyota", Model = "Corolla" }
             });
             Session.Commit();
@@ -385,7 +383,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -402,7 +400,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -413,7 +411,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Single(items);
         }
 
         [Fact]
@@ -422,7 +420,7 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -433,7 +431,7 @@ namespace Stored.Tests.Postgres
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Single(items);
         }
 
         [Fact]
@@ -442,13 +440,13 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
             // Act
             var car = Session.Query<Car>()
-                .Where(x => x.Make).Equal("Astin Martin")
+                .Where(x => x.Make).Equal("Aston Martin")
                 .FirstOrDefault();
 
             // Assert
@@ -462,21 +460,19 @@ namespace Stored.Tests.Postgres
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
-            QueryStatistics stats;
-
             // Act
             var items = Session.Query<Car>()
-                .Statistics(out stats)
+                .Statistics(out var stats)
                 .Where(x => x.Make).Equal("Toyota")
                 .Skip(1)
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Single(items);
             Assert.Equal(2, stats.TotalCount.Value);
             Assert.Equal(1, stats.Skip);
             Assert.Equal(1024, stats.Take);
@@ -490,7 +486,7 @@ namespace Stored.Tests.Postgres
 
             // Arrange
             var items = new List<int>();
-            for (var i = 0; i < itemCount; i++)
+            for (int i = 0; i < itemCount; i++)
             {
                 items.Add(i);
             }
@@ -508,10 +504,9 @@ namespace Stored.Tests.Postgres
             });
             Session.Commit();
 
-            QueryStatistics stats;
             Session.Query<Car>()
                 .Take(2)
-                .Statistics(out stats)
+                .Statistics(out var stats)
                 .ToList();
 
             Assert.Equal(itemCount, stats.TotalCount.Value);

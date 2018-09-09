@@ -1,4 +1,5 @@
 ﻿using System;
+using Npgsql;
 
 namespace Stored.Tests.Postgres
 {
@@ -8,26 +9,33 @@ namespace Stored.Tests.Postgres
 
         static PostgresConfig()
         {
-            var password = GetVariable("POSTGRES_PASS", string.Empty);
+            var builder = new NpgsqlConnectionStringBuilder
+            {
+                Timeout = 120,
+                Host = GetVariable("POSTGRES_HOST", "localhost"),
+                Database = GetVariable("POSTGRES_DB", "stored_db"),
+                Username = GetVariable("POSTGRES_USER", "postgres"),
+                Port = int.Parse(GetVariable("POSTGRES_PORT", "5432"))
+            };
+
+            string password = GetVariable("POSTGRES_PASS", string.Empty);
             if (string.IsNullOrWhiteSpace(password) == false)
             {
-                password = "Password=" + password + ";";
+                builder.Password = password;
             }
 
-            ConnectionString =
-                $"Server={GetVariable("POSTGRES_HOST", "host")};Port={GetVariable("POSTGRES_PORT", "5432")};"
-              + $"Database={GetVariable("POSTGRES_DB", "stored_db")};User Id={GetVariable("POSTGRES_USER", "postgres")};CommandTimeout=120;{password}";
+            ConnectionString = builder.ToString();
         }
 
         /// <summary>
-        /// Gets the specified variable, or the default value if not availables.
+        /// Gets the specified variable, or the default value if not available.
         /// </summary>
         /// <returns>The variable.</returns>
         /// <param name="name">Name.</param>
         /// <param name="defaultValue">Default value.</param>
         static string GetVariable(string name, string defaultValue)
         {
-            var value = Environment.GetEnvironmentVariable(name);
+            string value = Environment.GetEnvironmentVariable(name);
             return string.IsNullOrWhiteSpace(value)
                 ? defaultValue
                 : value;

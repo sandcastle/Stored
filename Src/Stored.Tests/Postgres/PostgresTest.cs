@@ -2,49 +2,61 @@
 using System.Data;
 using Npgsql;
 using Stored.Postgres;
+using Xunit;
 
 namespace Stored.Tests.Postgres
 {
+    [Collection(Tests.Postgres)]
     public class PostgresTest : IDisposable
     {
         readonly PostgresStore _store;
         readonly PostgresSession _session;
 
-        public PostgresTest()
+        protected PostgresTest()
         {
             Cleanup();
-
-            Console.WriteLine("Postgres Connection: " + PostgresConfig.ConnectionString);
 
             _store = new PostgresStore(PostgresConfig.ConnectionString);
             _session = _store.CreateSession();
         }
 
-        public IPostgresStore Store => _store;
+        protected IPostgresStore Store =>
+            _store;
 
-        public IPostgresSession Session => _session;
+        protected IPostgresSession Session =>
+            _session;
+
+        public void Dispose() =>
+            _session.Dispose();
 
         static void Cleanup()
         {
-            using (var connection = new NpgsqlConnection(PostgresConfig.ConnectionString))
+            NpgsqlConnection connection = null;
+            try
             {
+                connection = new NpgsqlConnection(PostgresConfig.ConnectionString);
                 connection.Open();
 
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "DROP SCHEMA public CASCADE;";
-                    command.ExecuteNonQuery();
-
-                    command.CommandText = "CREATE SCHEMA public;";
+                    command.CommandText = @"
+                        drop table if exists ""car"" cascade;
+                        drop table if exists ""bad"" cascade;
+                        drop table if exists ""user"" cascade;
+                        drop table if exists ""purchase"" cascade;
+                    ";
                     command.ExecuteNonQuery();
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            _session.Dispose();
+            catch
+            {
+                // ignored
+            }
+            finally
+            {
+                connection?.Dispose();
+            }
         }
     }
 }

@@ -55,22 +55,20 @@ namespace Stored.Tests.Memory.Scenarios
                 .ToList();
 
             // Assert
-            Assert.Equal(1, results.Count);
+            Assert.Single(results);
         }
 
         static readonly Guid _knownId = new Guid("2798B862-9909-472A-8FDA-A0741ED2026B");
 
-        static IEnumerable<Car> GetCars()
-        {
-            return new[]
+        static IEnumerable<Car> GetCars() =>
+            new[]
             {
                 new Car {Make = "Toyota", Model = "Rav 4"},
-                new Car {Make = "Ferarri", Model = "F50"},
+                new Car {Make = "Ferrari", Model = "F50"},
                 new Car {Make = "Ford", Model = "Focus"},
                 new Car {Make = "Ford", Model = "Festiva"},
                 new Car {Make = "Ford", Model = "Shelby Mustang"},
                 new Car {Make = "Ford", Model = "Shelby Mustang", Id = _knownId}
             };
-        }
     }
 }

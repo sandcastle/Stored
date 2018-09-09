@@ -35,7 +35,7 @@ namespace Stored.Tests.Memory
             var items = new List<Car>
             {
                 new Car {Make = "Toyota", Model = "Rav4"},
-                new Car {Make = "Astin Martin", Model = "DB9 Volante"}
+                new Car {Make = "Aston Martin", Model = "DB9 Volante"}
             };
 
             // Act
@@ -148,7 +148,7 @@ namespace Stored.Tests.Memory
             // Arrange
             Session.CreateAll(new[] {
                 new Car { Make = "Toyota", Model = "Rav4" },
-                new Car { Make = "Astin Martin", Model = "DB9 Volante" },
+                new Car { Make = "Aston Martin", Model = "DB9 Volante" },
                 new Car { Make = "Toyota", Model = "Corolla" }
             });
             Session.Commit();
@@ -165,7 +165,7 @@ namespace Stored.Tests.Memory
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -181,7 +181,7 @@ namespace Stored.Tests.Memory
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -200,7 +200,7 @@ namespace Stored.Tests.Memory
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -219,7 +219,7 @@ namespace Stored.Tests.Memory
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -237,13 +237,13 @@ namespace Stored.Tests.Memory
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
             // Act
             var car = Session.Query<Car>()
-                .Where(x => x.Make).Equal("Astin Martin")
+                .Where(x => x.Make).Equal("Aston Martin")
                 .FirstOrDefault();
 
             // Assert
@@ -256,7 +256,7 @@ namespace Stored.Tests.Memory
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -267,7 +267,7 @@ namespace Stored.Tests.Memory
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Single(items);
         }
 
         [Fact]
@@ -275,7 +275,7 @@ namespace Stored.Tests.Memory
         {
             // Arrange
             Session.Create(new Car { Make = "Toyota", Model = "Rav4" });
-            Session.Create(new Car { Make = "Astin Martin", Model = "DB9 Volante" });
+            Session.Create(new Car { Make = "Aston Martin", Model = "DB9 Volante" });
             Session.Create(new Car { Make = "Toyota", Model = "Corolla" });
             Session.Commit();
 
@@ -286,7 +286,7 @@ namespace Stored.Tests.Memory
                 .ToList();
 
             // Assert
-            Assert.Equal(1, items.Count);
+            Assert.Single(items);
         }
 
         [Fact]
@@ -351,7 +351,7 @@ namespace Stored.Tests.Memory
 
             // Arrange
             var items = new List<int>();
-            for (var i = 0; i < itemCount; i++)
+            for (int i = 0; i < itemCount; i++)
             {
                 items.Add(i);
             }

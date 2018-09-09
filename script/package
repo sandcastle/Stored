@@ -1,8 +1,4 @@
 #!/bin/sh
-
-# script/package - packages the app for deployment
-
-# exit on sub-module failure
 set -e
 
 cd "$(dirname "$0")/.."
