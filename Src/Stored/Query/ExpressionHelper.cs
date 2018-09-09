@@ -24,15 +24,14 @@ namespace Stored.Query
             return member.PropertyType;
         }
 
-        private static MemberInfo GetMemberInfo<T>(Expression<Func<T, object>> propertyExpression)
+        static MemberInfo GetMemberInfo<T>(Expression<Func<T, object>> propertyExpression)
         {
             var body = propertyExpression.Body;
 
             var memberExpression = body as MemberExpression;
             if (memberExpression == null)
             {
-                var unaryExpression = body as UnaryExpression;
-                if (unaryExpression != null)
+                if (body is UnaryExpression unaryExpression)
                 {
                     memberExpression = unaryExpression.Operand as MemberExpression;
                 }

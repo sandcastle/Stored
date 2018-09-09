@@ -40,7 +40,7 @@ namespace Stored.Postgres.Query
             var command = connection.CreateCommand();
 
             var values = new Dictionary<string, object>();
-            var query = Translate(values);
+            string query = Translate(values);
 
             command.CommandType = CommandType.Text;
             command.CommandText = query;
@@ -49,8 +49,6 @@ namespace Stored.Postgres.Query
             {
                 command.Parameters.AddWithValue(item.Key, item.Value);
             }
-
-            Debug.WriteLine(query);
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 

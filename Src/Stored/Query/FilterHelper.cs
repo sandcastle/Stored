@@ -6,8 +6,7 @@ namespace Stored.Query
     {
         public static Func<T, bool> Filter<T>(FilterBase filter)
         {
-            var binaryFilter = filter as BinaryFilter;
-            if (binaryFilter != null)
+            if (filter is BinaryFilter binaryFilter)
             {
                 return BinaryFilter<T>(binaryFilter);
             }

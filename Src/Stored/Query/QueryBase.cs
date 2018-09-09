@@ -27,19 +27,15 @@ namespace Stored.Query
             return this;
         }
 
-        public IFilterBuilder<T> Where(Expression<Func<T, object>> expression)
-        {
-            return new FilterBuilder(this, ExpressionHelper.GetName(expression));
-        }
+        public IFilterBuilder<T> Where(Expression<Func<T, object>> expression) =>
+            new FilterBuilder(this, ExpressionHelper.GetName(expression));
 
-        public IFilterBuilder<T> Where(string propertyName)
-        {
-            return new FilterBuilder(this, propertyName);
-        }
+        public IFilterBuilder<T> Where(string propertyName) =>
+            new FilterBuilder(this, propertyName);
 
         public IQuery<T> OrderBy(Expression<Func<T, object>> expression, SortType sortType = SortType.Undefined, SortOrder order = SortOrder.Ascending)
         {
-            var name = ExpressionHelper.GetName(expression);
+            string name = ExpressionHelper.GetName(expression);
 
             if (sortType == SortType.Undefined)
             {

@@ -20,7 +20,7 @@ namespace Stored.Postgres.Query
                     : "SELECT body FROM public.{0}",
                 tableMetadata.Name);
 
-            var first = true;
+            bool first = true;
             foreach (var item in restrictions.Filters)
             {
                 builder.AppendLine();
@@ -37,23 +37,24 @@ namespace Stored.Postgres.Query
             if (!string.IsNullOrWhiteSpace(restrictions.SortClause.FieldName))
             {
                 builder.AppendLine();
-                var sortClause = string.Empty;
+                string sortClause = string.Empty;
                 switch (restrictions.SortClause.SortType)
                 {
                     case SortType.Undefined:
-                        //do nothing
+                        // do nothing
                         break;
 
                     case SortType.Date:
                         sortClause = "ORDER BY CAST(CAST(body->'{0}' as TEXT) as DATE) {1}";
                         break;
+
                     case SortType.Number:
                         // TODO: replace fixed number size with more dynamic.
                         sortClause = "ORDER BY to_number((body->'{0}')::TEXT, '9999999999999999') {1}";
                         break;
 
                     default:
-                        //Text will always be the default conversion
+                        // Text will always be the default conversion
                         sortClause = "ORDER BY (body->'{0}')::TEXT {1}";
                         break;
                 }
@@ -93,7 +94,7 @@ namespace Stored.Postgres.Query
         {
             parameters.Add(":" + filter.FieldName, TypeHelper.GetUnderlyingValue(filter.Value).ToString());
 
-            var type = GetJsonType(typeof(string));
+            string type = GetJsonType(typeof(string));
 
             return
                 $"(body->>'{filter.FieldName}')::{type} {GetOperator(filter.Operator)} :{filter.FieldName.ToLower()}";

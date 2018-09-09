@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
@@ -95,7 +94,7 @@ namespace Stored.Postgres
                     command.CommandType = CommandType.Text;
                     command.CommandText = $@"SELECT body FROM public.{table.Name} WHERE id = :id LIMIT 1;";
 
-                    command.Parameters.AddWithValue(":id", id);
+                    command.Parameters.Add(new NpgsqlParameter<Guid>(":id", id));
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -141,7 +140,7 @@ namespace Stored.Postgres
                     command.CommandType = CommandType.Text;
                     command.CommandText = $@"INSERT INTO public.{table.Name} (id, body) VALUES (:id, :body);";
 
-                    command.Parameters.AddWithValue(":id", item.Key);
+                    command.Parameters.Add(new NpgsqlParameter<Guid>(":id", item.Key));
                     command.Parameters.AddWithValue(":body", NpgsqlDbType.Json, JsonConvert.SerializeObject(item.Value, _jsonSettings));
 
                     command.ExecuteNonQuery();
@@ -161,7 +160,7 @@ namespace Stored.Postgres
                     command.CommandText =
                         $@"UPDATE public.{table.Name} SET body = :body WHERE id = :id;";
 
-                    command.Parameters.AddWithValue(":id", item.Key);
+                    command.Parameters.Add(new NpgsqlParameter<Guid>(":id", item.Key));
                     command.Parameters.AddWithValue(":body", NpgsqlDbType.Json, JsonConvert.SerializeObject(item.Value, _jsonSettings));
 
                     command.ExecuteNonQuery();
@@ -180,7 +179,7 @@ namespace Stored.Postgres
                     command.CommandType = CommandType.Text;
                     command.CommandText = $@"DELETE FROM public.{table.Name} WHERE id = :id;";
 
-                    command.Parameters.AddWithValue(":id", item);
+                    command.Parameters.Add(new NpgsqlParameter<Guid>(":id", item));
 
                     command.ExecuteNonQuery();
                 }

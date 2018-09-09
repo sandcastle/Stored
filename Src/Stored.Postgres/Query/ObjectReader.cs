@@ -75,7 +75,7 @@ namespace Stored.Postgres.Query
                     return true;
                 }
 
-                var totalRows = _reader.GetInt64(1);
+                long totalRows = _reader.GetInt64(1);
                 _statistics.TotalCount = new Lazy<long>(() => totalRows);
 
                 return true;
