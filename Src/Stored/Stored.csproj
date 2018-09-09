@@ -5,6 +5,4 @@
     <OutputType>Library</OutputType>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
 </Project>

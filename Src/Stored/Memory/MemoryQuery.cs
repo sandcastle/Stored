@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Stored.Query;
+using Stored.Tracing;
 
 namespace Stored.Memory
 {
@@ -10,26 +11,42 @@ namespace Stored.Memory
     {
         readonly IMemorySession _session;
 
-        public MemoryQuery(IMemorySession session)
-        {
+        public MemoryQuery(IMemorySession session) =>
             _session = session;
-        }
 
         public override T FirstOrDefault()
         {
-            Take(1);
+            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(FirstOrDefault)}"))
+            {
+                trace.Annotate(new Dictionary<string, string>
+                {
+                    { "query/skip", Restrictions.Skip.ToString() },
+                    { "query/take", "1" }
+                });
 
-            return GetRestricted()
-                .Skip(Restrictions.Skip)
-                .FirstOrDefault();
+                Take(1);
+
+                return GetRestricted()
+                    .Skip(Restrictions.Skip)
+                    .FirstOrDefault();
+            }
         }
 
         public override List<T> ToList()
         {
-            return GetRestricted()
-                .Skip(Restrictions.Skip)
-                .Take(Restrictions.Take)
-                .ToList();
+            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(ToList)}"))
+            {
+                trace.Annotate(new Dictionary<string, string>
+                {
+                    { "query/skip", Restrictions.Skip.ToString() },
+                    { "query/take", Restrictions.Take.ToString() }
+                });
+
+                return GetRestricted()
+                    .Skip(Restrictions.Skip)
+                    .Take(Restrictions.Take)
+                    .ToList();
+            }
         }
 
         IEnumerable<T> GetRestricted()

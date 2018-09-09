@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Stored.Tracing;
 
 namespace Stored
 {
@@ -13,10 +14,8 @@ namespace Stored
         protected readonly Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>> Entities
             = new Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>>();
 
-        protected SessionBase()
-        {
+        protected SessionBase() =>
             Id = Guid.NewGuid();
-        }
 
         public Guid Id { get; }
 
@@ -47,16 +46,32 @@ namespace Stored
 
         public T Get<T>(Guid id)
         {
-            var entities = GetLocalEntities<T>();
-            lock (_getLock)
+            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(Get)}"))
             {
-                if (entities.ContainsKey(id))
+                trace.Annotate(new Dictionary<string, string>
                 {
-                    return (T)entities[id].Item1;
-                }
-            }
+                    { "query/id", id.ToString() },
+                    { "query/type", nameof(T) }
+                });
 
-            return GetInternal<T>(id);
+                var entities = GetLocalEntities<T>();
+                lock (_getLock)
+                {
+                    if (entities.ContainsKey(id))
+                    {
+                        return (T) entities[id].Item1;
+                    }
+                }
+
+                var value = GetInternal<T>(id);
+
+                trace.Annotate(new Dictionary<string, string>
+                {
+                    { "results/found", (value == null).ToString() }
+                });
+
+                return value;
+            }
         }
 
         public T Create<T>(T value)

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using Npgsql;
 using Stored.Query;
+using Stored.Tracing;
 
 namespace Stored.Postgres.Query
 {
@@ -27,20 +27,48 @@ namespace Stored.Postgres.Query
 
         public override T FirstOrDefault()
         {
-            Take(1);
+            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(FirstOrDefault)}"))
+            {
+                trace.Annotate(new Dictionary<string, string>
+                {
+                    {"query/skip", Restrictions.Skip.ToString()},
+                    {"query/take", "1"}
+                });
 
-            return Execute().FirstOrDefault();
+                Take(1);
+
+                return Execute(trace).FirstOrDefault();
+            }
         }
 
-        public override List<T> ToList() => Execute().ToList();
+        public override List<T> ToList()
+        {
+            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(ToList)}"))
+            {
+                trace.Annotate(new Dictionary<string, string>
+                {
+                    { "query/skip", Restrictions.Skip.ToString() },
+                    { "query/take", Restrictions.Take.ToString() }
+                });
 
-        IEnumerable<T> Execute()
+                return Execute(trace).ToList();
+            }
+        }
+
+        IEnumerable<T> Execute(ITraceContext trace)
         {
             var connection = _connectionFactory();
             var command = connection.CreateCommand();
 
             var values = new Dictionary<string, object>();
             string query = Translate(values);
+
+            trace.Annotate(new Dictionary<string, string>
+            {
+                { "query/text", query },
+                { "query/type", nameof(T) },
+                { "query/parameters", values.Count.ToString() }
+            });
 
             command.CommandType = CommandType.Text;
             command.CommandText = query;

@@ -7,10 +7,7 @@ namespace Stored
         public EntityException()
             : this(string.Empty, null) { }
 
-        public EntityException(string message)
-            : this(message, null) { }
-
-        public EntityException(string message, Exception innerException)
+        public EntityException(string message, Exception innerException = null)
             : base(message, innerException) { }
     }
 }

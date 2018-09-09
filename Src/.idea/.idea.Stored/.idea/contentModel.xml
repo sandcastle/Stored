@@ -55,6 +55,13 @@
         <e p="SortType.cs" t="Include" />
         <e p="Stored.csproj" t="IncludeRecursive" />
         <e p="Stored.nuspec" t="Include" />
+        <e p="Tracing" t="Include">
+          <e p="ITraceContext.cs" t="Include" />
+          <e p="ITracer.cs" t="Include" />
+          <e p="NullTraceContext.cs" t="Include" />
+          <e p="NullTracer.cs" t="Include" />
+          <e p="Tracer.cs" t="Include" />
+        </e>
       </e>
       <e p="Stored.Postgres" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
