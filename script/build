@@ -5,12 +5,11 @@ cd "$(dirname "$0")/.."
 
 # ------
 
-sh script/clean
+. script/vars
 
 # ------
 
-NUGET_VERSION=$(cat version.txt)
-
+sh script/clean
 mkdir -p dist
 
 # build project
@@ -18,6 +17,6 @@ dotnet build -c Release Src/Stored/Stored.csproj
 dotnet build -c Release Src/Stored.Postgres/Stored.Postgres.csproj
 
 # package
-sh script/package ${NUGET_VERSION}
+sh script/package
 
 # --------

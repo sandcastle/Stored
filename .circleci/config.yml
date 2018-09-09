@@ -27,11 +27,9 @@ jobs:
 
       - run:
           name: Build
-          command: sh script/build
-
-      # - run:
-      #     name: Publish
-      #     command: sh script/publish
+          command: |
+            sh script/build
+            sh script/package
 
       - run:
           name: List After

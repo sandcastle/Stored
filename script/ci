@@ -10,14 +10,14 @@ export POSTGRES_PORT=5432
 export POSTGRES_DB=circle_test
 export POSTGRES_USER=ubuntu
 
-NUGET_VERSION=$(cat version.txt)
+. script/vars
 
 # ------
 
 sh script/clean
 sh script/bootstrap
-sh script/build
 sh script/test
-sh script/package ${NUGET_VERSION}
+sh script/build
+sh script/package
 
 # --------
