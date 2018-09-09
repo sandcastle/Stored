@@ -4,19 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a688849b-2ce0-4cd1-84e5-80b57a924bb2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Stored/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Stored/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.nuspec" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Postgres/Stored.Postgres.nuspec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored.Tests/Stored.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Stored.Tests/Stored.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored/Stored.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Stored/Stored.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stored/Stored.nuspec" beforeDir="false" afterPath="$PROJECT_DIR$/Stored/Stored.nuspec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/repositories.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circle.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../circle.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../script/build" beforeDir="false" afterPath="$PROJECT_DIR$/../script/build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../script/package" beforeDir="false" afterPath="$PROJECT_DIR$/../script/package" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../script/test" beforeDir="false" afterPath="$PROJECT_DIR$/../script/test" afterDir="false" />
-    </list>
+    <list default="true" id="a688849b-2ce0-4cd1-84e5-80b57a924bb2" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +15,7 @@
     <session id="-1310354249">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.opened" value="3" />
@@ -415,12 +403,12 @@
       <workItem from="1523414847307" duration="463000" />
       <workItem from="1535975526760" duration="5822000" />
       <workItem from="1536486607125" duration="1199000" />
-      <workItem from="1536489041696" duration="11136000" />
+      <workItem from="1536489041696" duration="11572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22562000" />
+    <option name="totallyTimeSpent" value="22998000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

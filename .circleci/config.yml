@@ -28,7 +28,9 @@ jobs:
 
       - run:
           name: Build
-          command: sh script/build
+          command:
+            - NUGET_VERSION=$(cat version.txt)
+            - sh script/build
 
       - run:
           name: List After

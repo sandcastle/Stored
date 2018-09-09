@@ -5,10 +5,10 @@ cd "$(dirname "$0")/.."
 
 # ------
 
-version=${1:-1.0.0.0}
+NUGET_VERSION=$(cat version.txt)
 
 # nuget packaging
-nuget pack Src/Stored/Stored.nuspec -NoDefaultExcludes -BasePath Src/Stored/bin/Release/netstandard2.0 -OutputDirectory dist -Version ${version}
-nuget pack Src/Stored.Postgres/Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src/Stored.Postgres/bin/Release/netstandard2.0 -OutputDirectory dist -Version ${version}
+nuget pack Src/Stored/Stored.nuspec -NoDefaultExcludes -BasePath Src/Stored/bin/Release/netstandard2.0 -OutputDirectory dist -Version ${NUGET_VERSION}
+nuget pack Src/Stored.Postgres/Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src/Stored.Postgres/bin/Release/netstandard2.0 -OutputDirectory dist -Version ${NUGET_VERSION}
 
 # ------

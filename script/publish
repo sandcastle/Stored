@@ -5,9 +5,9 @@ cd "$(dirname "$0")/.."
 
 # ------
 
-version=${1:-1.0.0.0}
+NUGET_VERSION=$(cat version.txt)
 
-nuget push build/Stored.${version}.nupkg  978b8639-edcf-41cb-ac65-ca1914ffc1b4
-nuget push build/Stored.Postgres.${version}.nupkg  978b8639-edcf-41cb-ac65-ca1914ffc1b4
+dotnet nuget push "dist/Stored.${NUGET_VERSION}.nupkg" -k ${NUGET_APIKEY} --source https://api.nuget.org/v3/index.json
+dotnet nuget push "dist/Stored.Postgres.${NUGET_VERSION}.nupkg" -k ${NUGET_APIKEY} --source https://api.nuget.org/v3/index.json
 
 # ------
