@@ -6,11 +6,13 @@ jobs:
     docker:
       - image: microsoft/dotnet:2.1-sdk
       - image: postgres:9.6-alpine
+        environment:
+          POSTGRES_DB: stored_db
+          POSTGRES_USER: postgres
+
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
-      POSTGRES_DB: stored_db
-      POSTGRES_USER: postgres
     steps:
       - checkout
 
