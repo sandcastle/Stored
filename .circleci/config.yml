@@ -4,9 +4,8 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: microsoft/dotnet:build
-    services:
-      - postgres
+      - image: microsoft/dotnet:2.1-sdk
+      - image: postgres:9.6-alpine
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
