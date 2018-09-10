@@ -23,14 +23,10 @@ namespace Stored.Memory
             }
         }
 
-        ISession IStore.CreateSession()
-        {
-            return CreateSession();
-        }
+        ISession IStore.CreateSession() =>
+            CreateSession();
 
-        public MemorySession CreateSession()
-        {
-            return new MemorySession(this);
-        }
+        public MemorySession CreateSession() =>
+            new MemorySession(this);
     }
 }

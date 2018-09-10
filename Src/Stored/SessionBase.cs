@@ -9,9 +9,9 @@ namespace Stored
         static readonly object _getLock = new object();
         static readonly object _deleteLock = new object();
 
-        protected readonly Dictionary<Type, Dictionary<Guid, object>> DeletedEntities
+        protected internal readonly Dictionary<Type, Dictionary<Guid, object>> DeletedEntities
             = new Dictionary<Type, Dictionary<Guid, object>>();
-        protected readonly Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>> Entities
+        protected internal readonly Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>> Entities
             = new Dictionary<Type, Dictionary<Guid, Tuple<object, EntityMetadata>>>();
 
         protected SessionBase() =>
@@ -46,32 +46,16 @@ namespace Stored
 
         public T Get<T>(Guid id)
         {
-            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(Get)}"))
+            var entities = GetLocalEntities<T>();
+            lock (_getLock)
             {
-                trace.Annotate(new Dictionary<string, string>
+                if (entities.ContainsKey(id))
                 {
-                    { "query/id", id.ToString() },
-                    { "query/type", nameof(T) }
-                });
-
-                var entities = GetLocalEntities<T>();
-                lock (_getLock)
-                {
-                    if (entities.ContainsKey(id))
-                    {
-                        return (T) entities[id].Item1;
-                    }
+                    return (T) entities[id].Item1;
                 }
-
-                var value = GetInternal<T>(id);
-
-                trace.Annotate(new Dictionary<string, string>
-                {
-                    { "results/found", (value == null).ToString() }
-                });
-
-                return value;
             }
+
+            return GetInternal<T>(id);
         }
 
         public T Create<T>(T value)

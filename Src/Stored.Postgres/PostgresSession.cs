@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 using Npgsql;
 using Stored.Postgres.Query;
 using NpgsqlTypes;
-using Stored.Tracing;
 
 namespace Stored.Postgres
 {
@@ -41,64 +39,50 @@ namespace Stored.Postgres
 
         public override IList<T> All<T>()
         {
-            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(All)}"))
+            var table = Store.GetOrCreateTable(typeof(T));
+
+            var records = new List<T>();
+            int total = 0;
+            int batchSize = Store.Conventions.AllBatchSize;
+
+            // NOTE: Reading records is done in batches, not a single query
+            // in case there is an huge number of records
+
+            using (var connection = _connectionFactory())
             {
-                var table = Store.GetOrCreateTable(typeof(T));
-
-                var records = new List<T>();
-                int total = 0;
-                int batchSize = Store.Conventions.AllBatchSize;
-
-                trace.Annotate(new Dictionary<string, string>
+                while (true)
                 {
-                    { "query/type", nameof(T) },
-                    { "query/batch", batchSize.ToString() },
-                    { "query/text", $"SELECT body FROM public.{table.Name} LIMIT {batchSize} OFFSET {total};" }
-                });
+                    int results = 0;
 
-                // NOTE: Reading records is done in batches, not a single query
-                // in case there is an huge number of records
-
-                using (var connection = _connectionFactory())
-                {
-                    while (true)
+                    using (var command = connection.CreateCommand())
                     {
-                        int results = 0;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText =
+                            $@"SELECT body FROM public.{table.Name} LIMIT {batchSize} OFFSET {total};";
 
-                        using (var command = connection.CreateCommand())
+                        using (var reader = command.ExecuteReader())
                         {
-                            command.CommandType = CommandType.Text;
-                            command.CommandText =
-                                $@"SELECT body FROM public.{table.Name} LIMIT {batchSize} OFFSET {total};";
-
-                            using (var reader = command.ExecuteReader())
+                            while (reader.Read())
                             {
-                                while (reader.Read())
-                                {
-                                    records.Add(JsonConvert.DeserializeObject<T>(reader.GetString(0), _jsonSettings));
-                                    total += 1;
-                                    results += 1;
-                                }
+                                records.Add(JsonConvert.DeserializeObject<T>(reader.GetString(0), _jsonSettings));
+                                total += 1;
+                                results += 1;
                             }
                         }
+                    }
 
-                        if (results < AllBatchSize)
-                        {
-                            break;
-                        }
+                    if (results < AllBatchSize)
+                    {
+                        break;
                     }
                 }
-
-                trace.Annotate(new Dictionary<string, string>
-                {
-                    { "results/count", records.ToString() }
-                });
-
-                return records;
             }
+
+            return records;
         }
 
-        public override IQuery<T> Query<T>() => new PostgresQuery<T>(this, _connectionFactory);
+        public override IQuery<T> Query<T>() =>
+            new PostgresQuery<T>(this, _connectionFactory);
 
         protected override T GetInternal<T>(Guid id)
         {
@@ -128,39 +112,33 @@ namespace Stored.Postgres
 
         public override void Commit()
         {
-            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(Commit)}"))
+            using (var connection = _connectionFactory())
             {
-                var builder = new StringBuilder();
-
-                using (var connection = _connectionFactory())
+                foreach (var item in Entities)
                 {
-                    foreach (var item in Entities)
-                    {
-                        ExecuteCreateSet(connection, builder, item.Key, item.Value.Where(x => x.Value.Item2.IsCreate)
-                            .ToDictionary(x => x.Key, y => y.Value.Item1));
+                    ExecuteCreateSet(connection, item.Key, item.Value.Where(x => x.Value.Item2.IsCreate)
+                        .ToDictionary(x => x.Key, y => y.Value.Item1));
 
-                        ExecuteModifySet(connection, builder, item.Key, item.Value.Where(x => x.Value.Item2.IsCreate == false)
-                            .ToDictionary(x => x.Key, y => y.Value.Item1));
-                    }
-
-                    foreach (var item in DeletedEntities)
-                    {
-                        ExecuteDeleteSet(connection, builder, item.Key, item.Value.Select(x => x.Key)
-                            .ToList());
-                    }
+                    ExecuteModifySet(connection, item.Key, item.Value.Where(x => x.Value.Item2.IsCreate == false)
+                        .ToDictionary(x => x.Key, y => y.Value.Item1));
                 }
 
-                Entities.Clear();
-                DeletedEntities.Clear();
+                foreach (var item in DeletedEntities)
+                {
+                    ExecuteDeleteSet(connection, item.Key, item.Value.Select(x => x.Key)
+                        .ToList());
+                }
             }
+
+            Entities.Clear();
+            DeletedEntities.Clear();
         }
 
-        void ExecuteCreateSet(NpgsqlConnection connection, StringBuilder builder, Type type, Dictionary<Guid, object> items)
+        void ExecuteCreateSet(NpgsqlConnection connection, Type type, Dictionary<Guid, object> items)
         {
             var table = Store.GetOrCreateTable(type);
 
             string query = $"INSERT INTO public.{table.Name} (id, body) VALUES (:id, :body);";
-            builder.Append($"{query} /* records={items.Count} */ ");
 
             foreach (var item in items)
             {
@@ -177,12 +155,11 @@ namespace Stored.Postgres
             }
         }
 
-        void ExecuteModifySet(NpgsqlConnection connection, StringBuilder builder, Type type, Dictionary<Guid, object> items)
+        void ExecuteModifySet(NpgsqlConnection connection, Type type, Dictionary<Guid, object> items)
         {
             var table = Store.GetOrCreateTable(type);
 
             string query = $"UPDATE public.{table.Name} SET body = :body WHERE id = :id;";
-            builder.Append($"{query} /* records={items.Count} */ ");
 
             foreach (var item in items)
             {
@@ -199,12 +176,11 @@ namespace Stored.Postgres
             }
         }
 
-        void ExecuteDeleteSet(NpgsqlConnection connection, StringBuilder builder, Type type, IList<Guid> items)
+        void ExecuteDeleteSet(NpgsqlConnection connection, Type type, IList<Guid> items)
         {
             var table = Store.GetOrCreateTable(type);
 
             string query = $"DELETE FROM public.{table.Name} WHERE id = :id;";
-            builder.Append($"{query} /* records={items.Count} */ ");
 
             foreach (var item in items)
             {

@@ -28,21 +28,17 @@ namespace Stored.Memory
                 return (T)dictionary[id];
             }
 
-            return default(T);
+            return default;
         }
 
-        public override IList<T> All<T>()
-        {
-            return _store[typeof(T)]
+        public override IList<T> All<T>() =>
+            _store[typeof(T)]
                 .Values
                 .OfType<T>()
                 .ToList();
-        }
 
-        public override IQuery<T> Query<T>()
-        {
-            return new MemoryQuery<T>(this);
-        }
+        public override IQuery<T> Query<T>() =>
+            new MemoryQuery<T>(this);
 
         public override void Commit()
         {
@@ -74,10 +70,8 @@ namespace Stored.Memory
         {
             readonly MemorySession _session;
 
-            public MemorySessionAdvanced(MemorySession session)
-            {
+            public MemorySessionAdvanced(MemorySession session) =>
                 _session = session;
-            }
 
             public void BulkCreate<T>(IEnumerable<T> items)
             {

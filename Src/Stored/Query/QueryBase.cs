@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Stored.Tracing;
 
 namespace Stored.Query
 {
-    public abstract class QueryBase<T> : IQuery<T>
+    public abstract class QueryBase<T> : IQuery<T>, ITracedQuery
         where T : class, new()
     {
         protected Restrictions Restrictions { get; } = new Restrictions();
+
+        protected QueryBase() =>
+            ((ITracedQuery)this).Tracer = new NullTracer();
 
         public IQuery<T> Take(int count)
         {
@@ -117,5 +121,7 @@ namespace Stored.Query
                 return _query;
             }
         }
+
+        ITracer ITracedQuery.Tracer { get; set; }
     }
 }

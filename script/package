@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 . script/vars
 
 # nuget packaging
-dotnet nuget pack Src/Stored/Stored.nuspec -NoDefaultExcludes -BasePath Src/Stored/bin/Release/netstandard2.0 -OutputDirectory dist -Version ${NUGET_VERSION}
-dotnet nuget pack Src/Stored.Postgres/Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src/Stored.Postgres/bin/Release/netstandard2.0 -OutputDirectory dist -Version ${NUGET_VERSION}
+nuget pack Src/Stored/Stored.nuspec -NoDefaultExcludes -BasePath Src/Stored/bin/Release/netstandard2.0 -OutputDirectory dist -Version ${NUGET_VERSION}
+nuget pack Src/Stored.Postgres/Stored.Postgres.nuspec -NoDefaultExcludes -BasePath Src/Stored.Postgres/bin/Release/netstandard2.0 -OutputDirectory dist -Version ${NUGET_VERSION}
 
 # ------

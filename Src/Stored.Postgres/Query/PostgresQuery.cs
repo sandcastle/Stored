@@ -25,33 +25,26 @@ namespace Stored.Postgres.Query
             _metadata = _session.Store.GetOrCreateTable(typeof(T));
         }
 
-        public override T FirstOrDefault()
-        {
-            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(FirstOrDefault)}"))
-            {
-                trace.Annotate(new Dictionary<string, string>
-                {
-                    {"query/skip", Restrictions.Skip.ToString()},
-                    {"query/take", "1"}
-                });
-
-                Take(1);
-
-                return Execute(trace).FirstOrDefault();
-            }
-        }
+        ITracer Tracer =>
+            ((ITracedQuery) this).Tracer;
 
         public override List<T> ToList()
         {
-            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(ToList)}"))
+            using (var trace = Tracer.Start($"{nameof(TracedSession)}.{nameof(ToList)}"))
             {
-                trace.Annotate(new Dictionary<string, string>
-                {
-                    { "query/skip", Restrictions.Skip.ToString() },
-                    { "query/take", Restrictions.Take.ToString() }
-                });
-
                 return Execute(trace).ToList();
+            }
+        }
+
+        public override string ToString() =>
+            Translate(new Dictionary<string, object>());
+
+        public override T FirstOrDefault()
+        {
+            using (var trace = Tracer.Start($"{nameof(TracedSession)}.{nameof(FirstOrDefault)}"))
+            {
+                Take(1);
+                return Execute(trace).FirstOrDefault();
             }
         }
 
@@ -63,15 +56,15 @@ namespace Stored.Postgres.Query
             var values = new Dictionary<string, object>();
             string query = Translate(values);
 
+            command.CommandType = CommandType.Text;
+            command.CommandText = query;
+
             trace.Annotate(new Dictionary<string, string>
             {
                 { "query/text", query },
-                { "query/type", nameof(T) },
-                { "query/parameters", values.Count.ToString() }
+                { "query/skip", Restrictions.Skip.ToString() },
+                { "query/take", Restrictions.Take.ToString() }
             });
-
-            command.CommandType = CommandType.Text;
-            command.CommandText = query;
 
             foreach (var item in values)
             {
@@ -94,7 +87,5 @@ namespace Stored.Postgres.Query
             parameters,
             _metadata,
             QueryStatistics != null);
-
-        public override string ToString() => Translate(new Dictionary<string, object>());
     }
 }

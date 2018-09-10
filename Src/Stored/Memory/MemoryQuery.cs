@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Stored.Query;
-using Stored.Tracing;
 
 namespace Stored.Memory
 {
@@ -16,38 +15,18 @@ namespace Stored.Memory
 
         public override T FirstOrDefault()
         {
-            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(FirstOrDefault)}"))
-            {
-                trace.Annotate(new Dictionary<string, string>
-                {
-                    { "query/skip", Restrictions.Skip.ToString() },
-                    { "query/take", "1" }
-                });
+            Take(1);
 
-                Take(1);
-
-                return GetRestricted()
-                    .Skip(Restrictions.Skip)
-                    .FirstOrDefault();
-            }
+            return GetRestricted()
+                .Skip(Restrictions.Skip)
+                .FirstOrDefault();
         }
 
-        public override List<T> ToList()
-        {
-            using (var trace = Tracer.Trace.Start($"{nameof(ISession)}.{nameof(ToList)}"))
-            {
-                trace.Annotate(new Dictionary<string, string>
-                {
-                    { "query/skip", Restrictions.Skip.ToString() },
-                    { "query/take", Restrictions.Take.ToString() }
-                });
-
-                return GetRestricted()
-                    .Skip(Restrictions.Skip)
-                    .Take(Restrictions.Take)
-                    .ToList();
-            }
-        }
+        public override List<T> ToList() =>
+            GetRestricted()
+                .Skip(Restrictions.Skip)
+                .Take(Restrictions.Take)
+                .ToList();
 
         IEnumerable<T> GetRestricted()
         {

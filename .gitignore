@@ -68,3 +68,4 @@ UpgradeLog*.htm
 
 # Mac crap
 .DS_Store
+nuget.txt

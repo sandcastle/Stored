@@ -26,9 +26,6 @@
           <e p="MemorySession.cs" t="Include" />
           <e p="MemoryStore.cs" t="Include" />
         </e>
-        <e p="Model" t="Include">
-          <e p="DataModel.cs" t="Include" />
-        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Release" t="Include">
             <e p="netstandard2.0" t="Include">
@@ -57,10 +54,11 @@
         <e p="Stored.nuspec" t="Include" />
         <e p="Tracing" t="Include">
           <e p="ITraceContext.cs" t="Include" />
+          <e p="ITracedQuery.cs" t="Include" />
           <e p="ITracer.cs" t="Include" />
           <e p="NullTraceContext.cs" t="Include" />
           <e p="NullTracer.cs" t="Include" />
-          <e p="Tracer.cs" t="Include" />
+          <e p="TracedSession.cs" t="Include" />
         </e>
       </e>
       <e p="Stored.Postgres" t="IncludeRecursive">
