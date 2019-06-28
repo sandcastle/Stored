@@ -42,6 +42,7 @@ namespace Stored.Tests.Postgres
                     command.CommandType = CommandType.Text;
                     command.CommandText = @"
                         drop table if exists ""car"" cascade;
+                        drop table if exists ""other"" cascade;
                         drop table if exists ""bad"" cascade;
                         drop table if exists ""user"" cascade;
                         drop table if exists ""purchase"" cascade;

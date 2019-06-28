@@ -165,6 +165,36 @@ namespace Stored.Tests.Postgres
 
         [Fact]
         [Trait(TraitName, "")]
+        public void CanQueryNullable()
+        {
+            // Arrange
+            var one = new Other
+            {
+                Id = Guid.NewGuid(),
+                GameId = Guid.NewGuid()
+            };
+            var two = new Other
+            {
+                Id = Guid.NewGuid(),
+                GameId = null
+            };
+
+            Session.Create(one);
+            Session.Create(two);
+            Session.Commit();
+
+            // Act
+            var others = Session.Query<Other>()
+                .Where(x => x.GameId).Equal(null)
+                .ToList();
+
+            // Assert
+            Assert.Equal(1, others.Count);
+            Assert.Null(others[0].GameId);
+        }
+
+        [Fact]
+        [Trait(TraitName, "")]
         public void CanQueryBoolTrue()
         {
             // Arrange
@@ -476,7 +506,6 @@ namespace Stored.Tests.Postgres
             Assert.Equal(1, stats.Skip);
             Assert.Equal(1024, stats.Take);
         }
-
 
         [Fact]
         public void CanCreateInParallelWithoutIssue()

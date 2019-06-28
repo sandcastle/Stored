@@ -8,6 +8,11 @@ namespace Stored.Query
 
         public static object GetUnderlyingValue(object value)
         {
+            if (value == null)
+            {
+                return null;
+            }
+
             var type = value.GetType();
             if (type.IsEnum)
             {

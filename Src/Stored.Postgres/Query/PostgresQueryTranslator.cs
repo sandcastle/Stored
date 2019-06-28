@@ -92,9 +92,23 @@ namespace Stored.Postgres.Query
 
         static string GetBinaryComparison(BinaryFilter filter, IDictionary<string, object> parameters)
         {
-            parameters.Add(":" + filter.FieldName, TypeHelper.GetUnderlyingValue(filter.Value).ToString());
-
+            object value = TypeHelper.GetUnderlyingValue(filter.Value);
             string type = GetJsonType(typeof(string));
+
+            if (value == null)
+            {
+                switch (filter.Operator)
+                {
+                    case BinaryOperator.Equal:
+                        return $"body->>'{filter.FieldName}' is null";
+                    case BinaryOperator.NotEqual:
+                        return $"body->>'{filter.FieldName}' is not null";
+                    default:
+                        throw new InvalidOperationException($"Invalid operator '{filter.Operator}' for null value");
+                }
+            }
+
+            parameters.Add(":" + filter.FieldName, value.ToString());
 
             return
                 $"(body->>'{filter.FieldName}')::{type} {GetOperator(filter.Operator)} :{filter.FieldName.ToLower()}";
